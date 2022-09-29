@@ -1,0 +1,56 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;*******************************************************
+                       ************
+    2 00000000         ; Autores: Ayelen Nu�o con NIA 799301 y Loreto Matiner
+                       o con NIA 796598
+    3 00000000         ;*******************************************************
+                       ************
+    4 00000000         
+    5 00000000         ;conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_F
+                       ILS][TAM_COLS], uint8_t
+    6 00000000         ; fila, uint8_t columna, uint8_t color, int8_t delta_fil
+                       a, int8_t
+    7 00000000         ; delta_columna);
+    8 00000000         
+    9 00000000                 AREA             codigo, CODE
+   10 00000000                 EXPORT           conecta4_buscar_alineamiento_ar
+m
+   11 00000000         
+   12 00000000         conecta4_buscar_alineamiento_arm
+   13 00000000 E3A05000        MOV              R5, #0
+   14 00000004         
+   15 00000004                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\conecta4_2022_arm.d -o.\objects\conecta4_2022_arm.o -IC:\Keil_v5\ARM\RV3
+1\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\conec
+ta4_2022_arm.lst conecta4_2022_arm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+codigo 00000000
+
+Symbol: codigo
+   Definitions
+      At line 9 in file conecta4_2022_arm.s
+   Uses
+      None
+Comment: codigo unused
+conecta4_buscar_alineamiento_arm 00000000
+
+Symbol: conecta4_buscar_alineamiento_arm
+   Definitions
+      At line 12 in file conecta4_2022_arm.s
+   Uses
+      At line 10 in file conecta4_2022_arm.s
+Comment: conecta4_buscar_alineamiento_arm used once
+2 symbols
+334 symbols in table

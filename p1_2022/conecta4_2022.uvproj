@@ -471,6 +471,11 @@
               <FileType>1</FileType>
               <FilePath>.\entrada.c</FilePath>
             </File>
+            <File>
+              <FileName>conecta4_2022_arm.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\conecta4_2022_arm.s</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
