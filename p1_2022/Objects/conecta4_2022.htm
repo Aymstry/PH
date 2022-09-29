@@ -3,22 +3,23 @@
 <title>Static Call Graph - [.\Objects\conecta4_2022.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\conecta4_2022.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Sep 27 12:52:03 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Sep 29 13:05:02 2022
 <BR><P>
-<H3>Maximum Stack Usage =        120 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
+main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
 <P>
 <H3>
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[13]">__user_initial_stackheap</a>
+ <LI><a href="#[16]">conecta4_buscar_alineamiento_arm</a>
 </UL>
 </UL>
 <P>
 <H3>
 Mutually Recursive functions
-</H3> <LI><a href="#[1b]">conecta4_buscar_alineamiento_c</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1b]">conecta4_buscar_alineamiento_c</a><BR>
+</H3> <LI><a href="#[16]">conecta4_buscar_alineamiento_arm</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[16]">conecta4_buscar_alineamiento_arm</a><BR>
 </UL>
 <P>
 <H3>
@@ -206,111 +207,106 @@ Global Symbols
 
 <P><STRONG><a name="[4b]"></a>__use_no_semihosting_swi</STRONG> (ARM, 4 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
+<P><STRONG><a name="[4c]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[16]"></a>conecta4_buscar_alineamiento_arm</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo))
+<BR><BR>[Calls]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
+</UL>
+<BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_arm
+</UL>
+
 <P><STRONG><a name="[21]"></a>C4_actualizar_tablero</STRONG> (ARM, 60 bytes, Stack size 8 bytes, conecta4_2022.o(i.C4_actualizar_tablero))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = C4_actualizar_tablero
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[4c]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
-
-<P><STRONG><a name="[16]"></a>C4_calcular_fila</STRONG> (ARM, 108 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_calcular_fila))
+<P><STRONG><a name="[17]"></a>C4_calcular_fila</STRONG> (ARM, 108 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_calcular_fila))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = C4_calcular_fila
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
+<BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[18]"></a>C4_comprobar_empate</STRONG> (ARM, 72 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_comprobar_empate))
+<P><STRONG><a name="[19]"></a>C4_comprobar_empate</STRONG> (ARM, 72 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_comprobar_empate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = C4_comprobar_empate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
+<BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
-</UL>
-
-<P><STRONG><a name="[19]"></a>C4_verificar_4_en_linea</STRONG> (ARM, 56 bytes, Stack size 24 bytes, conecta4_2022.o(i.C4_verificar_4_en_linea))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
-</UL>
-<BR>[Calls]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_c
-</UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1b]"></a>conecta4_buscar_alineamiento_c</STRONG> (ARM, 172 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_buscar_alineamiento_c))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48 + In Cycle
-<LI>Call Chain = conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
+<P><STRONG><a name="[1a]"></a>C4_verificar_4_en_linea</STRONG> (ARM, 56 bytes, Stack size 24 bytes, conecta4_2022.o(i.C4_verificar_4_en_linea))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
+<LI>Call Chain = C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
-<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
-<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
+<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_arm
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_c
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1a]"></a>conecta4_hay_linea_c_c</STRONG> (ARM, 312 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_hay_linea_c_c))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = conecta4_hay_linea_c_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
+<P><STRONG><a name="[1b]"></a>conecta4_hay_linea_c_arm</STRONG> (ARM, 312 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_hay_linea_c_arm))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
+<LI>Call Chain = conecta4_hay_linea_c_arm
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<BR>[Calls]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
+<BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
 </UL>
 
-<P><STRONG><a name="[1e]"></a>conecta4_jugar</STRONG> (ARM, 212 bytes, Stack size 0 bytes, conecta4_2022.o(i.conecta4_jugar))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
+<P><STRONG><a name="[1c]"></a>conecta4_jugar</STRONG> (ARM, 212 bytes, Stack size 0 bytes, conecta4_2022.o(i.conecta4_jugar))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
+<LI>Call Chain = conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_nueva
-<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_leer
+<BR>[Calls]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_nueva
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_leer
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_inicializar
-<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
-<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_actualizar_tablero
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
-<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
+<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[22]"></a>entrada_inicializar</STRONG> (ARM, 16 bytes, Stack size 0 bytes, entrada.o(i.entrada_inicializar))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<BR><BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[20]"></a>entrada_leer</STRONG> (ARM, 12 bytes, Stack size 0 bytes, entrada.o(i.entrada_leer))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<P><STRONG><a name="[1e]"></a>entrada_leer</STRONG> (ARM, 12 bytes, Stack size 0 bytes, entrada.o(i.entrada_leer))
+<BR><BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1f]"></a>entrada_nueva</STRONG> (ARM, 12 bytes, Stack size 0 bytes, entrada.o(i.entrada_nueva))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<P><STRONG><a name="[1d]"></a>entrada_nueva</STRONG> (ARM, 12 bytes, Stack size 0 bytes, entrada.o(i.entrada_nueva))
+<BR><BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
 <P><STRONG><a name="[2]"></a>main</STRONG> (ARM, 12 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
+<LI>Call Chain = main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
+<BR>[Calls]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> __rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL><P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[1d]"></a>C4_columna_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_columna_valida))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<P><STRONG><a name="[20]"></a>C4_columna_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_columna_valida))
+<BR><BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1c]"></a>C4_fila_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_fila_valida))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<P><STRONG><a name="[1f]"></a>C4_fila_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_fila_valida))
+<BR><BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[17]"></a>celda_vacia</STRONG> (ARM, 16 bytes, Stack size 0 bytes, conecta4_2022.o(i.celda_vacia))
-<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
-<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
+<P><STRONG><a name="[18]"></a>celda_vacia</STRONG> (ARM, 16 bytes, Stack size 0 bytes, conecta4_2022.o(i.celda_vacia))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
 </UL>
 <P>
 <H3>
