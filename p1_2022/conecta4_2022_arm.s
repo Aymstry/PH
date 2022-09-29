@@ -25,20 +25,26 @@ conecta4_buscar_alineamiento_arm
 	; comprobamos si son correctos los valores de la celda que nos proporcionan
 	; estan dentro del tablero 
 	cmp r5, #1
+	movlt r0, #0
 	blt termina 			; salta si r5 >= 1 
 	cmp r5, #6
+	movgt r0, #0
 	bgt termina 			; salta si r4 > NUM_FILAS
 	cmp r6, #1
+	movlt r0, #0
 	blt termina 			; salta si r6 >= 1 
 	cmp r6, #7			 	; salta si r6 <= NUM_COLUMNAS 
+	movgt r0, #0
 	bgt termina 		
 	; comprobamos que la celda no sea vacia, y sea del mismo color 
 	add r10, r4, r5, LSL #3			; r10 = @tablero + 8*fila 
 	ldrb r9, [r10, r6] 				; r9 = dato de la celda = r10 + columna 
 	tst r9, #0x4					; and lógico que actualiza los flags 
+	moveq r0, #0
 	beq termina 					; salta si flag z = 1 pq la celda estará vacia 
 	and r10, r9, #0x03				; and logico para encontrar color de la celda
 	cmp r10, r7						; comparacion del color obtenido con el guardado en r7
+	movne r0, #0
 	bne termina						; salta si no son iguales
 	; obtenemos el valor de delta y lo avanzamos 
 	ldr r9, [sp, #32]		 		; r9 = deltaFila = sp + 12
@@ -55,4 +61,5 @@ conecta4_buscar_alineamiento_arm
 	add sp, sp, #12					; liberamo el esacio de los parámetros apilados 
 termina ; salimos de la subrutina 
 	LDMIA R13!, {R4-R10, R14}
+	mov pc, r14
 	END

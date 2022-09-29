@@ -21,4 +21,4 @@ F (.\entrada.c)(0x6329C8C0)(--c99 --gnu -c --cpu ARM7TDMI -D__EVAL -g -O0 -Otime
 I (entrada.h)(0x6329C8C0)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F2F9E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
-F (.\conecta4_2022_arm.s)(0x63357BCE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 526"--list .\listings\conecta4_2022_arm.lst --xref -o .\objects\conecta4_2022_arm.o --depend .\objects\conecta4_2022_arm.d)
+F (.\conecta4_2022_arm.s)(0x6335E16F)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 526"--list .\listings\conecta4_2022_arm.lst --xref -o .\objects\conecta4_2022_arm.o --depend .\objects\conecta4_2022_arm.d)
