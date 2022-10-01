@@ -5,7 +5,8 @@
 #include "celda.h"
 static CELDA
 cuadricula_1[7][8] =
-{
+{ 
+	//Inicial
 /*0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
 0XF1, 6, 5, 6, 5, 6, 6, 0,
 0XF2, 5, 6, 5, 5, 0, 5, 0,
@@ -13,13 +14,30 @@ cuadricula_1[7][8] =
 0XF4, 5, 0, 0, 6, 0, 5, 0,
 0XF5, 6, 0, 0, 5, 0, 0, 0,
 0XF6, 0, 0, 0, 6, 0, 0, 0};*/
-	0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
+	//Empate mismo color
+	/*0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
 0XF1, 6, 5, 6, 5, 6, 6, 6,
 0XF2, 5, 6, 5, 5, 6, 5, 6,
 0XF3, 6, 6, 5, 6, 6, 5, 5,
 0XF4, 5, 6, 5, 6, 5, 5, 6,
 0XF5, 6, 5, 6, 5, 6, 6, 5,
 0XF6, 5, 5, 6, 6, 6, 5, 0};
+	//Columna válida
+0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
+0XF1, 6, 5, 6, 5, 6, 6, 6,
+0XF2, 5, 6, 5, 5, 6, 5, 6,
+0XF3, 6, 6, 5, 6, 6, 5, 5,
+0XF4, 0, 6, 5, 6, 5, 5, 6,
+0XF5, 0, 5, 6, 5, 6, 6, 5,
+0XF6, 0, 5, 6, 6, 6, 5, 0};*/
+     // Comprobamos fla válida y celda vacia (em el otro sentido) 
+0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
+0XF1, 6, 5, 0, 5, 6, 6, 6,
+0XF2, 5, 6, 0, 5, 6, 5, 6,
+0XF3, 6, 6, 0, 6, 6, 5, 5,
+0XF4, 6, 6, 0, 6, 5, 5, 6,
+0XF5, 5, 5, 0, 5, 6, 6, 5,
+0XF6, 5, 5, 0, 6, 6, 0, 0};
 
 // se pueden definir otros tableros para comprobar casos
 

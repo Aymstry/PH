@@ -1,41 +1,103 @@
 ;*******************************************************************
 ; Autores: Ayelen Nu�o con NIA 799301 y Loreto Matinero con NIA 796598
 ;*******************************************************************
+	AREA datos, DATA, READWRITE
+deltas_fila 	DCB 0x00, 0xFF, 0xFF, 0x01
+deltas_columna 	DCB 0xFF, 0x00, 0xFF, 0xFF
+	
+	AREA codigo, CODE	
+	EXPORT conecta4_buscar_alineamiento_arm
+	EXPORT conecta4_hay_linea_arm_c
+	IMPORT conecta4_buscar_alineamiento_c
+	PRESERVE8 {TRUE}
+	ENTRY
 
-; Parámetros que nos pasan a la función 
+	; Parámetros que nos pasan a la función 
+    ; r0 = tablero  
+    ; r1 = fila 
+    ; r2 = columna 
+	; r3 = color 
+	
+conecta4_hay_linea_arm_c
+
+	STMDB R13!, {R4-R10,R12,R14}
+	mov r4, #0				; contador i del bucle for 
+	mov r6, r0				; valor auxiliar del tablero
+	mov r5, r1 				; r5 = valor de la fila
+	mov r8, r2				; r8 = valor de la columna 
+	LDR r7, =deltas_fila 	; r7 = @deltas_fila
+	
+for 
+	; actualizamos los deltas 
+	ldrb r9, [r7]			; r9 = valor deltas_fila
+	ldrb r10, [r7, #4]		; r10 = valor deltas_columna; r8 = r8 +1
+	add r7, r7, #1			; r7 = r7 +1
+	STMDB R13!, {r9,r10}	; apilamos los deltas
+	; invocamos a la función para buscar en un sentido 
+	bl conecta4_buscar_alineamiento_c
+	add sp, sp, #8			; liberamos los parámetros 
+	cmp r0, #4				; salta si r4 >= 4 
+	bge continua  
+	; preparamos los parametros para la siguiente invocación 
+	mov r12, #-1			; r12 = -1 para actualizar los deltas
+	sub r1, r1, r9			; fila = fila - delta_fila 
+	sub r2, r2, r10			; columna = columna - delta_columna 
+	mul r9, r12, r9
+	mul r10, r12, r10	
+	mov r12, r0				; resultado temporal en r12 
+	mov r0, r6				; devolvemos el valor a r0 (cuadricula)
+	STMDB R13!, {r9,r10}	; apilamos los deltas
+	bl conecta4_buscar_alineamiento_c
+	add r12, r12, r0 		; guardamos en r12 el valor del resultado actualizado
+	add sp, sp, #8			; liberamos los parámetros 
+	cmp r0, #4				; salta si r4 >= 4 
+	mov r0, r12				; resultado temporal en r12 
+	bge continua  
+	; devolvemos a la normalidad los registros para la siguiente iteracion  
+	mov r0, r6				; devolvemos el valor a r0 (cuadricula)
+	mov r1, r5				; devolvemos el valor a r1 (fila)
+	mov r2, r8 				; devolvemos el valor a r2 (columna)
+	; comprobamos si volvemos a saltar al bucle 
+	cmp r4, #4				; salta si r4 >= 4 
+	bge continua 
+	add r4, r4, #1 			; incrementamos contador 
+	beq for 	
+	; salimos del bucle y terminamos la subrutina 	
+continua
+	LDMIA R13!, {R4-R10,R12,R14}
+	mov pc, r14
+
+
+	; Parámetros que nos pasan a la función 
     ; r0 = tablero  
     ; r1 = fila 
     ; r2 = columna 
 	; r3 = color 
 
-	; Faltan las deltas que se pasan siemre a través de la pila
+	; Faltan las deltas que se pasan siemPre a través de la pila
 	; delta de la columna es sp 
-	; delta de la fila es fp +4    
-
-	AREA codigo, CODE
-	EXPORT conecta4_buscar_alineamiento_arm
-	
+	; delta de la fila es fp +4 
 
 conecta4_buscar_alineamiento_arm
 	STMDB R13!, {R4-R10,R14}
-	mov r4, r0 			; r4 = tablero 
-	mov r5, r1			; r5 = fila
-	mov r6, r2 			; r6 = columna 
-	mov r7, r3			; r7 = color
+	mov r4, r0 						; r4 = tablero 
+	mov r5, r1						; r5 = fila
+	mov r6, r2 						; r6 = columna 
+	mov r7, r3						; r7 = color
 	; comprobamos si son correctos los valores de la celda que nos proporcionan
 	; estan dentro del tablero 
 	cmp r5, #1
 	movlt r0, #0
-	blt termina 			; salta si r5 >= 1 
+	blt termina 					; salta si r5 < 1 
 	cmp r5, #6
 	movgt r0, #0
-	bgt termina 			; salta si r4 > NUM_FILAS
+	bgt termina 					; salta si r5 > NUM_FILAS
 	cmp r6, #1
 	movlt r0, #0
-	blt termina 			; salta si r6 >= 1 
-	cmp r6, #7			 	; salta si r6 <= NUM_COLUMNAS 
+	blt termina 					; salta si r6 < 1 
+	cmp r6, #7			 	
 	movgt r0, #0
-	bgt termina 		
+	bgt termina 					; salta si r6 > NUM_COLUMNAS 
 	; comprobamos que la celda no sea vacia, y sea del mismo color 
 	add r10, r4, r5, LSL #3			; r10 = @tablero + 8*fila 
 	ldrb r9, [r10, r6] 				; r9 = dato de la celda = r10 + columna 
@@ -54,7 +116,7 @@ conecta4_buscar_alineamiento_arm
 	;llamamos a la función recursiva
 	mov r8, #1						; apilamos en resultado un 1
 	STMDB R13!, {r8}
-	STMDB R13!, {r9, r10}		; apilamos los parámetros y el resultado para la siguiente iteración 
+	STMDB R13!, {r9, r10}			; apilamos los parámetros y el resultado para la siguiente iteración 
 	bl conecta4_buscar_alineamiento_arm
 	ldr r1, [sp, #8]				; leemos resultado (1)
 	add r0, r0, r1					; r0 = resultado final = resultado anterior (r0) + resultado de esta invocacion de la subrutina(r1)
