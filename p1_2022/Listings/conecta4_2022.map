@@ -271,23 +271,23 @@ Image Symbol Table
     .text                                    0x000001bc   Section        0  sys_exit.o(.text)
     .text                                    0x000001c8   Section        4  use_no_semi.o(.text)
     .text                                    0x000001cc   Section        0  indicate_semi.o(.text)
-    codigo                                   0x000001cc   Section      308  conecta4_2022_arm.o(codigo)
-    i.C4_actualizar_tablero                  0x00000300   Section        0  conecta4_2022.o(i.C4_actualizar_tablero)
-    i.C4_calcular_fila                       0x0000033c   Section        0  conecta4_2022.o(i.C4_calcular_fila)
-    i.C4_columna_valida                      0x000003a8   Section        0  conecta4_2022.o(i.C4_columna_valida)
-    C4_columna_valida                        0x000003a8   ARM Code      36  conecta4_2022.o(i.C4_columna_valida)
-    i.C4_comprobar_empate                    0x000003cc   Section        0  conecta4_2022.o(i.C4_comprobar_empate)
-    i.C4_fila_valida                         0x00000414   Section        0  conecta4_2022.o(i.C4_fila_valida)
-    C4_fila_valida                           0x00000414   ARM Code      36  conecta4_2022.o(i.C4_fila_valida)
-    i.C4_verificar_4_en_linea                0x00000438   Section        0  conecta4_2022.o(i.C4_verificar_4_en_linea)
-    i.celda_vacia                            0x00000470   Section        0  conecta4_2022.o(i.celda_vacia)
-    celda_vacia                              0x00000470   ARM Code      16  conecta4_2022.o(i.celda_vacia)
-    i.conecta4_buscar_alineamiento_c         0x00000480   Section        0  conecta4_2022.o(i.conecta4_buscar_alineamiento_c)
-    i.conecta4_jugar                         0x0000052c   Section        0  conecta4_2022.o(i.conecta4_jugar)
-    i.entrada_inicializar                    0x00000608   Section        0  entrada.o(i.entrada_inicializar)
-    i.entrada_leer                           0x00000618   Section        0  entrada.o(i.entrada_leer)
-    i.entrada_nueva                          0x00000624   Section        0  entrada.o(i.entrada_nueva)
-    i.main                                   0x00000630   Section        0  main.o(i.main)
+    codigo                                   0x000001cc   Section      332  conecta4_2022_arm.o(codigo)
+    i.C4_actualizar_tablero                  0x00000318   Section        0  conecta4_2022.o(i.C4_actualizar_tablero)
+    i.C4_calcular_fila                       0x00000354   Section        0  conecta4_2022.o(i.C4_calcular_fila)
+    i.C4_columna_valida                      0x000003c0   Section        0  conecta4_2022.o(i.C4_columna_valida)
+    C4_columna_valida                        0x000003c0   ARM Code      36  conecta4_2022.o(i.C4_columna_valida)
+    i.C4_comprobar_empate                    0x000003e4   Section        0  conecta4_2022.o(i.C4_comprobar_empate)
+    i.C4_fila_valida                         0x0000042c   Section        0  conecta4_2022.o(i.C4_fila_valida)
+    C4_fila_valida                           0x0000042c   ARM Code      36  conecta4_2022.o(i.C4_fila_valida)
+    i.C4_verificar_4_en_linea                0x00000450   Section        0  conecta4_2022.o(i.C4_verificar_4_en_linea)
+    i.celda_vacia                            0x00000488   Section        0  conecta4_2022.o(i.celda_vacia)
+    celda_vacia                              0x00000488   ARM Code      16  conecta4_2022.o(i.celda_vacia)
+    i.conecta4_buscar_alineamiento_c         0x00000498   Section        0  conecta4_2022.o(i.conecta4_buscar_alineamiento_c)
+    i.conecta4_jugar                         0x00000544   Section        0  conecta4_2022.o(i.conecta4_jugar)
+    i.entrada_inicializar                    0x00000620   Section        0  entrada.o(i.entrada_inicializar)
+    i.entrada_leer                           0x00000630   Section        0  entrada.o(i.entrada_leer)
+    i.entrada_nueva                          0x0000063c   Section        0  entrada.o(i.entrada_nueva)
+    i.main                                   0x00000648   Section        0  main.o(i.main)
     .data                                    0x40000000   Section       64  conecta4_2022.o(.data)
     entrada                                  0x40000000   Data           8  conecta4_2022.o(.data)
     cuadricula_1                             0x40000008   Data          56  conecta4_2022.o(.data)
@@ -399,19 +399,19 @@ Image Symbol Table
     __use_no_semihosting_swi                 0x000001c8   ARM Code       4  use_no_semi.o(.text)
     __semihosting_library_function           0x000001cc   ARM Code       0  indicate_semi.o(.text)
     conecta4_hay_linea_arm_c                 0x000001cc   ARM Code       0  conecta4_2022_arm.o(codigo)
-    conecta4_buscar_alineamiento_arm         0x00000260   ARM Code       0  conecta4_2022_arm.o(codigo)
-    C4_actualizar_tablero                    0x00000300   ARM Code      60  conecta4_2022.o(i.C4_actualizar_tablero)
-    C4_calcular_fila                         0x0000033c   ARM Code     108  conecta4_2022.o(i.C4_calcular_fila)
-    C4_comprobar_empate                      0x000003cc   ARM Code      72  conecta4_2022.o(i.C4_comprobar_empate)
-    C4_verificar_4_en_linea                  0x00000438   ARM Code      56  conecta4_2022.o(i.C4_verificar_4_en_linea)
-    conecta4_buscar_alineamiento_c           0x00000480   ARM Code     172  conecta4_2022.o(i.conecta4_buscar_alineamiento_c)
-    conecta4_jugar                           0x0000052c   ARM Code     212  conecta4_2022.o(i.conecta4_jugar)
-    entrada_inicializar                      0x00000608   ARM Code      16  entrada.o(i.entrada_inicializar)
-    entrada_leer                             0x00000618   ARM Code      12  entrada.o(i.entrada_leer)
-    entrada_nueva                            0x00000624   ARM Code      12  entrada.o(i.entrada_nueva)
-    main                                     0x00000630   ARM Code      12  main.o(i.main)
-    Region$$Table$$Base                      0x0000063c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000065c   Number         0  anon$$obj.o(Region$$Table)
+    conecta4_buscar_alineamiento_arm         0x00000278   ARM Code       0  conecta4_2022_arm.o(codigo)
+    C4_actualizar_tablero                    0x00000318   ARM Code      60  conecta4_2022.o(i.C4_actualizar_tablero)
+    C4_calcular_fila                         0x00000354   ARM Code     108  conecta4_2022.o(i.C4_calcular_fila)
+    C4_comprobar_empate                      0x000003e4   ARM Code      72  conecta4_2022.o(i.C4_comprobar_empate)
+    C4_verificar_4_en_linea                  0x00000450   ARM Code      56  conecta4_2022.o(i.C4_verificar_4_en_linea)
+    conecta4_buscar_alineamiento_c           0x00000498   ARM Code     172  conecta4_2022.o(i.conecta4_buscar_alineamiento_c)
+    conecta4_jugar                           0x00000544   ARM Code     212  conecta4_2022.o(i.conecta4_jugar)
+    entrada_inicializar                      0x00000620   ARM Code      16  entrada.o(i.entrada_inicializar)
+    entrada_leer                             0x00000630   ARM Code      12  entrada.o(i.entrada_leer)
+    entrada_nueva                            0x0000063c   ARM Code      12  entrada.o(i.entrada_nueva)
+    main                                     0x00000648   ARM Code      12  main.o(i.main)
+    Region$$Table$$Base                      0x00000654   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000674   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x40000048   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x400000a8   Data           0  libspace.o(.bss)
 
@@ -423,9 +423,9 @@ Memory Map of the image
 
   Image Entry point : 0x00000000
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000006a4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000006bc, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000065c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000674, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -489,32 +489,32 @@ Memory Map of the image
     0x000001bc   0x000001bc   0x0000000c   Code   RO          242    .text               c_t.l(sys_exit.o)
     0x000001c8   0x000001c8   0x00000004   Code   RO          253    .text               c_t.l(use_no_semi.o)
     0x000001cc   0x000001cc   0x00000000   Code   RO          255    .text               c_t.l(indicate_semi.o)
-    0x000001cc   0x000001cc   0x00000134   Code   RO          146  * codigo              conecta4_2022_arm.o
-    0x00000300   0x00000300   0x0000003c   Code   RO           11    i.C4_actualizar_tablero  conecta4_2022.o
-    0x0000033c   0x0000033c   0x0000006c   Code   RO           12    i.C4_calcular_fila  conecta4_2022.o
-    0x000003a8   0x000003a8   0x00000024   Code   RO           13    i.C4_columna_valida  conecta4_2022.o
-    0x000003cc   0x000003cc   0x00000048   Code   RO           14    i.C4_comprobar_empate  conecta4_2022.o
-    0x00000414   0x00000414   0x00000024   Code   RO           15    i.C4_fila_valida    conecta4_2022.o
-    0x00000438   0x00000438   0x00000038   Code   RO           16    i.C4_verificar_4_en_linea  conecta4_2022.o
-    0x00000470   0x00000470   0x00000010   Code   RO           17    i.celda_vacia       conecta4_2022.o
-    0x00000480   0x00000480   0x000000ac   Code   RO           18    i.conecta4_buscar_alineamiento_c  conecta4_2022.o
-    0x0000052c   0x0000052c   0x000000dc   Code   RO           21    i.conecta4_jugar    conecta4_2022.o
-    0x00000608   0x00000608   0x00000010   Code   RO          121    i.entrada_inicializar  entrada.o
-    0x00000618   0x00000618   0x0000000c   Code   RO          122    i.entrada_leer      entrada.o
-    0x00000624   0x00000624   0x0000000c   Code   RO          123    i.entrada_nueva     entrada.o
-    0x00000630   0x00000630   0x0000000c   Code   RO          100    i.main              main.o
-    0x0000063c   0x0000063c   0x00000020   Data   RO          310    Region$$Table       anon$$obj.o
+    0x000001cc   0x000001cc   0x0000014c   Code   RO          146  * codigo              conecta4_2022_arm.o
+    0x00000318   0x00000318   0x0000003c   Code   RO           11    i.C4_actualizar_tablero  conecta4_2022.o
+    0x00000354   0x00000354   0x0000006c   Code   RO           12    i.C4_calcular_fila  conecta4_2022.o
+    0x000003c0   0x000003c0   0x00000024   Code   RO           13    i.C4_columna_valida  conecta4_2022.o
+    0x000003e4   0x000003e4   0x00000048   Code   RO           14    i.C4_comprobar_empate  conecta4_2022.o
+    0x0000042c   0x0000042c   0x00000024   Code   RO           15    i.C4_fila_valida    conecta4_2022.o
+    0x00000450   0x00000450   0x00000038   Code   RO           16    i.C4_verificar_4_en_linea  conecta4_2022.o
+    0x00000488   0x00000488   0x00000010   Code   RO           17    i.celda_vacia       conecta4_2022.o
+    0x00000498   0x00000498   0x000000ac   Code   RO           18    i.conecta4_buscar_alineamiento_c  conecta4_2022.o
+    0x00000544   0x00000544   0x000000dc   Code   RO           21    i.conecta4_jugar    conecta4_2022.o
+    0x00000620   0x00000620   0x00000010   Code   RO          121    i.entrada_inicializar  entrada.o
+    0x00000630   0x00000630   0x0000000c   Code   RO          122    i.entrada_leer      entrada.o
+    0x0000063c   0x0000063c   0x0000000c   Code   RO          123    i.entrada_nueva     entrada.o
+    0x00000648   0x00000648   0x0000000c   Code   RO          100    i.main              main.o
+    0x00000654   0x00000654   0x00000020   Data   RO          310    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x40000000, Load base: 0x0000065c, Size: 0x00000048, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x40000000, Load base: 0x00000674, Size: 0x00000048, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x40000000   0x0000065c   0x00000040   Data   RW           22    .data               conecta4_2022.o
-    0x40000040   0x0000069c   0x00000008   Data   RW          145    datos               conecta4_2022_arm.o
+    0x40000000   0x00000674   0x00000040   Data   RW           22    .data               conecta4_2022.o
+    0x40000040   0x000006b4   0x00000008   Data   RW          145    datos               conecta4_2022_arm.o
 
 
-    Execution Region ER_ZI (Exec base: 0x40000048, Load base: 0x000006a4, Size: 0x000004e8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x40000048, Load base: 0x000006bc, Size: 0x000004e8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -531,13 +531,13 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        776          8          0         64          0      11957   conecta4_2022.o
-       308          4          0          8          0        308   conecta4_2022_arm.o
+       332          4          0          8          0        316   conecta4_2022_arm.o
         40          0          0          0          0       1881   entrada.o
         12          0          0          0          0        431   main.o
         32         12          0          0       1160        296   startup.o
 
     ----------------------------------------------------------------------
-      1168         24         32         72       1160      14873   Object Totals
+      1192         24         32         72       1160      14881   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -586,15 +586,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1596         44         32         72       1256      14821   Grand Totals
-      1596         44         32         72       1256      14821   ELF Image Totals
-      1596         44         32         72          0          0   ROM Totals
+      1620         44         32         72       1256      14829   Grand Totals
+      1620         44         32         72       1256      14829   ELF Image Totals
+      1620         44         32         72          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1628 (   1.59kB)
+    Total RO  Size (Code + RO Data)                 1652 (   1.61kB)
     Total RW  Size (RW Data + ZI Data)              1328 (   1.30kB)
-    Total ROM Size (Code + RO Data + RW Data)       1700 (   1.66kB)
+    Total ROM Size (Code + RO Data + RW Data)       1724 (   1.68kB)
 
 ==============================================================================
 

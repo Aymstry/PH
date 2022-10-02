@@ -34,7 +34,7 @@ m
    20 00000000         
    21 00000000         conecta4_hay_linea_arm_c
    22 00000000         
-   23 00000000 E92D57F0        STMDB            R13!, {R4-R10,R12,R14}
+   23 00000000 E92D5FF0        STMDB            R13!, {R4-R12, R14}
    24 00000004 E3A04000        mov              r4, #0      ; contador i del bu
                                                             cle for 
    25 00000008 E1A06000        mov              r6, r0      ; valor auxiliar de
@@ -43,188 +43,200 @@ m
                                                             fila
    27 00000010 E1A08002        mov              r8, r2      ; r8 = valor de la 
                                                             columna 
-   28 00000014 E59F7114        LDR              r7, =deltas_fila 
+   28 00000014 E1A0C003        mov              r12, r3     ; r12 = color
+   29 00000018 E59F7128        LDR              r7, =deltas_fila 
                                                             ; r7 = @deltas_fila
                                                             
-   29 00000018         
-   30 00000018         for
-   31 00000018         ; actualizamos los deltas 
-   32 00000018 E5D79000        ldrb             r9, [r7]    ; r9 = valor deltas
+   30 0000001C         
+   31 0000001C         for
+   32 0000001C         ; actualizamos los deltas 
+   33 0000001C E1D790D0        ldrsb            r9, [r7]    ; r9 = valor deltas
                                                             _fila
-   33 0000001C E5D7A004        ldrb             r10, [r7, #4] ; r10 = valor del
+   34 00000020 E1D7A0D4        ldrsb            r10, [r7, #4] ; r10 = valor del
                                                             tas_columna; r8 = r
                                                             8 +1
-   34 00000020 E2877001        add              r7, r7, #1  ; r7 = r7 +1
-   35 00000024 E92D0600        STMDB            R13!, {r9,r10} ; apilamos los d
+   35 00000024 E2877001        add              r7, r7, #1  ; r7 = r7 +1
+   36 00000028 E92D0600        STMDB            R13!, {r9,r10} ; apilamos los d
                                                             eltas
-   36 00000028         ; invocamos a la función para buscar en un sentido 
-   37 00000028 EBFFFFFE        bl               conecta4_buscar_alineamiento_c
-   38 0000002C E28DD008        add              sp, sp, #8  ; liberamos los par
+   37 0000002C         ; invocamos a la función para buscar en un sentido 
+   38 0000002C EBFFFFFE        bl               conecta4_buscar_alineamiento_c
+   39 00000030 E28DD008        add              sp, sp, #8  ; liberamos los par
                                                             ámetros 
-   39 00000030 E3500004        cmp              r0, #4      ; salta si r4 >= 4 
-                                                            
+   40 00000034 E3500004        cmp              r0, #4      ; salta si r4 >= 4 
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   40 00000034 AA000014        bge              continua
-   41 00000038         ; preparamos los parametros para la siguiente invocació
+                                                            
+   41 00000038 AA000016        bge              continua
+   42 0000003C         ; preparamos los parametros para la siguiente invocació
                        n 
-   42 00000038 E3E0C000        mov              r12, #-1    ; r12 = -1 para act
+   43 0000003C E3E0B000        mov              r11, #-1    ; r12 = -1 para act
                                                             ualizar los deltas
-   43 0000003C E0411009        sub              r1, r1, r9  ; fila = fila - del
+   44 00000040 E1A01005        mov              r1, r5      ; devolvemos el val
+                                                            or a r1 (fila)
+   45 00000044 E1A02008        mov              r2, r8      ; devolvemos el val
+                                                            or a r2 (columna)
+   46 00000048 E0411009        sub              r1, r1, r9  ; fila = fila - del
                                                             ta_fila 
-   44 00000040 E042200A        sub              r2, r2, r10 ; columna = columna
+   47 0000004C E042200A        sub              r2, r2, r10 ; columna = columna
                                                              - delta_columna 
-   45 00000044 E009099C        mul              r9, r12, r9
-   46 00000048 E00A0A9C        mul              r10, r12, r10
-   47 0000004C E1A0C000        mov              r12, r0     ; resultado tempora
-                                                            l en r12 
-   48 00000050 E1A00006        mov              r0, r6      ; devolvemos el val
+   48 00000050 E009099B        mul              r9, r11, r9
+   49 00000054 E00A0A9B        mul              r10, r11, r10
+   50 00000058         ; devolvemos los parámetros a sus registros correspondi
+                       entes
+   51 00000058 E1A0B000        mov              r11, r0     ; resultado tempora
+                                                            l en r11 
+   52 0000005C E1A00006        mov              r0, r6      ; devolvemos el val
                                                             or a r0 (cuadricula
                                                             )
-   49 00000054 E92D0600        STMDB            R13!, {r9,r10} ; apilamos los d
+   53 00000060 E1A0300C        mov              r3, r12     ; devolvemos el val
+                                                            or a r3 (color)
+   54 00000064 E92D0600        STMDB            R13!, {r9,r10} ; apilamos los d
                                                             eltas
-   50 00000058 EBFFFFFE        bl               conecta4_buscar_alineamiento_c
-   51 0000005C E08CC000        add              r12, r12, r0 ; guardamos en r12
+   55 00000068 EBFFFFFE        bl               conecta4_buscar_alineamiento_c
+   56 0000006C E08BB000        add              r11, r11, r0 ; guardamos en r11
                                                              el valor del resul
                                                             tado actualizado
-   52 00000060 E28DD008        add              sp, sp, #8  ; liberamos los par
+   57 00000070 E28DD008        add              sp, sp, #8  ; liberamos los par
                                                             ámetros 
-   53 00000064 E3500004        cmp              r0, #4      ; salta si r4 >= 4 
+   58 00000074 E35B0004        cmp              r11, #4     ; salta si r4 >= 4 
                                                             
-   54 00000068 E1A0000C        mov              r0, r12     ; resultado tempora
-                                                            l en r12 
-   55 0000006C AA000006        bge              continua
-   56 00000070         ; devolvemos a la normalidad los registros para la sigui
+   59 00000078 AA000006        bge              continua
+   60 0000007C         ; devolvemos a la normalidad los registros para la sigui
                        ente iteracion  
-   57 00000070 E1A00006        mov              r0, r6      ; devolvemos el val
+   61 0000007C E1A00006        mov              r0, r6      ; devolvemos el val
                                                             or a r0 (cuadricula
                                                             )
-   58 00000074 E1A01005        mov              r1, r5      ; devolvemos el val
+   62 00000080 E1A01005        mov              r1, r5      ; devolvemos el val
                                                             or a r1 (fila)
-   59 00000078 E1A02008        mov              r2, r8      ; devolvemos el val
+   63 00000084 E1A02008        mov              r2, r8      ; devolvemos el val
                                                             or a r2 (columna)
-   60 0000007C         ; comprobamos si volvemos a saltar al bucle 
-   61 0000007C E3540004        cmp              r4, #4      ; salta si r4 >= 4 
-                                                            
-   62 00000080 AA000001        bge              continua
-   63 00000084 E2844001        add              r4, r4, #1  ; incrementamos con
+   64 00000088 E1A0300C        mov              r3, r12     ; devolvemos el val
+                                                            or a r3 (color)
+   65 0000008C         ; comprobamos si volvemos a saltar al bucle 
+   66 0000008C E2844001        add              r4, r4, #1  ; incrementamos con
                                                             tador 
-   64 00000088 0AFFFFE2        beq              for
-   65 0000008C         ; salimos del bucle y terminamos la subrutina  
-   66 0000008C         continua
-   67 0000008C E8BD57F0        LDMIA            R13!, {R4-R10,R12,R14}
-   68 00000090 E1A0F00E        mov              pc, r14
-   69 00000094         
-   70 00000094         
-   71 00000094         ; Parámetros que nos pasan a la función 
-   72 00000094         ; r0 = tablero  
-   73 00000094         ; r1 = fila 
-   74 00000094         ; r2 = columna 
-   75 00000094         ; r3 = color 
-   76 00000094         
-   77 00000094         ; Faltan las deltas que se pasan siemPre a través de la
-                        pila
+   67 00000090 E3540004        cmp              r4, #4      ; salta si r4 < 4 
+   68 00000094 BAFFFFE0        blt              for
+   69 00000098         ; salimos del bucle y terminamos la subrutina  
+   70 00000098         
+   71 00000098         continua
+   72 00000098 E35B0004        cmp              r11, #4     ; Guardamos el resu
+                                                            ltado en r0 para de
+                                                            volverlo 
+   73 0000009C A3A00001        movge            r0, #1
 
 
 
 ARM Macro Assembler    Page 3 
 
 
-   78 00000094         ; delta de la columna es sp 
-   79 00000094         ; delta de la fila es fp +4 
-   80 00000094         
-   81 00000094         conecta4_buscar_alineamiento_arm
-   82 00000094 E92D47F0        STMDB            R13!, {R4-R10,R14}
-   83 00000098 E1A04000        mov              r4, r0      ; r4 = tablero 
-   84 0000009C E1A05001        mov              r5, r1      ; r5 = fila
-   85 000000A0 E1A06002        mov              r6, r2      ; r6 = columna 
-   86 000000A4 E1A07003        mov              r7, r3      ; r7 = color
-   87 000000A8         ; comprobamos si son correctos los valores de la celda q
+   74 000000A0 B3A00000        movlt            r0, #0
+   75 000000A4 E8BD5FF0        LDMIA            R13!, {R4-R12,R14}
+   76 000000A8 E1A0F00E        mov              pc, r14
+   77 000000AC         
+   78 000000AC         ; Parámetros que nos pasan a la función 
+   79 000000AC         ; r0 = tablero  
+   80 000000AC         ; r1 = fila 
+   81 000000AC         ; r2 = columna 
+   82 000000AC         ; r3 = color 
+   83 000000AC         
+   84 000000AC         ; Faltan las deltas que se pasan siemPre a través de la
+                        pila
+   85 000000AC         ; delta de la columna es sp 
+   86 000000AC         ; delta de la fila es fp +4 
+   87 000000AC         
+   88 000000AC         conecta4_buscar_alineamiento_arm
+   89 000000AC E92D47F0        STMDB            R13!, {R4-R10,R14}
+   90 000000B0 E1A04000        mov              r4, r0      ; r4 = tablero 
+   91 000000B4 E1A05001        mov              r5, r1      ; r5 = fila
+   92 000000B8 E1A06002        mov              r6, r2      ; r6 = columna 
+   93 000000BC E1A07003        mov              r7, r3      ; r7 = color
+   94 000000C0         ; comprobamos si son correctos los valores de la celda q
                        ue nos proporcionan
-   88 000000A8         ; estan dentro del tablero 
-   89 000000A8 E3550001        cmp              r5, #1
-   90 000000AC B3A00000        movlt            r0, #0
-   91 000000B0 BA00001C        blt              termina     ; salta si r5 < 1 
-   92 000000B4 E3550006        cmp              r5, #6
-   93 000000B8 C3A00000        movgt            r0, #0
-   94 000000BC CA000019        bgt              termina     ; salta si r5 > NUM
+   95 000000C0         ; estan dentro del tablero 
+   96 000000C0 E3550001        cmp              r5, #1
+   97 000000C4 B3A00000        movlt            r0, #0
+   98 000000C8 BA00001C        blt              termina     ; salta si r5 < 1 
+   99 000000CC E3550006        cmp              r5, #6
+  100 000000D0 C3A00000        movgt            r0, #0
+  101 000000D4 CA000019        bgt              termina     ; salta si r5 > NUM
                                                             _FILAS
-   95 000000C0 E3560001        cmp              r6, #1
-   96 000000C4 B3A00000        movlt            r0, #0
-   97 000000C8 BA000016        blt              termina     ; salta si r6 < 1 
-   98 000000CC E3560007        cmp              r6, #7
-   99 000000D0 C3A00000        movgt            r0, #0
-  100 000000D4 CA000013        bgt              termina     ; salta si r6 > NUM
+  102 000000D8 E3560001        cmp              r6, #1
+  103 000000DC B3A00000        movlt            r0, #0
+  104 000000E0 BA000016        blt              termina     ; salta si r6 < 1 
+  105 000000E4 E3560007        cmp              r6, #7
+  106 000000E8 C3A00000        movgt            r0, #0
+  107 000000EC CA000013        bgt              termina     ; salta si r6 > NUM
                                                             _COLUMNAS 
-  101 000000D8         ; comprobamos que la celda no sea vacia, y sea del mismo
+  108 000000F0         ; comprobamos que la celda no sea vacia, y sea del mismo
                         color 
-  102 000000D8 E084A185        add              r10, r4, r5, LSL #3 ; r10 = @ta
+  109 000000F0 E084A185        add              r10, r4, r5, LSL #3 ; r10 = @ta
                                                             blero + 8*fila 
-  103 000000DC E7DA9006        ldrb             r9, [r10, r6] ; r9 = dato de la
+  110 000000F4 E7DA9006        ldrb             r9, [r10, r6] ; r9 = dato de la
                                                              celda = r10 + colu
                                                             mna 
-  104 000000E0 E3190004        tst              r9, #0x4    ; and lógico que a
+  111 000000F8 E3190004        tst              r9, #0x4    ; and lógico que a
                                                             ctualiza los flags 
                                                             
-  105 000000E4 03A00000        moveq            r0, #0
-  106 000000E8 0A00000E        beq              termina     ; salta si flag z =
+  112 000000FC 03A00000        moveq            r0, #0
+  113 00000100 0A00000E        beq              termina     ; salta si flag z =
                                                              1 pq la celda esta
                                                             rá vacia 
-  107 000000EC E209A003        and              r10, r9, #0x03 ; and logico par
+  114 00000104 E209A003        and              r10, r9, #0x03 ; and logico par
                                                             a encontrar color d
                                                             e la celda
-  108 000000F0 E15A0007        cmp              r10, r7     ; comparacion del c
+  115 00000108 E15A0007        cmp              r10, r7     ; comparacion del c
                                                             olor obtenido con e
                                                             l guardado en r7
-  109 000000F4 13A00000        movne            r0, #0
-  110 000000F8 1A00000A        bne              termina     ; salta si no son i
-                                                            guales
-  111 000000FC         ; obtenemos el valor de delta y lo avanzamos 
-  112 000000FC E59D9020        ldr              r9, [sp, #32] ; r9 = deltaFila 
-                                                            = sp + 12
-  113 00000100 E0851009        add              r1, r5, r9  ; r5 = nueva_fila =
-                                                             fila + delta_fila
-  114 00000104 E59DA024        ldr              r10, [sp, #36] ; r10 = deltaCol
-                                                            umna = sp + 8
-  115 00000108 E086200A        add              r2, r6, r10 ; r6 = nueva_column
-                                                            a = columna + delta
-                                                            _columna
+  116 0000010C 13A00000        movne            r0, #0
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-  116 0000010C         ;llamamos a la función recursiva
-  117 0000010C E3A08001        mov              r8, #1      ; apilamos en resul
+  117 00000110 1A00000A        bne              termina     ; salta si no son i
+                                                            guales
+  118 00000114         ; obtenemos el valor de delta y lo avanzamos 
+  119 00000114 E59D9020        ldr              r9, [sp, #32] ; r9 = deltaFila 
+                                                            = sp + 12
+  120 00000118 E0851009        add              r1, r5, r9  ; r5 = nueva_fila =
+                                                             fila + delta_fila
+  121 0000011C E59DA024        ldr              r10, [sp, #36] ; r10 = deltaCol
+                                                            umna = sp + 8
+  122 00000120 E086200A        add              r2, r6, r10 ; r6 = nueva_column
+                                                            a = columna + delta
+                                                            _columna
+  123 00000124         ;llamamos a la función recursiva
+  124 00000124 E3A08001        mov              r8, #1      ; apilamos en resul
                                                             tado un 1
-  118 00000110 E92D0100        STMDB            R13!, {r8}
-  119 00000114 E92D0600        STMDB            R13!, {r9, r10} ; apilamos los 
+  125 00000128 E92D0100        STMDB            R13!, {r8}
+  126 0000012C E92D0600        STMDB            R13!, {r9, r10} ; apilamos los 
                                                             parámetros y el re
                                                             sultado para la sig
                                                             uiente iteración 
-  120 00000118 EBFFFFFE        bl               conecta4_buscar_alineamiento_ar
+  127 00000130 EBFFFFFE        bl               conecta4_buscar_alineamiento_ar
 m
-  121 0000011C E59D1008        ldr              r1, [sp, #8] ; leemos resultado
+  128 00000134 E59D1008        ldr              r1, [sp, #8] ; leemos resultado
                                                              (1)
-  122 00000120 E0800001        add              r0, r0, r1  ; r0 = resultado fi
+  129 00000138 E0800001        add              r0, r0, r1  ; r0 = resultado fi
                                                             nal = resultado ant
                                                             erior (r0) + result
                                                             ado de esta invocac
                                                             ion de la subrutina
                                                             (r1)
-  123 00000124 E28DD00C        add              sp, sp, #12 ; liberamo el esaci
+  130 0000013C E28DD00C        add              sp, sp, #12 ; liberamo el esaci
                                                             o de los parámetro
                                                             s apilados 
-  124 00000128         termina                              ; salimos de la sub
+  131 00000140         termina                              ; salimos de la sub
                                                             rutina 
-  125 00000128 E8BD47F0        LDMIA            R13!, {R4-R10, R14}
-  126 0000012C E1A0F00E        mov              pc, r14
-  127 00000130                 END
+  132 00000140 E8BD47F0        LDMIA            R13!, {R4-R10, R14}
+  133 00000144 E1A0F00E        mov              pc, r14
+  134 00000148                 END
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
 bjects\conecta4_2022_arm.d -o.\objects\conecta4_2022_arm.o -IC:\Keil_v5\ARM\RV3
@@ -259,7 +271,7 @@ Symbol: deltas_fila
    Definitions
       At line 5 in file conecta4_2022_arm.s
    Uses
-      At line 28 in file conecta4_2022_arm.s
+      At line 29 in file conecta4_2022_arm.s
 Comment: deltas_fila used once
 3 symbols
 
@@ -276,14 +288,14 @@ Symbol: codigo
    Uses
       None
 Comment: codigo unused
-conecta4_buscar_alineamiento_arm 00000094
+conecta4_buscar_alineamiento_arm 000000AC
 
 Symbol: conecta4_buscar_alineamiento_arm
    Definitions
-      At line 81 in file conecta4_2022_arm.s
+      At line 88 in file conecta4_2022_arm.s
    Uses
       At line 9 in file conecta4_2022_arm.s
-      At line 120 in file conecta4_2022_arm.s
+      At line 127 in file conecta4_2022_arm.s
 
 conecta4_hay_linea_arm_c 00000000
 
@@ -293,36 +305,35 @@ Symbol: conecta4_hay_linea_arm_c
    Uses
       At line 10 in file conecta4_2022_arm.s
 Comment: conecta4_hay_linea_arm_c used once
-continua 0000008C
+continua 00000098
 
 Symbol: continua
    Definitions
-      At line 66 in file conecta4_2022_arm.s
+      At line 71 in file conecta4_2022_arm.s
    Uses
-      At line 40 in file conecta4_2022_arm.s
-      At line 55 in file conecta4_2022_arm.s
-      At line 62 in file conecta4_2022_arm.s
+      At line 41 in file conecta4_2022_arm.s
+      At line 59 in file conecta4_2022_arm.s
 
-for 00000018
+for 0000001C
 
 Symbol: for
    Definitions
-      At line 30 in file conecta4_2022_arm.s
+      At line 31 in file conecta4_2022_arm.s
    Uses
-      At line 64 in file conecta4_2022_arm.s
+      At line 68 in file conecta4_2022_arm.s
 Comment: for used once
-termina 00000128
+termina 00000140
 
 Symbol: termina
    Definitions
-      At line 124 in file conecta4_2022_arm.s
+      At line 131 in file conecta4_2022_arm.s
    Uses
-      At line 91 in file conecta4_2022_arm.s
-      At line 94 in file conecta4_2022_arm.s
-      At line 97 in file conecta4_2022_arm.s
-      At line 100 in file conecta4_2022_arm.s
-      At line 106 in file conecta4_2022_arm.s
-      At line 110 in file conecta4_2022_arm.s
+      At line 98 in file conecta4_2022_arm.s
+      At line 101 in file conecta4_2022_arm.s
+      At line 104 in file conecta4_2022_arm.s
+      At line 107 in file conecta4_2022_arm.s
+      At line 113 in file conecta4_2022_arm.s
+      At line 117 in file conecta4_2022_arm.s
 
 6 symbols
 
@@ -337,8 +348,8 @@ Symbol: conecta4_buscar_alineamiento_c
    Definitions
       At line 11 in file conecta4_2022_arm.s
    Uses
-      At line 37 in file conecta4_2022_arm.s
-      At line 50 in file conecta4_2022_arm.s
+      At line 38 in file conecta4_2022_arm.s
+      At line 55 in file conecta4_2022_arm.s
 
 1 symbol
 344 symbols in table

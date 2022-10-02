@@ -20,17 +20,18 @@ deltas_columna 	DCB 0xFF, 0x00, 0xFF, 0xFF
 	
 conecta4_hay_linea_arm_c
 
-	STMDB R13!, {R4-R10,R12,R14}
+	STMDB R13!, {R4-R12, R14}
 	mov r4, #0				; contador i del bucle for 
 	mov r6, r0				; valor auxiliar del tablero
 	mov r5, r1 				; r5 = valor de la fila
 	mov r8, r2				; r8 = valor de la columna 
+	mov r12, r3				; r12 = color
 	LDR r7, =deltas_fila 	; r7 = @deltas_fila
 	
 for 
 	; actualizamos los deltas 
-	ldrb r9, [r7]			; r9 = valor deltas_fila
-	ldrb r10, [r7, #4]		; r10 = valor deltas_columna; r8 = r8 +1
+	ldrsb r9, [r7]			; r9 = valor deltas_fila
+	ldrsb r10, [r7, #4]		; r10 = valor deltas_columna; r8 = r8 +1
 	add r7, r7, #1			; r7 = r7 +1
 	STMDB R13!, {r9,r10}	; apilamos los deltas
 	; invocamos a la función para buscar en un sentido 
@@ -39,34 +40,40 @@ for
 	cmp r0, #4				; salta si r4 >= 4 
 	bge continua  
 	; preparamos los parametros para la siguiente invocación 
-	mov r12, #-1			; r12 = -1 para actualizar los deltas
+	mov r11, #-1			; r12 = -1 para actualizar los deltas
+	mov r1, r5				; devolvemos el valor a r1 (fila)
+	mov r2, r8 				; devolvemos el valor a r2 (columna)
 	sub r1, r1, r9			; fila = fila - delta_fila 
 	sub r2, r2, r10			; columna = columna - delta_columna 
-	mul r9, r12, r9
-	mul r10, r12, r10	
-	mov r12, r0				; resultado temporal en r12 
+	mul r9, r11, r9
+	mul r10, r11, r10	
+	; devolvemos los parámetros a sus registros correspondientes
+	mov r11, r0				; resultado temporal en r11 
 	mov r0, r6				; devolvemos el valor a r0 (cuadricula)
+	mov r3, r12				; devolvemos el valor a r3 (color)
 	STMDB R13!, {r9,r10}	; apilamos los deltas
 	bl conecta4_buscar_alineamiento_c
-	add r12, r12, r0 		; guardamos en r12 el valor del resultado actualizado
+	add r11, r11, r0 		; guardamos en r11 el valor del resultado actualizado
 	add sp, sp, #8			; liberamos los parámetros 
-	cmp r0, #4				; salta si r4 >= 4 
-	mov r0, r12				; resultado temporal en r12 
+	cmp r11, #4				; salta si r4 >= 4 
 	bge continua  
 	; devolvemos a la normalidad los registros para la siguiente iteracion  
 	mov r0, r6				; devolvemos el valor a r0 (cuadricula)
 	mov r1, r5				; devolvemos el valor a r1 (fila)
 	mov r2, r8 				; devolvemos el valor a r2 (columna)
+	mov r3, r12				; devolvemos el valor a r3 (color)
 	; comprobamos si volvemos a saltar al bucle 
-	cmp r4, #4				; salta si r4 >= 4 
-	bge continua 
 	add r4, r4, #1 			; incrementamos contador 
-	beq for 	
+	cmp r4, #4				; salta si r4 < 4 
+	blt for 	
 	; salimos del bucle y terminamos la subrutina 	
-continua
-	LDMIA R13!, {R4-R10,R12,R14}
-	mov pc, r14
 
+continua
+	cmp r11, #4 			; Guardamos el resultado en r0 para devolverlo 
+	movge r0, #1
+	movlt r0, #0
+	LDMIA R13!, {R4-R12,R14}
+	mov pc, r14     
 
 	; Parámetros que nos pasan a la función 
     ; r0 = tablero  
