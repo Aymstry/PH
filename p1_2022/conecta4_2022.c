@@ -115,7 +115,8 @@ int C4_verificar_4_en_linea(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t fila, 
 	// en esta funcion es donde se debe verificar que todas las optimizaciones dan el mismo resultado
 	//uint8_t resultado_c_c = conecta4_hay_linea_c_c(cuadricula, fila, columna, color);
 	//uint8_t resultado_c_c = conecta4_hay_linea_c_arm(cuadricula, fila, columna, color);
-	uint8_t resultado_c_c = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
+	//uint8_t resultado_c_c = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
+	uint8_t resultado_c_c = conecta4_hay_linea_arm_arm(cuadricula, fila, columna, color);
 	return resultado_c_c;
 }
 
