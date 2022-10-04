@@ -3,25 +3,26 @@
 <title>Static Call Graph - [.\Objects\conecta4_2022.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\conecta4_2022.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Oct 04 17:35:43 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Oct 04 18:23:06 2022
 <BR><P>
-<H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
+main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea
 <P>
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[15]">__user_initial_stackheap</a>
- <LI><a href="#[4]">conecta4_hay_linea_arm_c</a>
- <LI><a href="#[5]">conecta4_buscar_alineamiento_arm</a>
+ <LI><a href="#[16]">__user_initial_stackheap</a>
+ <LI><a href="#[3]">conecta4_hay_linea_arm_arm</a>
+ <LI><a href="#[5]">conecta4_hay_linea_arm_c</a>
+ <LI><a href="#[6]">conecta4_buscar_alineamiento_arm</a>
 </UL>
 </UL>
 <P>
 <H3>
 Mutually Recursive functions
-</H3> <LI><a href="#[5]">conecta4_buscar_alineamiento_arm</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5]">conecta4_buscar_alineamiento_arm</a><BR>
- <LI><a href="#[18]">conecta4_buscar_alineamiento_c</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[18]">conecta4_buscar_alineamiento_c</a><BR>
+</H3> <LI><a href="#[19]">conecta4_buscar_alineamiento_c</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[19]">conecta4_buscar_alineamiento_c</a><BR>
+ <LI><a href="#[6]">conecta4_buscar_alineamiento_arm</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[6]">conecta4_buscar_alineamiento_arm</a><BR>
 </UL>
 <P>
 <H3>
@@ -33,31 +34,31 @@ Function Pointers
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[3]"></a>__main</STRONG> (ARM, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
-<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<P><STRONG><a name="[4]"></a>__main</STRONG> (ARM, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
+<BR><BR>[Calls]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[6]"></a>__scatterload</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
-<BR><BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<P><STRONG><a name="[7]"></a>__scatterload</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[8]"></a>__scatterload_rt2</STRONG> (ARM, 52 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<P><STRONG><a name="[9]"></a>__scatterload_rt2</STRONG> (ARM, 52 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
 <P><STRONG><a name="[25]"></a>__scatterload_null</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[9]"></a>__scatterload_copy</STRONG> (ARM, 40 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+<P><STRONG><a name="[a]"></a>__scatterload_copy</STRONG> (ARM, 40 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+<BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
 <P><STRONG><a name="[26]"></a>__scatterload_zeroinit</STRONG> (ARM, 44 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
-<P><STRONG><a name="[d]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li (via Veneer)
+<P><STRONG><a name="[e]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li (via Veneer)
 </UL>
 
 <P><STRONG><a name="[27]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
@@ -102,8 +103,8 @@ Global Symbols
 
 <P><STRONG><a name="[3b]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
-<P><STRONG><a name="[11]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls (via Veneer)
+<P><STRONG><a name="[12]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls (via Veneer)
 </UL>
 
 <P><STRONG><a name="[3c]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
@@ -120,51 +121,51 @@ Global Symbols
 
 <P><STRONG><a name="[42]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
-<P><STRONG><a name="[7]"></a>__rt_entry</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
-<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<P><STRONG><a name="[8]"></a>__rt_entry</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[43]"></a>__rt_entry_presh_1</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
-<P><STRONG><a name="[a]"></a>__rt_entry_sh</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
+<P><STRONG><a name="[b]"></a>__rt_entry_sh</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_sh &rArr; __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[c]"></a>__rt_entry_li</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000A))
-<BR><BR>[Calls]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
+<P><STRONG><a name="[d]"></a>__rt_entry_li</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000A))
+<BR><BR>[Calls]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
 </UL>
 
 <P><STRONG><a name="[44]"></a>__rt_entry_postsh_1</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
-<P><STRONG><a name="[e]"></a>__rt_entry_main</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
+<P><STRONG><a name="[f]"></a>__rt_entry_main</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; exit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via BX)
+<BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via BX)
 </UL>
 
 <P><STRONG><a name="[45]"></a>__rt_entry_postli_1</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
-<P><STRONG><a name="[17]"></a>__rt_exit</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via Veneer)
+<P><STRONG><a name="[18]"></a>__rt_exit</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via Veneer)
 </UL>
 
-<P><STRONG><a name="[10]"></a>__rt_exit_ls</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000003))
-<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown (via Veneer)
+<P><STRONG><a name="[11]"></a>__rt_exit_ls</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000003))
+<BR><BR>[Calls]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown (via Veneer)
 </UL>
 
 <P><STRONG><a name="[46]"></a>__rt_exit_prels_1</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
-<P><STRONG><a name="[12]"></a>__rt_exit_exit</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
-<BR><BR>[Calls]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit (via Veneer)
+<P><STRONG><a name="[13]"></a>__rt_exit_exit</STRONG> (ARM, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
+<BR><BR>[Calls]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit (via Veneer)
 </UL>
 
-<P><STRONG><a name="[15]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<P><STRONG><a name="[16]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
 <P><STRONG><a name="[47]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -173,36 +174,36 @@ Global Symbols
 
 <P><STRONG><a name="[49]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[b]"></a>__user_setup_stackheap</STRONG> (ARM, 96 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<P><STRONG><a name="[c]"></a>__user_setup_stackheap</STRONG> (ARM, 96 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
-<LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
+<BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
 
-<P><STRONG><a name="[f]"></a>exit</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, exit.o(.text))
+<P><STRONG><a name="[10]"></a>exit</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, exit.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = exit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit (via Veneer)
-<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_call_atexit_fns (Weak Reference)
+<BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit (via Veneer)
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_call_atexit_fns (Weak Reference)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+<BR>[Called By]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
 <P><STRONG><a name="[4a]"></a>__user_libspace</STRONG> (ARM, 12 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[14]"></a>__user_perproc_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<P><STRONG><a name="[15]"></a>__user_perproc_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
 <P><STRONG><a name="[4b]"></a>__user_perthread_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[13]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit (via Veneer)
+<P><STRONG><a name="[14]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit (via Veneer)
 </UL>
 
 <P><STRONG><a name="[4c]"></a>__I$use$semihosting</STRONG> (ARM, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
@@ -211,18 +212,21 @@ Global Symbols
 
 <P><STRONG><a name="[4e]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[4]"></a>conecta4_hay_linea_arm_c</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo), UNUSED, KEPT)
+<P><STRONG><a name="[3]"></a>conecta4_hay_linea_arm_arm</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo))
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
+</UL>
+
+<P><STRONG><a name="[5]"></a>conecta4_hay_linea_arm_c</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo), UNUSED, KEPT)
 <BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
 <LI>Call Chain = conecta4_hay_linea_arm_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
 </UL>
 
-<P><STRONG><a name="[5]"></a>conecta4_buscar_alineamiento_arm</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo))
-<BR><BR>[Calls]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
+<P><STRONG><a name="[6]"></a>conecta4_buscar_alineamiento_arm</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo), UNUSED, KEPT)
+<BR><BR>[Calls]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
-<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_arm
+<BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
 </UL>
 
 <P><STRONG><a name="[23]"></a>C4_actualizar_tablero</STRONG> (ARM, 60 bytes, Stack size 8 bytes, conecta4_2022.o(i.C4_actualizar_tablero))
@@ -231,63 +235,54 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[19]"></a>C4_calcular_fila</STRONG> (ARM, 108 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_calcular_fila))
+<P><STRONG><a name="[1a]"></a>C4_calcular_fila</STRONG> (ARM, 108 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_calcular_fila))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = C4_calcular_fila
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
+<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1b]"></a>C4_comprobar_empate</STRONG> (ARM, 72 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_comprobar_empate))
+<P><STRONG><a name="[1c]"></a>C4_comprobar_empate</STRONG> (ARM, 72 bytes, Stack size 16 bytes, conecta4_2022.o(i.C4_comprobar_empate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = C4_comprobar_empate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
+<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[1c]"></a>C4_verificar_4_en_linea</STRONG> (ARM, 56 bytes, Stack size 24 bytes, conecta4_2022.o(i.C4_verificar_4_en_linea))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
-<LI>Call Chain = C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
+<P><STRONG><a name="[1d]"></a>C4_verificar_4_en_linea</STRONG> (ARM, 56 bytes, Stack size 24 bytes, conecta4_2022.o(i.C4_verificar_4_en_linea))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = C4_verificar_4_en_linea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_c_arm
+<BR>[Calls]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_arm
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
 
-<P><STRONG><a name="[18]"></a>conecta4_buscar_alineamiento_c</STRONG> (ARM, 172 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_buscar_alineamiento_c), UNUSED, KEPT)
+<P><STRONG><a name="[19]"></a>conecta4_buscar_alineamiento_c</STRONG> (ARM, 172 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_buscar_alineamiento_c), UNUSED, KEPT)
 <BR><BR>[Stack]<UL><LI>Max Depth = 48 + In Cycle
 <LI>Call Chain = conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
-<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
+<BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;celda_vacia
 <LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
-</UL>
-
-<P><STRONG><a name="[1d]"></a>conecta4_hay_linea_c_arm</STRONG> (ARM, 312 bytes, Stack size 48 bytes, conecta4_2022.o(i.conecta4_hay_linea_c_arm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
-<LI>Call Chain = conecta4_hay_linea_c_arm
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_arm
-</UL>
-<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
 </UL>
 
 <P><STRONG><a name="[20]"></a>conecta4_jugar</STRONG> (ARM, 212 bytes, Stack size 0 bytes, conecta4_2022.o(i.conecta4_jugar))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
-<LI>Call Chain = conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = conecta4_jugar &rArr; C4_verificar_4_en_linea
 </UL>
 <BR>[Calls]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_nueva
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_leer
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;entrada_inicializar
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
-<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_verificar_4_en_linea
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_actualizar_tablero
 <LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
@@ -308,8 +303,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2]"></a>main</STRONG> (ARM, 12 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
-<LI>Call Chain = main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_linea_c_arm
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea
 </UL>
 <BR>[Calls]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
@@ -320,24 +315,24 @@ Local Symbols
 </H3>
 <P><STRONG><a name="[1f]"></a>C4_columna_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_columna_valida))
 <BR><BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
 </UL>
 
 <P><STRONG><a name="[1e]"></a>C4_fila_valida</STRONG> (ARM, 36 bytes, Stack size 0 bytes, conecta4_2022.o(i.C4_fila_valida))
 <BR><BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
 </UL>
 
-<P><STRONG><a name="[1a]"></a>celda_vacia</STRONG> (ARM, 16 bytes, Stack size 0 bytes, conecta4_2022.o(i.celda_vacia))
-<BR><BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
-<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
+<P><STRONG><a name="[1b]"></a>celda_vacia</STRONG> (ARM, 16 bytes, Stack size 0 bytes, conecta4_2022.o(i.celda_vacia))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_comprobar_empate
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_calcular_fila
 </UL>
 <P>
 <H3>
 Undefined Global Symbols
 </H3>
-<P><STRONG><a name="[16]"></a>_call_atexit_fns</STRONG> (ARM, 0 bytes, Stack size 0 bytes, UNDEFINED)
-<BR><BR>[Called By]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+<P><STRONG><a name="[17]"></a>_call_atexit_fns</STRONG> (ARM, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 <HR></body></html>
