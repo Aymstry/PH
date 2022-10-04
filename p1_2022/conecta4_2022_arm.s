@@ -98,8 +98,7 @@ continua
 	cmp r8, #4 			; Guardamos el resultado en r0 para devolverlo 
 	movge r0, #1
 	movlt r0, #0
-	LDMIA R13!, {R4-R12,R14}
-	mov pc, r14
+	LDMIA R13!, {R4-R12,PC}
 	
 	;-------------------------------------------------------------------------------------------------------------------------------------
 	; Parámetros que nos pasan a la función 
@@ -118,7 +117,7 @@ conecta4_hay_linea_arm_c
 	mov r12, r3				; r12 = color
 	LDR r7, =deltas_fila 	; r7 = @deltas_fila
 	
-for 
+for1 
 	; actualizamos los deltas 
 	ldrsb r9, [r7]			; r9 = valor deltas_fila
 	ldrsb r10, [r7, #4]		; r10 = valor deltas_columna; r8 = r8 +1
@@ -128,7 +127,7 @@ for
 	bl conecta4_buscar_alineamiento_c
 	add sp, sp, #8			; liberamos los parámetros 
 	cmp r0, #4				; salta si r4 >= 4 
-	bge continua  
+	bge continua1  
 	; preparamos los parametros para la siguiente invocación 
 	mov r11, #-1			; r12 = -1 para actualizar los deltas
 	mov r1, r5				; devolvemos el valor a r1 (fila)
@@ -146,7 +145,7 @@ for
 	add r11, r11, r0 		; guardamos en r11 el valor del resultado actualizado
 	add sp, sp, #8			; liberamos los parámetros 
 	cmp r11, #4				; salta si r4 >= 4 
-	bge continua  
+	bge continua1  
 	; devolvemos a la normalidad los registros para la siguiente iteracion  
 	mov r0, r6				; devolvemos el valor a r0 (cuadricula)
 	mov r1, r5				; devolvemos el valor a r1 (fila)
@@ -155,15 +154,13 @@ for
 	; comprobamos si volvemos a saltar al bucle 
 	add r4, r4, #1 			; incrementamos contador 
 	cmp r4, #4				; salta si r4 < 4 
-	blt for 	
+	blt for1 	
 	; salimos del bucle y terminamos la subrutina 	
-
-continua
+continua1
 	cmp r11, #4 			; Guardamos el resultado en r0 para devolverlo 
 	movge r0, #1
 	movlt r0, #0
-	LDMIA R13!, {R4-R12,R14}
-	mov pc, r14     
+	LDMIA R13!, {R4-R12,PC}
 
 	;-------------------------------------------------------------------------------------------------------------------------------------
 	; Parámetros que nos pasan a la función 
@@ -186,26 +183,26 @@ conecta4_buscar_alineamiento_arm
 	; estan dentro del tablero 
 	cmp r5, #1
 	movlt r0, #0
-	blt termina 					; salta si r5 < 1 
+	blt termina1 					; salta si r5 < 1 
 	cmp r5, #6
 	movgt r0, #0
-	bgt termina 					; salta si r5 > NUM_FILAS
+	bgt termina1 					; salta si r5 > NUM_FILAS
 	cmp r6, #1
 	movlt r0, #0
-	blt termina 					; salta si r6 < 1 
+	blt termina1 					; salta si r6 < 1 
 	cmp r6, #7			 	
 	movgt r0, #0
-	bgt termina 					; salta si r6 > NUM_COLUMNAS 
+	bgt termina1 					; salta si r6 > NUM_COLUMNAS 
 	; comprobamos que la celda no sea vacia, y sea del mismo color 
 	add r10, r4, r5, LSL #3			; r10 = @tablero + 8*fila 
 	ldrb r9, [r10, r6] 				; r9 = dato de la celda = r10 + columna 
 	tst r9, #0x4					; and lógico que actualiza los flags 
 	moveq r0, #0
-	beq termina 					; salta si flag z = 1 pq la celda estará vacia 
+	beq termina1 					; salta si flag z = 1 pq la celda estará vacia 
 	and r10, r9, #0x03				; and logico para encontrar color de la celda
 	cmp r10, r7						; comparacion del color obtenido con el guardado en r7
 	movne r0, #0
-	bne termina						; salta si no son iguales
+	bne termina1						; salta si no son iguales
 	; obtenemos el valor de delta y lo avanzamos 
 	ldr r9, [sp, #32]		 		; r9 = deltaFila = sp + 12
 	add r1, r5, r9					; r5 = nueva_fila = fila + delta_fila
@@ -219,7 +216,6 @@ conecta4_buscar_alineamiento_arm
 	ldr r1, [sp, #8]				; leemos resultado (1)
 	add r0, r0, r1					; r0 = resultado final = resultado anterior (r0) + resultado de esta invocacion de la subrutina(r1)
 	add sp, sp, #12					; liberamo el esacio de los parámetros apilados 
-termina ; salimos de la subrutina 
-	LDMIA R13!, {R4-R10, R14}
-	mov pc, r14
+termina1 ; salimos de la subrutina 
+	LDMIA R13!, {R4-R10, PC}
 	END

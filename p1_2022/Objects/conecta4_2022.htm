@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\conecta4_2022.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\conecta4_2022.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Oct 02 20:31:48 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Oct 04 17:34:43 2022
 <BR><P>
 <H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -13,7 +13,7 @@ main &rArr; conecta4_jugar &rArr; C4_verificar_4_en_linea &rArr; conecta4_hay_li
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[15]">__user_initial_stackheap</a>
- <LI><a href="#[3]">conecta4_hay_linea_arm_c</a>
+ <LI><a href="#[4]">conecta4_hay_linea_arm_c</a>
  <LI><a href="#[5]">conecta4_buscar_alineamiento_arm</a>
 </UL>
 </UL>
@@ -33,13 +33,13 @@ Function Pointers
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[4]"></a>__main</STRONG> (ARM, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
+<P><STRONG><a name="[3]"></a>__main</STRONG> (ARM, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
 <BR><BR>[Calls]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
 <P><STRONG><a name="[6]"></a>__scatterload</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
-<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<BR><BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[8]"></a>__scatterload_rt2</STRONG> (ARM, 52 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
@@ -122,7 +122,7 @@ Global Symbols
 
 <P><STRONG><a name="[7]"></a>__rt_entry</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
-<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[42]"></a>__rt_entry_presh_1</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
@@ -211,7 +211,7 @@ Global Symbols
 
 <P><STRONG><a name="[4d]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3]"></a>conecta4_hay_linea_arm_c</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo))
+<P><STRONG><a name="[4]"></a>conecta4_hay_linea_arm_c</STRONG> (ARM, 0 bytes, Stack size unknown bytes, conecta4_2022_arm.o(codigo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
 <LI>Call Chain = conecta4_hay_linea_arm_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
 </UL>
@@ -252,7 +252,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = C4_verificar_4_en_linea &rArr; conecta4_hay_linea_arm_c &rArr; conecta4_buscar_alineamiento_c &rArr;  conecta4_buscar_alineamiento_c (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
+<BR>[Calls]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_jugar
 </UL>
@@ -266,7 +266,7 @@ Global Symbols
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_fila_valida
 <LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C4_columna_valida
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_hay_linea_arm_c
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conecta4_buscar_alineamiento_c
 </UL>
 
