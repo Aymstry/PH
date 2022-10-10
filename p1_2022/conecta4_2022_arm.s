@@ -62,33 +62,34 @@ termina
 	ldrsb r5, [r7, #4]		; r5 = valor deltas_columna; r8 = r8 +1	
 
 	mov r10, #-1			; r10 = -1 para actualizar los deltas
-	mul r6, r10, r6			; delta_fila
-	mul r5, r10, r5			; delta_columna
 	sub r1, r1, r6			; fila - delta_fila
 	sub r2, r2, r5			; columna - delta_columna
+	mul r6, r10, r6			; delta_fila
+	mul r5, r10, r5			; delta_columna
 	; comprobamos si son correctos los valores de la celda que nos proporcionan
 	; estan dentro del tablero 
 buc1
 	cmp r1, #1
-	blt termina 					; salta si r1 < 1 
+	blt term	 					; salta si r1 < 1 
 	cmp r1, #6
-	bgt termina 					; salta si r5 > NUM_FILAS
+	bgt term 						; salta si r5 > NUM_FILAS
 	cmp r2, #1
-	blt termina 					; salta si r6 < 1 
+	blt term 						; salta si r6 < 1 
 	cmp r2, #7			 	
-	bgt termina 					; salta si r6 > NUM_COLUMNAS 
+	bgt term 						; salta si r6 > NUM_COLUMNAS 
 	; comprobamos que la celda no sea vacia, y sea del mismo color 
 	add r10, r0, r1, LSL #3			; r10 = @tablero + 8*fila 
 	ldrb r9, [r10, r2] 				; r9 = dato de la celda = r10 + columna 
 	tst r9, #0x4					; and lógico que actualiza los flags 
-	beq termina 					; salta si flag z = 1 pq la celda estará vacia 
+	beq term 						; salta si flag z = 1 pq la celda estará vacia 
 	and r10, r9, #0x03				; and logico para encontrar color de la celda
 	cmp r10, r3						; comparacion del color obtenido con el guardado en r7
-	bne termina	
+	bne term	
 	add r1, r1, r6					; nueva_fila = fila + delta_fila
 	add r2, r2, r5					; nueva_columna = columna + delta_columna
 	add r8, r8, #1					; incremento resultado
 	b buc1
+term	
 	cmp r8, #4						; salta si r4 >= 4 
 	bge continua  
 	add r7, r7, #1					; r7 = r7 +1

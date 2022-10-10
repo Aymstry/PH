@@ -113,12 +113,21 @@ int C4_comprobar_empate(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 int C4_verificar_4_en_linea(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t fila, uint8_t columna, uint8_t color){
 	// en esta funcion es donde se debe verificar que todas las optimizaciones dan el mismo resultado
-	//uint8_t resultado_c_c = conecta4_hay_linea_c_c(cuadricula, fila, columna, color);
-	//uint8_t resultado_c_c = conecta4_hay_linea_c_arm(cuadricula, fila, columna, color);
-	//uint8_t resultado_c_c = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
-	uint8_t resultado_c_c = conecta4_hay_linea_arm_arm(cuadricula, fila, columna, color);
-	return resultado_c_c;
+	uint8_t resultado_c_c = conecta4_hay_linea_c_c(cuadricula, fila, columna, color);
+	uint8_t resultado_c_arm = conecta4_hay_linea_c_arm(cuadricula, fila, columna, color);
+	uint8_t resultado_arm_c = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
+	uint8_t resultado_arm_arm = conecta4_hay_linea_arm_arm(cuadricula, fila, columna, color);
+	if ( resultado_c_c !=  resultado_c_arm){
+		while(1);
+	} else if (resultado_c_c != resultado_arm_c){
+		while(1);
+	} else if (resultado_c_c !=  resultado_arm_arm){
+		while(1);
+	}	
+	return resultado_c_c;	
 }
+	
+	
 
 	
 void conecta4_jugar(void){
