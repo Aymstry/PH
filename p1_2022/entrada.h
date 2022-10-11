@@ -2,7 +2,6 @@
 #define __ENTRADA_H__
 
 #include <inttypes.h>
-
 enum {ALIGN_8 = 8};
 
 //hay nueva jugada? (alguien ha modificado asincronamente el contenido de memoria) 

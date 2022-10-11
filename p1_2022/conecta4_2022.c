@@ -2,7 +2,7 @@
 #include "entrada.h"
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
 	fila, uint8_t columna, uint8_t color, int8_t delta_fila, int8_t
-	delta_columna);
+	delta_columna); 
 
 // devuelve ERROR en caso de no encontrar fila
 uint8_t C4_calcular_fila(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t columna){
@@ -113,18 +113,12 @@ int C4_comprobar_empate(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 int C4_verificar_4_en_linea(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t fila, uint8_t columna, uint8_t color){
 	// en esta funcion es donde se debe verificar que todas las optimizaciones dan el mismo resultado
-	uint8_t resultado_c_c = conecta4_hay_linea_c_c(cuadricula, fila, columna, color);
-	uint8_t resultado_c_arm = conecta4_hay_linea_c_arm(cuadricula, fila, columna, color);
-	uint8_t resultado_arm_c = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
-	uint8_t resultado_arm_arm = conecta4_hay_linea_arm_arm(cuadricula, fila, columna, color);
-	if ( resultado_c_c !=  resultado_c_arm){
-		while(1);
-	} else if (resultado_c_c != resultado_arm_c){
-		while(1);
-	} else if (resultado_c_c !=  resultado_arm_arm){
-		while(1);
-	}	
-	return resultado_c_c;	
+	//uint8_t resultado = conecta4_hay_linea_c_c(cuadricula, fila, columna, color);
+	//uint8_t resultado = conecta4_hay_linea_c_arm(cuadricula, fila, columna, color);
+	//uint8_t resultado = conecta4_hay_linea_arm_c(cuadricula, fila, columna, color);
+	uint8_t resultado = conecta4_hay_linea_arm_arm(cuadricula, fila, columna, color);
+		
+	return resultado;	
 }
 	
 	
@@ -142,13 +136,13 @@ void conecta4_jugar(void){
 	while (1){
 		while (entrada_nueva(entrada) == 0){};
 		column = entrada_leer (entrada); //coge de memoria la columna donde indicas que quieres añadir la ficha
-		row = C4_calcular_fila(cuadricula_1, column); // returns 0 if is not in range
+		row = C4_calcular_fila(cuadricula_victoria_v, column); // returns 0 if is not in range
 		if(C4_fila_valida(row) && C4_columna_valida(column)) { //comprueba si puede colocar la ficha segun la fila y la columna
-			C4_actualizar_tablero(cuadricula_1,row,column,colour); //actualiza el tablero
-			if(C4_verificar_4_en_linea(cuadricula_1, row, column, colour)) {
+			C4_actualizar_tablero(cuadricula_victoria_v,row,column,colour); //actualiza el tablero
+			if(C4_verificar_4_en_linea(cuadricula_victoria_v, row, column, colour)) {
 				while(1); //ganas la partida
 			}
-			if (C4_comprobar_empate(cuadricula_1)){
+			if (C4_comprobar_empate(cuadricula_victoria_v)){
 				while(1); //quedan en empate los dos jugadores
 			}
 			colour = C4_alternar_color(colour);		//cambia el color de la ficha para que se vayan intercambiando	

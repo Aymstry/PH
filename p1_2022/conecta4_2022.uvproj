@@ -451,6 +451,11 @@
               <FileType>5</FileType>
               <FilePath>.\entrada.h</FilePath>
             </File>
+            <File>
+              <FileName>pruebas.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pruebas.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -475,6 +480,11 @@
               <FileName>conecta4_2022_arm.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\conecta4_2022_arm.s</FilePath>
+            </File>
+            <File>
+              <FileName>pruebas.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\pruebas.c</FilePath>
             </File>
           </Files>
         </Group>

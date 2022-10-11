@@ -132,6 +132,7 @@ for1
 	bl conecta4_buscar_alineamiento_c
 	add sp, sp, #8			; liberamos los parámetros 
 	cmp r0, #4				; salta si r4 >= 4 
+	movge r11, r0
 	bge continua1  
 	; preparamos los parametros para la siguiente invocación 
 	mov r11, #-1			; r12 = -1 para actualizar los deltas
