@@ -176,8 +176,6 @@ continua1
 	; r3 = color 
 
 	; Faltan las deltas que se pasan siemPre a través de la pila
-	; delta de la columna es sp 
-	; delta de la fila es fp +4 
 
 conecta4_buscar_alineamiento_arm
 	STMDB R13!, {R4-R10,R14}
@@ -211,9 +209,9 @@ conecta4_buscar_alineamiento_arm
 	bne termina1						; salta si no son iguales
 	; obtenemos el valor de delta y lo avanzamos 
 	ldr r9, [sp, #32]		 		; r9 = deltaFila = sp + 12
-	add r1, r5, r9					; r5 = nueva_fila = fila + delta_fila
+	add r1, r5, r9					; r1 = nueva_fila = fila + delta_fila
 	ldr r10, [sp, #36]				; r10 = deltaColumna = sp + 8
-	add r2, r6, r10					; r6 = nueva_columna = columna + delta_columna
+	add r2, r6, r10					; r2 = nueva_columna = columna + delta_columna
 	;llamamos a la función recursiva
 	mov r8, #1						; apilamos en resultado un 1
 	STMDB R13!, {r8}
