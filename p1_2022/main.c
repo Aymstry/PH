@@ -4,11 +4,12 @@
 
 // MAIN 
 int main (void) {
-	//inicializar sistema
-	//... practica 2
 	
+	// comente la linea que desea que no se ejecute 
+
 	//jugar
 	conecta4_jugar();
-	//conecta4_jugar_test();
+	// realización de las pruebas 
+	conecta4_jugar_test();
 	while(1); //no hay S.O., no se retorna
 }
