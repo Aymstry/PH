@@ -13,11 +13,23 @@ deltas_columna 	DCB 0xFF, 0x00, 0xFF, 0xFF
 	PRESERVE8 {TRUE}
 	ENTRY
 	
-	; Parámetros que nos pasan a la función 
-    ; r0 = tablero  
-    ; r1 = fila 
-    ; r2 = columna 
+	; Parámetros y funciones asignadas a los mismos 
+	; r0 = @tablero 
+	; r1 = fila 
+	; r2 = columna 
 	; r3 = color 
+	; r4 = contador del bucle exterior (el for en c)
+	; r5 = delta_columna 
+	; r6 = delta_fila 
+	; r7 = @deltas 
+	; r8 = resultado temporal 
+	; r9  y r10 = se utilizan para calcular la @ de la celda 
+	; r11 = copia de fila 
+	; r12 = copia de columna 
+
+	; Función que comprueba que hay 4 fichas iguales en línea.
+	; Devolverá 1 en r0 si se ha hecho un 4 en ralla, en caso contrario devolverá 0.
+
 conecta4_hay_linea_arm_arm
 	STMDB R13!, {R4-R12, R14}
 	mov r4, #0				; contador i del bucle for 
@@ -106,11 +118,23 @@ continua
 	LDMIA R13!, {R4-R12,PC}
 	
 	;-------------------------------------------------------------------------------------------------------------------------------------
-	; Parámetros que nos pasan a la función 
-    ; r0 = tablero  
-    ; r1 = fila 
-    ; r2 = columna 
+	; Parámetros y funciones asignadas a los mismos 
+	; r0 = @tablero y resultados
+	; r1 = fila 
+	; r2 = columna 
 	; r3 = color 
+	; r4 = contador i para el bucle for 
+	; r9 = valor delta_fila 
+	; r10 = valor delta_columna 
+	; r11 = -1 (valor para actualizar los deltas), y resultados temporales
+	; Estos cuatro registros actúan como variables auxiliares dado que su valor se modifica en las invocaciones a función.
+	; r5 = fila 
+	; r6 = @tablero  
+	; r7 = @deltas 
+	; r8 = columna 
+	
+	; Función que comprueba que hay 4 fichas iguales en línea a partir del resultado obtenido en conecta4_buscar_alineamiento_c
+	; Devolverá 1 en r0 si se ha hecho un 4 en ralla, en caso contrario devolverá 0.
 	
 conecta4_hay_linea_arm_c
 
@@ -169,13 +193,17 @@ continua1
 	LDMIA R13!, {R4-R12,PC}
 
 	;-------------------------------------------------------------------------------------------------------------------------------------
-	; Parámetros que nos pasan a la función 
-    ; r0 = tablero  
-    ; r1 = fila 
-    ; r2 = columna 
-	; r3 = color 
+	; Parámetros y funciones asignadas a los mismos 
+	; r0 = r4 = @ de tablero y paso de resultados a la función invocadora
+	; r1 = r5 =  fila
+	; r2 = r6 = columna 
+	; r3 = r7 = color de la ficha 
+	; r8 = se utilizará para guardar el valor #1 para apilarlo como resultado en caso de que sea necesario. 
+	; r9 = deltaFila
+	; r10 = deltaColumna
 
-	; Faltan las deltas que se pasan siemPre a través de la pila
+	; Función que cuenta el número de fichas iguales en una misma linea dado un sentido.
+	; Devolverá el número de fichas iguales en línea por r0.
 
 conecta4_buscar_alineamiento_arm
 	STMDB R13!, {R4-R10,R14}
