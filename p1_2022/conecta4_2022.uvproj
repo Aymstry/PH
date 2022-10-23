@@ -456,6 +456,16 @@
               <FileType>5</FileType>
               <FilePath>.\pruebas.h</FilePath>
             </File>
+            <File>
+              <FileName>eventos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\eventos.h</FilePath>
+            </File>
+            <File>
+              <FileName>cola_asyn.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\cola_asyn.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -485,6 +495,11 @@
               <FileName>pruebas.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\pruebas.c</FilePath>
+            </File>
+            <File>
+              <FileName>cola_asyn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cola_asyn.c</FilePath>
             </File>
           </Files>
         </Group>
