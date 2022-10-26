@@ -20,5 +20,6 @@ typedef struct{
 
 void cola_encolar_eventos(uint8_t ID_evento, uint32_t veces, uint32_t auxData); 
 void cola_desencolar_eventos(uint8_t ID_evento, uint32_t veces, uint32_t auxData); 
+bool cola_vacia();
 
 #endif

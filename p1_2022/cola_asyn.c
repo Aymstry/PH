@@ -9,6 +9,7 @@ void cola_iniciar() {
 // Añadiemos un evento a la cola 
 bool cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     if (c.n >= MAX ) return false;          // Comprobamos que la cola esta llena
+    c.n = c.n + 1;
     c.head = c.head + 1;                    // añadir nuevo evento = n + 1 
     c.tail = (c.tail + 1) && (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
     return true; 
