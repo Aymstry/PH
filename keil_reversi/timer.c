@@ -1,6 +1,7 @@
 #include <LPC210X.H>                            // LPC21XX Peripheral Registers
-#include "timer.h"
 #include "cola_asyn.h"
+#include "timer.h"
+
 // variable para contabilizar el número de interrupciones
 static volatile unsigned int timer0_int_count = 0;
 static volatile unsigned int timer1_int_count = 0;
@@ -47,13 +48,13 @@ void temporizador_empezar(void){
 
 /* función que lee el tiempo que lleva contando el contador desde la última vez que se ejecutó
 temporizador_empezar y lo devuelve en microsegundos. */
-uint32_t temporizador_leer(){
+uint32_t temporizador_leer(void){
     int nTicks = T1PC + (T1TC * T1PR) + timer1_int_count * (T1PR * T1MR0);
     return nTicks/15;             // 15 es la frecuenia a la que se ejecuta el procesador 
 }
 
 /* Detiene el contador y devuelve el tiempo transcurrido desde temporizador_empezar */
-uint32_t temporizador_parar(){
+uint32_t temporizador_parar(void){
     T1TCR = 0;                  //Desahbilitamos/paramos el contador
     return temporizador_leer(); 
 }
@@ -61,7 +62,7 @@ uint32_t temporizador_parar(){
 void timer1_ISR (void) __irq {
     timer1_int_count++;
     T1IR = 1;                              // Clear interrupt flag
-    VICVectAddr1 = 0;                      // Acknowledge Interrupt
+    VICVectAddr = 0;                      // Acknowledge Interrupt
 }
 
 
@@ -71,7 +72,7 @@ void timer0_ISR (void) __irq {
         cola_encolar_evento(timer0_int_count, 1, 0);      
     } 
     T0IR = 1;                              // Clear interrupt flag
-    VICVectAddr0 = 0;                      // Acknowledge Interrupt  
+    VICVectAddr = 0;                      // Acknowledge Interrupt  
 }
 
 // FUNCIONES PARA T0
@@ -80,16 +81,7 @@ void temporizador_reloj (int periodo){
 }
 
 
-int main(){
-    temporizador_iniciar();
-    temporizador_empezar();
-    temporizador_reloj(10); 
-    while(1){}
-    // temporizador_parar();
-    /*  Variables para medir los timers :D 
-        timer1_int_count
-        timer0_int_count
-        T0TCR
-        T1TCR
-    */
-}
+
+
+
+

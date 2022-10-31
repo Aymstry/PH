@@ -11,11 +11,9 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     if (c.n >= MAX ) {// Comprobamos que la cola esta llena
         while(1);
     }          
-    eventos newEvento;    // numInt, auxData, id 
-    newEvento.auxData = auxData;
-    newEvento.id = ID_evento;
-    newEvento.numInt = veces;
-    c.evs[c.tail] = newEvento;
+    c.evs[c.tail].auxData = auxData;
+    c.evs[c.tail].id = ID_evento;
+    c.evs[c.tail].numInt = veces;
     c.n = c.n + 1; 
     c.tail = (c.tail + 1) && (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
 }
@@ -33,7 +31,7 @@ bool cola_vacia() {
 }
 
 
-// funcion que no sabemos donde se pone :) ahor lo sabemos, se pone en el planificador
+// main que no sabemos donde se pone :) ahor lo sabemos, se pone en el planificador 
 // while(!cola_vacia()) {
 //   evento e;
 //   cola_desencolar_evento(&e);

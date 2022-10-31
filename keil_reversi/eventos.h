@@ -7,8 +7,8 @@
 // Tenemos 4 tipos de eventos 
 // 1- timer0
 
-// estructura básica para los eventos 
-typedef struct{
+// estructura básica para los eventos 2
+typedef struct eventos{
     uint32_t numInt;        // 4B = 4 casillas de memoria 
     uint32_t auxData;
     uint8_t id;             // 1B = 1 casilla de memoria se pone el último para que los campos esten alineados en memoria

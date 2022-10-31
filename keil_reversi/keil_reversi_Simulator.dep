@@ -1,0 +1,28 @@
+Dependencies for Project 'keil_reversi', Target 'Simulator': (DO NOT MODIFY !)
+F (.\Startup.s)(0x5F730BBE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 526"-o .\startup.o --depend .\startup.d)
+F (.\Retarget.c)(0x5F631668)(-c --cpu ARM7TDMI -D__EVAL -g -O3-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\retarget.o --omf_browse .\retarget.crf --depend .\retarget.d)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F2F9C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+F (.\main.c)(0x635E4A16)(-c --cpu ARM7TDMI -D__EVAL -g -O3-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (C:\Keil_v5\ARM\INC\Philips\LPC210x.H)(0x559D2F68)
+I (timer.h)(0x635E4A89)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+F (.\cola_asyn.c)(0x635AC319)(-c --cpu ARM7TDMI -D__EVAL -g -O3-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\cola_asyn.o --omf_browse .\cola_asyn.crf --depend .\cola_asyn.d)
+I (cola_asyn.h)(0x635AC2C1)
+I (eventos.h)(0x635AC2B7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F2F9E)
+F (.\timer.c)(0x635E533E)(-c --cpu ARM7TDMI -D__EVAL -g -O3-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\timer.o --omf_browse .\timer.crf --depend .\timer.d)
+I (C:\Keil_v5\ARM\INC\Philips\LPC210X.H)(0x559D2F68)
+I (cola_asyn.h)(0x635AC2C1)
+I (eventos.h)(0x635AC2B7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F2F9E)
+I (timer.h)(0x635E4A89)
+F (.\cola_asyn.h)(0x635AC2C1)()
+F (.\eventos.h)(0x635AC2B7)()
+F (.\timer.h)(0x635E4A89)()
