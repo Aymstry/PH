@@ -1,0 +1,10 @@
+.\planificador.o: planificador.c
+.\planificador.o: planificador.h
+.\planificador.o: cola_asyn.h
+.\planificador.o: eventos.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\planificador.o: msg.h
+.\planificador.o: G_Alarm.h
+.\planificador.o: timer.h

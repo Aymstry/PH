@@ -27,7 +27,7 @@ void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData){
     c.head = (c.head + 1) && (MAX - 1);     // aumentamos en 1 head % MAX 
 }
 
-bool cola_vacia() {
+bool cola_vacia(void) {
     return c.n==0;
 }
 
@@ -50,8 +50,8 @@ void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje){
     msg.head = (msg.head + 1) && (MAX - 1);     // aumentamos en 1 head % MAX 
 }
 
-bool cola_vacia_mensaje() {
-    return msg.n==0;
+bool cola_vacia_mensaje(void) {
+    return (msg.n == 0);
 }
 
 

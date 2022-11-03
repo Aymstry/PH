@@ -351,7 +351,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
@@ -475,6 +475,26 @@
               <FileName>msg.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\msg.h</FilePath>
+            </File>
+            <File>
+              <FileName>G_Alarm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\G_Alarm.c</FilePath>
+            </File>
+            <File>
+              <FileName>planificador.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\planificador.c</FilePath>
+            </File>
+            <File>
+              <FileName>G_Alarm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\G_Alarm.h</FilePath>
+            </File>
+            <File>
+              <FileName>planificador.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\planificador.h</FilePath>
             </File>
           </Files>
         </Group>
