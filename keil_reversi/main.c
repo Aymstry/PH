@@ -13,9 +13,9 @@ int main(){
 	// unsigned int j;
 	uint8_t leido;
 	 GPIO_iniciar();
-   //GPIO_marcar_entrada(12, 4);
-   //GPIO_marcar_entrada(16, 4);
-   //GPIO_marcar_salida(12, 8);
+   GPIO_marcar_entrada(12, 4);
+   GPIO_marcar_entrada(16, 4);
+   GPIO_marcar_salida(12, 8);
    GPIO_escribir(8, 4, 15);
    leido = GPIO_leer(8,4);
    if(leido == 15) while(1);
