@@ -6,5 +6,6 @@
 ".\timer.o"
 ".\g_alarm.o"
 ".\planificador.o"
+".\gpio.o"
 --strict --scatter ".\keil_reversi.sct"
 --summary_stderr --info summarysizes -o .\keil_reversi.axf

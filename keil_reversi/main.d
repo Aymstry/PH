@@ -9,3 +9,4 @@
 .\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\main.o: msg.h
 .\main.o: G_Alarm.h
+.\main.o: gpio.h
