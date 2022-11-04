@@ -63,7 +63,7 @@ uint32_t temporizador_parar(void){
 void timer1_ISR (void) __irq {
     timer1_int_count++;
     T1IR = 1;                              // Clear interrupt flag
-    VICVectAddr = 0;                      // Acknowledge Interrupt
+    VICVectAddr = 0;                      // Acknowledge Interrupt/interrupcion recibida
 }
 
 

@@ -13,6 +13,9 @@ void planificador(void){
                 case T0: 
                     gestor_alarmas();
                     break;
+                case BotonPulsado:
+                    gestor_botones(evento.auxData);
+                    break;
                 default: break;
             }
         }
@@ -24,7 +27,15 @@ void planificador(void){
                 case Set_Alarma: 
                     organizador_alarmas(msg.auxData); 
                     break;
-                case Alarma_Vencida: while(1);// aqui avisaremos a quien le corresponde de algún modo que no sabemos 
+                case Alarma_Vencida: // aqui avisaremos a quien le corresponde
+                    switch(msg.auxData){
+                        case BP1:
+                            comprobar_eint1(); 
+                            break;
+                        case BP2:
+                            comprobar_eint1(); 
+                            break;  
+                    }
                 default: break;
             }
         }

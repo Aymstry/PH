@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "cola_asyn.h": "c"
+        "cola_asyn.h": "c",
+        "botones.h": "c"
     }
 }
