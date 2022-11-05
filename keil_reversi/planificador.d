@@ -8,3 +8,5 @@
 .\planificador.o: msg.h
 .\planificador.o: G_Alarm.h
 .\planificador.o: timer.h
+.\planificador.o: G_Boton.h
+.\planificador.o: botones.h

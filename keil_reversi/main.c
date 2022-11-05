@@ -4,21 +4,24 @@
 #include "planificador.h"
 #include "cola_asyn.h"
 #include "gpio.h"
+#include "botones.h"
 
 
-int main(){
-	
-		
+int main(){	
 		
 	// unsigned int j;
-	uint8_t leido;
-	 GPIO_iniciar();
-   GPIO_marcar_entrada(12, 4);
-   GPIO_marcar_entrada(16, 4);
-   GPIO_marcar_salida(12, 8);
-   GPIO_escribir(8, 4, 15);
-   leido = GPIO_leer(8,4);
-   if(leido == 15) while(1);
+	//uint8_t leido;
+	 
+	//GPIO_iniciar();
+	temporizador_iniciar();
+	eint_init();
+	planificador();
+  /*GPIO_marcar_entrada(12, 4);
+  GPIO_marcar_entrada(16, 4);
+  GPIO_marcar_salida(12, 8);
+  GPIO_escribir(8, 4, 15);
+  leido = GPIO_leer(8,4);
+  if(leido == 15) while(1);*/
 
    /* 
    		for (j = 0x010000; j < 0x800000; j <<= 1) {  Blink LED 0,1,2,3,4,5,6 

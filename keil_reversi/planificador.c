@@ -16,6 +16,9 @@ void planificador(void){
                 case BotonPulsado:
                     gestor_botones(evento.auxData);
                     break;
+                case CancelarAlarma:
+                    desactivarAlarma(evento.auxData);
+                    break;
                 default: break;
             }
         }
@@ -33,7 +36,7 @@ void planificador(void){
                             comprobar_eint1(); 
                             break;
                         case BP2:
-                            comprobar_eint1(); 
+                            comprobar_eint2(); 
                             break;  
                     }
                 default: break;

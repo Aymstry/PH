@@ -363,7 +363,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>0</v6Lang>
@@ -505,6 +505,26 @@
               <FileName>gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>botones.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\botones.c</FilePath>
+            </File>
+            <File>
+              <FileName>G_Boton.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\G_Boton.c</FilePath>
+            </File>
+            <File>
+              <FileName>botones.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\botones.h</FilePath>
+            </File>
+            <File>
+              <FileName>G_Boton.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\G_Boton.h</FilePath>
             </File>
           </Files>
         </Group>
