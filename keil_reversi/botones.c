@@ -88,7 +88,7 @@ void eint_init (void) {
     // Inicializamos el boton eint1
     VICVectAddr2 = (unsigned long)eint1_ISR;    // set interrupt vector in 0
 	PINSEL0 = PINSEL0 & 0xCfffffff;	            // ponemos a cero los valores que vamos a modificar
-    PINSEL0 = PINSEL0 | 0x20000000;			    // Activamos el eint1 con los bits 28:29 0010 0000 0000 0000 0000 0000 0000 0000 
+    PINSEL0 = PINSEL0 | 536870912;			    // Activamos el eint1 con los bits 28:29 0010 0000 0000 0000 0000 0000 0000 0000 
     EXTINT =  EXTINT | 2;                       // Limpias la interrupcion de eint1 (p.21)   
 	VICVectCntl2 = 0x20 | 15;                   
     VICIntEnable = VICIntEnable | 0x00008000;   // Activamos la interrupcion de eint1
@@ -96,7 +96,7 @@ void eint_init (void) {
     // Inicialización eint2
     VICVectAddr3 = (unsigned long)eint2_ISR;    // set interrupt vector in 0
     PINSEL0 = PINSEL0 & 0x3fffffff;	            // ponemos a cero los valores que vamos a modificar
-    PINSEL0 = PINSEL0 | 0x80000000;			    // Activamos el eint2 con los bits 31:30 1000 0000 0000 0000 0000 0000 0000 0000 
+    PINSEL0 = PINSEL0 | 2147483648;			    // Activamos el eint2 con los bits 31:30 1000 0000 0000 0000 0000 0000 0000 0000 
     EXTINT =  EXTINT | 4;                       // Limpias la interrupcion de eint2 (p.21)   
 	VICVectCntl3 = 0x20 | 16;                   
     VICIntEnable = VICIntEnable | 0x00010000;   // Activamos la interrupcion de eint2
