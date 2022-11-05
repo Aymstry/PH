@@ -8,7 +8,8 @@
 #include "timer.h"
 #include "G_Boton.h"
 #include "botones.h"
-
+#include "G_Power.h"
+#include "power.h"
 void planificador(void);
 
 #endif

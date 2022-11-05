@@ -11,4 +11,6 @@
 .\main.o: G_Alarm.h
 .\main.o: G_Boton.h
 .\main.o: botones.h
+.\main.o: G_Power.h
+.\main.o: power.h
 .\main.o: gpio.h

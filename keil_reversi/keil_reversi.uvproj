@@ -526,6 +526,26 @@
               <FileType>5</FileType>
               <FilePath>.\G_Boton.h</FilePath>
             </File>
+            <File>
+              <FileName>G_Power.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\G_Power.h</FilePath>
+            </File>
+            <File>
+              <FileName>G_Power.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\G_Power.c</FilePath>
+            </File>
+            <File>
+              <FileName>power.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\power.h</FilePath>
+            </File>
+            <File>
+              <FileName>power.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\power.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

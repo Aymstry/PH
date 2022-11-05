@@ -10,3 +10,5 @@
 .\planificador.o: timer.h
 .\planificador.o: G_Boton.h
 .\planificador.o: botones.h
+.\planificador.o: G_Power.h
+.\planificador.o: power.h

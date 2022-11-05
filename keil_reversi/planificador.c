@@ -1,5 +1,7 @@
 #include "planificador.h"
 
+static int permisoDescanso = 0;
+
 void planificador(void){
 
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
@@ -7,6 +9,7 @@ void planificador(void){
 
     while(1){
         while(!cola_vacia()){
+            permisoDescanso = 0;    
             elemento evento;
             cola_desencolar_evento(&evento.id, &evento.auxData);
             switch(evento.id){
@@ -18,6 +21,10 @@ void planificador(void){
                     break;
                 case CancelarAlarma:
                     desactivarAlarma(evento.auxData);
+                    break;
+                case Suspender: 
+                    introducir_power();
+                    permisoDescanso = 1;
                     break;
                 default: break;
             }
@@ -37,10 +44,20 @@ void planificador(void){
                             break;
                         case BP2:
                             comprobar_eint2(); 
-                            break;  
-                    }
+                            break; 
+                        case Sleep:
+                            dormir();
+                            break; 
+                    } 
                 default: break;
             }
+        }
+
+        if(permisoDescanso == 1){
+            idle();
+        }
+        else if (cola_vacia()){
+            cola_encolar_evento(Suspender, 0, 0);
         }
     }
 }
