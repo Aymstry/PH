@@ -10,6 +10,7 @@
 #include "botones.h"
 #include "G_Power.h"
 #include "power.h"
+#include "G_IO.h"
 void planificador(void);
 
 #endif

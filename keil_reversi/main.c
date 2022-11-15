@@ -8,7 +8,23 @@
 
 
 int main(){	
-		
+
+  GPIO_iniciar();
+  // recuerda que en las entradas de los botones pin a 0 es activo y a 1 desactivado 
+  // escribimos por ello las posiciones de los botones para que no salte una interrupción 
+  GPIO_escribir(14,2,3);
+  // marcamos las entradas de los botones y las columnas
+  GPIO_marcar_entrada(14, 2);
+  GPIO_marcar_entrada(3, 7);
+  eint_init();
+	temporizador_iniciar();
+  cambioColor(2);
+  planificador();
+    
+}
+
+/*  
+  -- MAIN PRUEBAS -- 
 	// unsigned int j;
 	//uint8_t leido;
 	 
@@ -16,7 +32,7 @@ int main(){
 	temporizador_iniciar();
 	eint_init();
 	planificador();
-  /*GPIO_marcar_entrada(12, 4);
+  GPIO_marcar_entrada(12, 4);
   GPIO_marcar_entrada(16, 4);
   GPIO_marcar_salida(12, 8);
   GPIO_escribir(8, 4, 15);
@@ -40,11 +56,22 @@ int main(){
     
     while(1){}
     // temporizador_parar();*/
-    
-}
 
-//int main (void) {
-//  	
-//  reversi8();
-//	
-//}
+
+    /* //MAIN PRACTICA 1
+    #include "conecta4_2022.h"
+    #include "pruebas.h"
+    #include "entrada.h"
+
+    // MAIN 
+    int main (void) {
+      
+      // comente la linea que desea que no se ejecute 
+
+      //jugar
+      conecta4_jugar();
+      // realización de las pruebas 
+      conecta4_jugar_test();
+      while(1); //no hay S.O., no se retorna
+    }
+    */

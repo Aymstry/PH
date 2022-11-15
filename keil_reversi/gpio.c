@@ -37,7 +37,7 @@ void GPIO_escribir(uint32_t bit_inicial, uint32_t num_bits,uint32_t valor){
     uint32_t inicial = 1 << bit_inicial;           // colocamos un 1 en el bit inicial en binario para saber donde empezar el bucle
     uint32_t final = 1 << (bit_inicial + num_bits - 1); //colocamos un 1 en el bit final a leer
     uint32_t i;
-    for (i = inicial; i < final; i <<= 1){     // con el 1 desplazamos 1 bit hacia la izq y con el = actualizamos el valor de j
+    for (i = inicial; i <= final; i <<= 1){     // con el 1 desplazamos 1 bit hacia la izq y con el = actualizamos el valor de j
         IOCLR = i;          // liampiamos los bits que vamos a sobreescribir 
     }
     // valor << bit_inicial es el valor en su correspondiente posición de bits 

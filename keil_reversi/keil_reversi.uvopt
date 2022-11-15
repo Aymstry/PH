@@ -142,7 +142,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
-          <Name>(134=-1,-1,-1,-1,0)(135=83,112,315,226,0)(107=-1,-1,-1,-1,0)(108=-1,-1,-1,-1,0)(106=994,204,1272,558,0)(105=22,138,212,382,1)(80=784,201,1295,611,0)(104=1215,32,1531,451,1)(100=953,483,1536,665,1)(113=220,244,718,767,0)(112=220,154,718,864,0)(136=-1,-1,-1,-1,0)(117=-1,-1,-1,-1,0)(110=850,322,1536,864,0)(111=-1,-1,-1,-1,0)(114=277,416,963,864,0)(115=-1,-1,-1,-1,0)(116=790,303,1076,593,0)</Name>
+          <Name>(134=-1,-1,-1,-1,0)(135=83,112,315,226,0)(107=0,485,331,813,1)(108=-1,-1,-1,-1,0)(106=994,204,1272,558,0)(105=22,138,212,382,1)(80=784,201,1295,611,0)(104=1215,32,1531,451,1)(100=463,548,1046,730,1)(113=220,244,718,767,0)(112=220,154,718,864,0)(136=-1,-1,-1,-1,0)(117=-1,-1,-1,-1,0)(110=850,322,1536,864,0)(111=-1,-1,-1,-1,0)(114=277,416,963,864,0)(115=-1,-1,-1,-1,0)(116=790,303,1076,593,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -154,153 +154,57 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>55</LineNumber>
+          <LineNumber>44</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>1860</Address>
+          <Address>2960</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\G_Alarm.c</Filename>
+          <Filename>.\gpio.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\G_Alarm.c\55</Expression>
+          <Expression>\\keil_reversi\gpio.c\44</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>15</LineNumber>
+          <LineNumber>41</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>2416</Address>
+          <Address>2940</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\botones.c</Filename>
+          <Filename>.\gpio.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\botones.c\15</Expression>
+          <Expression>\\keil_reversi\gpio.c\41</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>23</LineNumber>
+          <LineNumber>5</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>2500</Address>
+          <Address>4048</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\botones.c</Filename>
+          <Filename>.\power.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\botones.c\23</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>36</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2620</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\botones.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\botones.c\36</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>46</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2752</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\botones.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\botones.c\46</Expression>
-        </Bp>
-        <Bp>
-          <Number>5</Number>
-          <Type>0</Type>
-          <LineNumber>17</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2212</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\planificador.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\planificador.c\17</Expression>
-        </Bp>
-        <Bp>
-          <Number>6</Number>
-          <Type>0</Type>
-          <LineNumber>20</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2228</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\planificador.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\planificador.c\20</Expression>
-        </Bp>
-        <Bp>
-          <Number>7</Number>
-          <Type>0</Type>
-          <LineNumber>83</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2892</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\botones.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\botones.c\83</Expression>
-        </Bp>
-        <Bp>
-          <Number>8</Number>
-          <Type>0</Type>
-          <LineNumber>39</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2368</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\planificador.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\keil_reversi\power.c\5</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>0x40000024</ItemText>
+          <ItemText>0x40000000</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -350,27 +254,27 @@
         <Wi>
           <IntNumber>0</IntNumber>
           <FirstString>`T0TC</FirstString>
-          <SecondString>0080000000000000000000000000E0FFFFFFEF41010000000000000000000000000000005430544300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000490000000100000098F32CB5C157D03F0A0000000000000000000000000000000000000098020000</SecondString>
+          <SecondString>0080000000000000000000000000E0FFFFFFEF41010000000000000000000000000000005430544300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000490000000100000041B07C05CB57D03F110000000000000000000000000000000000000098020000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>1</IntNumber>
           <FirstString>`T0TCR</FirstString>
-          <SecondString>000000000000000000000000000000000000F03F000000000000000000000000000000005430544352000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000410000000200000003A33F57E3B1CB3F0A0000000000000000000000000000000000000010020000</SecondString>
+          <SecondString>000000000000000000000000000000000000F03F00000000000000000000000000000000543054435200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041000000020000004EBB20BB0BB2CB3F110000000000000000000000000000000000000010020000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>2</IntNumber>
           <FirstString>`T1TCR</FirstString>
-          <SecondString>FF000000000000000000000000000000000000400000000000000000000000000000000054315443520000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004100000003000000DD5A7FBFA77EC53F0A0000000000000000000000000000000000000010020000</SecondString>
+          <SecondString>FF00000000000000000000000000E0FFFFFFEF410000000000000000000000000000000054315443520000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004100000003000000DD72FB57B77FC53F110000000000000000000000000000000000000010020000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>3</IntNumber>
           <FirstString>`VICVectAddr0</FirstString>
-          <SecondString>0080000000000000000000000000000000C0924000000000000000000000000000000000564943566563744164647230000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041000000040000004DFCFD912E1BC13F0A0000000000000000000000000000000000000010020000</SecondString>
+          <SecondString>0080000000000000000000000000000000909440000000000000000000000000000000005649435665637441646472300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000410000000400000025B598118B19C13F110000000000000000000000000000000000000010020000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>4</IntNumber>
           <FirstString>`VICVectAddr1</FirstString>
-          <SecondString>0000800000000000000000000000000000F0914000000000000000000000000000000000564943566563744164647231000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041000000050000009A9999999999C93F0A0000000000000000000000000000000000000010020000</SecondString>
+          <SecondString>0000800000000000000000000000000000C093400000000000000000000000000000000056494356656374416464723100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004100000005000000CF4D76DDA148CA3F110000000000000000000000000000000000000010020000</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>
@@ -671,6 +575,126 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\power.c</PathWithFileName>
       <FilenameWithoutPath>power.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>24</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\conecta4_2022.c</PathWithFileName>
+      <FilenameWithoutPath>conecta4_2022.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>25</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\entrada.c</PathWithFileName>
+      <FilenameWithoutPath>entrada.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>26</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\G_IO.c</PathWithFileName>
+      <FilenameWithoutPath>G_IO.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>27</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\pruebas.c</PathWithFileName>
+      <FilenameWithoutPath>pruebas.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>28</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\conecta4_2022.h</PathWithFileName>
+      <FilenameWithoutPath>conecta4_2022.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>29</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\entrada.h</PathWithFileName>
+      <FilenameWithoutPath>entrada.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>30</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\G_IO.h</PathWithFileName>
+      <FilenameWithoutPath>G_IO.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>31</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\pruebas.h</PathWithFileName>
+      <FilenameWithoutPath>pruebas.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>32</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\tableros.h</PathWithFileName>
+      <FilenameWithoutPath>tableros.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>33</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\conecta4_2022_arm.s</PathWithFileName>
+      <FilenameWithoutPath>conecta4_2022_arm.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

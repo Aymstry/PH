@@ -21,7 +21,7 @@ void eint1_ISR (void) __irq {
 
 void eint2_ISR (void) __irq {
 	eint2_cuenta++;
-	VICIntEnClr = 0x00010000;    //deshabilitamos eint2
+	VICIntEnClr = 0x00010000;      //deshabilitamos eint2
 	//EXTINT =  EXTINT | 4;        // clear interrupt flag
     cola_encolar_evento(BotonPulsado, eint2_cuenta, 2);        
 	VICVectAddr = 0;             // Acknowledge Interrupt
@@ -85,12 +85,13 @@ void eint_init (void) {
     eint1_cuenta = 0;
 	eint2_cuenta = 0;
 
-    // Inicializamos el boton eint1
+    // Inicializamos el boton eint1    
+    EXTINT =  EXTINT | 2;                       // Limpias la interrupcion de eint1 (p.21) 
     VICVectAddr2 = (unsigned long)eint1_ISR;    // set interrupt vector in 0
 	PINSEL0 = PINSEL0 & 0xCfffffff;	            // ponemos a cero los valores que vamos a modificar
     PINSEL0 = PINSEL0 | 536870912;			    // Activamos el eint1 con los bits 28:29 0010 0000 0000 0000 0000 0000 0000 0000 
-    EXTINT =  EXTINT | 2;                       // Limpias la interrupcion de eint1 (p.21)   
-	VICVectCntl2 = 0x20 | 15;                   
+    EXTINT =  EXTINT | 2;                       // Limpias la interrupcion de eint1 (p.21) 
+    VICVectCntl2 = 0x20 | 15;                   
     VICIntEnable = VICIntEnable | 0x00008000;   // Activamos la interrupcion de eint1
 
     // Inicialización eint2

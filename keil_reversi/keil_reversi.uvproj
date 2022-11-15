@@ -546,6 +546,56 @@
               <FileType>1</FileType>
               <FilePath>.\power.c</FilePath>
             </File>
+            <File>
+              <FileName>conecta4_2022.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\conecta4_2022.c</FilePath>
+            </File>
+            <File>
+              <FileName>entrada.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\entrada.c</FilePath>
+            </File>
+            <File>
+              <FileName>G_IO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\G_IO.c</FilePath>
+            </File>
+            <File>
+              <FileName>pruebas.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\pruebas.c</FilePath>
+            </File>
+            <File>
+              <FileName>conecta4_2022.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\conecta4_2022.h</FilePath>
+            </File>
+            <File>
+              <FileName>entrada.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\entrada.h</FilePath>
+            </File>
+            <File>
+              <FileName>G_IO.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\G_IO.h</FilePath>
+            </File>
+            <File>
+              <FileName>pruebas.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pruebas.h</FilePath>
+            </File>
+            <File>
+              <FileName>tableros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tableros.h</FilePath>
+            </File>
+            <File>
+              <FileName>conecta4_2022_arm.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\conecta4_2022_arm.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

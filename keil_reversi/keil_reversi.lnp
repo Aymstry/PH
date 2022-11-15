@@ -11,5 +11,10 @@
 ".\g_boton.o"
 ".\g_power.o"
 ".\power.o"
+".\conecta4_2022.o"
+".\entrada.o"
+".\g_io.o"
+".\pruebas.o"
+".\conecta4_2022_arm.o"
 --strict --scatter ".\keil_reversi.sct"
 --summary_stderr --info summarysizes -o .\keil_reversi.axf

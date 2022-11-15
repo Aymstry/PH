@@ -12,3 +12,7 @@
 .\planificador.o: botones.h
 .\planificador.o: G_Power.h
 .\planificador.o: power.h
+.\planificador.o: G_IO.h
+.\planificador.o: conecta4_2022.h
+.\planificador.o: celda.h
+.\planificador.o: tableros.h
