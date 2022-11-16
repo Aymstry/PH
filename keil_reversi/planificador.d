@@ -16,3 +16,4 @@
 .\planificador.o: conecta4_2022.h
 .\planificador.o: celda.h
 .\planificador.o: tableros.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

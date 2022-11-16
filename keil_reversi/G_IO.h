@@ -11,6 +11,7 @@ void ApagarLedConfirmacion(void);
 void endgame(uint8_t resultado); 
 void jugadaNoValidaInit(void);
 void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]);
+void initgame(void);
 
 #endif 
 

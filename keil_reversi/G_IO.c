@@ -77,7 +77,7 @@ void endgame(uint8_t resultado){
     // mensaje final:               0000 1000 1 0000 0000 0000 0000 1100 100 = 142606436
     uint32_t mensaje = 142606436;
     cola_encolar_mensaje(Set_Alarma, mensaje); 
- }
+ } 
 
 void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
     // leer columna 
@@ -91,4 +91,16 @@ void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
             // no es valida 
             GPIO_escribir(17, 1 ,1);
         }
+}
+
+void initgame(void){
+    GPIO_iniciar();
+    // recuerda que en las entradas de los botones pin a 0 es activo y a 1 desactivado 
+    // escribimos por ello las posiciones de los botones para que no salte una interrupción 
+    GPIO_escribir(14,2,3);
+    // marcamos las entradas de los botones y las columnas
+    GPIO_marcar_entrada(14, 2);
+    GPIO_marcar_entrada(3, 7);
+
+    cambioColor(2);
 }

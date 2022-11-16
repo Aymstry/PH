@@ -3,22 +3,15 @@
 #include "timer.h"
 #include "planificador.h"
 #include "cola_asyn.h"
-#include "gpio.h"
 #include "botones.h"
+#include "G_IO.h"
 
 
 int main(){	
 
-  GPIO_iniciar();
-  // recuerda que en las entradas de los botones pin a 0 es activo y a 1 desactivado 
-  // escribimos por ello las posiciones de los botones para que no salte una interrupción 
-  GPIO_escribir(14,2,3);
-  // marcamos las entradas de los botones y las columnas
-  GPIO_marcar_entrada(14, 2);
-  GPIO_marcar_entrada(3, 7);
+  initgame(); 
   eint_init();
 	temporizador_iniciar();
-  cambioColor(2);
   planificador();
     
 }

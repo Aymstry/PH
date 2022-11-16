@@ -1,6 +1,7 @@
 #include "planificador.h"
 #include "tableros.h"
 #include "conecta4_2022.h"
+#include <stdio.h>
 
 static int permisoDescanso = 0;
 
@@ -9,12 +10,20 @@ void planificador(void){
     // definimos estructuras iniciales 
 	static volatile uint8_t entrada[8] = {0, 0, 0, 0, 0, 0, 0, 0 }; 
     // inicializamos los periféricos 
-    uint8_t column, row, colour;
+    uint8_t column, row, colour, i, j;
     colour = 1; // empiezan jugador 1 (blancas)
     
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
+
+    // guardamos una copia del tabero
+    CELDA tablero[TAM_FILS][TAM_COLS];
+    for(i = 0; i<TAM_FILS; i++){
+        for(j = 0; j<TAM_COLS; j++){
+            tablero[i][j] = cuadricula_victoria_j2[i][j];
+        }
+    }
 
     while(1){
         while(!cola_vacia()){
@@ -45,7 +54,12 @@ void planificador(void){
                         }  // jugada invalida 
                         colour = cambioColor(colour);
                     } else {                  // se reinicia el juego 
-
+                        initgame(); 
+                        for(i = 0; i<TAM_FILS; i++){
+                            for(j = 0; j<TAM_COLS; j++){
+                                cuadricula_victoria_j2[i][j] = tablero[i][j];
+                            }
+                        }
                     }
                     break;
                 case CancelarAlarma:
@@ -80,12 +94,12 @@ void planificador(void){
                         case JugadaRealizada:
                             ApagarLedConfirmacion(); 
                             break; 
-                        case  JugadaNoValida:
+                       case JugadaNoValida:
                             actualizarAviso(cuadricula_victoria_j2); 
                             break;
                         default: break;
                     } 
-                break;
+                    break;
                 default: break;
             }
         }
