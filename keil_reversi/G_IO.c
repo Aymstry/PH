@@ -1,5 +1,7 @@
 #include "G_IO.h"
 #include "gpio.h"
+#include "msg.h"
+#include "cola_asyn.h"
 
 int jugadorActual(){
   return 1;  
@@ -40,12 +42,53 @@ uint8_t cambioColor(uint8_t colour){
     }
     return nuevoJugador;
 }
-/*
-void avisoError(){
-    // completar 
-    cola_encolar_mensaje(Set_Alarma, mensaje);
-}*/
 
-//Se programará una alarma periódica para que 10 veces por segundo se
-//actualice la visualización de si la columna marcada está llena.
-	
+void actualizarJugada(CELDA cuadricula[TAM_FILS][TAM_COLS],uint8_t row, uint8_t column,uint8_t colour){
+    C4_actualizar_tablero(cuadricula,row,column,colour);
+    // codificamos el mensaje para que suene una alarma en dos segundos
+    // ID 7 = JugadaRealizada        ID=7     P  23                          Decimal
+    // mensaje final:               0000 0111 0 0000 0000 0000 1111 1010 000 = 117442512
+    uint32_t mensaje = 117442512; 
+    cola_encolar_mensaje(Set_Alarma, mensaje);
+    GPIO_escribir(16,1,1);
+    
+}
+
+void ApagarLedConfirmacion(void){
+    GPIO_escribir(16,1,0);
+}
+
+void endgame(uint8_t resultado){
+    GPIO_escribir(18,1,1);
+    if( resultado == 3){        // empate
+       GPIO_escribir(1, 2 ,3); 
+    } else {
+        if(resultado == 1){
+            GPIO_escribir(1, 2 ,1);
+        } else {
+            GPIO_escribir(1, 2 ,2);
+        }
+    }
+}
+
+ void jugadaNoValidaInit(void){          
+    // codificamos el mensaje para que suene una alarma 10 veces por segundo = cada 100 ms 
+    // ID 8 =  JugadaNoValida        ID=8     P  23                          Decimal 1100 100
+    // mensaje final:               0000 1000 1 0000 0000 0000 0000 1100 100 = 142606436
+    uint32_t mensaje = 142606436;
+    cola_encolar_mensaje(Set_Alarma, mensaje); 
+ }
+
+void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
+    // leer columna 
+    uint8_t columnAux = leercolumna(); 
+    // calcular fila
+    uint8_t rowAux = C4_calcular_fila(cuadricula, columnAux);
+        if(C4_fila_valida(rowAux) && C4_columna_valida(columnAux)) {
+            // es valida 
+            GPIO_escribir(17, 1 ,0);
+        } else {
+            // no es valida 
+            GPIO_escribir(17, 1 ,1);
+        }
+}

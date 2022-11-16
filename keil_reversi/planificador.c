@@ -14,6 +14,7 @@ void planificador(void){
     
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
+    jugadaNoValidaInit();
 
     while(1){
         while(!cola_vacia()){
@@ -30,14 +31,16 @@ void planificador(void){
                         // leer columna 
                         column = leercolumna(); 
                         // calcular fila
-                        row = C4_calcular_fila(cuadricula_1, column);
+                        row = C4_calcular_fila(cuadricula_victoria_j2, column);
                         if(C4_fila_valida(row) && C4_columna_valida(column)) {
-                            C4_actualizar_tablero(cuadricula_1,row,column,colour); //actualiza el tablero
-                            if(C4_verificar_4_en_linea(cuadricula_1, row, column, colour)) {
-                                while(1); //ganas la partida
+                            actualizarJugada(cuadricula_victoria_j2,row,column,colour);
+                            if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
+                                endgame(colour);  //ganas la partida
+                                while(1);
                             }
-                            if (C4_comprobar_empate(cuadricula_1)){
-                                while(1); //quedan en empate los dos jugadores
+                            if (C4_comprobar_empate(cuadricula_victoria_j2)){
+                                endgame(3);  //quedan en empate los dos jugadores
+                                while(1);
                             }
                         }  // jugada invalida 
                         colour = cambioColor(colour);
@@ -74,6 +77,13 @@ void planificador(void){
                         case Sleep:
                             dormir();
                             break; 
+                        case JugadaRealizada:
+                            ApagarLedConfirmacion(); 
+                            break; 
+                        case  JugadaNoValida:
+                            actualizarAviso(cuadricula_victoria_j2); 
+                            break;
+                        default: break;
                     } 
                 break;
                 default: break;
