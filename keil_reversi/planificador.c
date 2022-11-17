@@ -3,8 +3,6 @@
 #include "conecta4_2022.h"
 #include <stdio.h>
 
-static int permisoDescanso = 0;
-
 void planificador(void){
 
     // inicializamos los periféricos 
@@ -24,8 +22,7 @@ void planificador(void){
     }
     
     while(1){
-        while(!cola_vacia()){
-            permisoDescanso = 0;    
+        while(!cola_vacia()){  
             elemento evento;
             cola_desencolar_evento(&evento.id, &evento.auxData);
             switch(evento.id){
@@ -66,7 +63,6 @@ void planificador(void){
                     break;
                 case Suspender: 
                     introducir_power();
-                    permisoDescanso = 1;
                     break;
                 default: break;
             }
@@ -102,10 +98,10 @@ void planificador(void){
                 default: break;
             }
         }
-        /*
-        if(permisoDescanso == 1){
+        
+        if(cola_vacia() && cola_vacia_mensaje()){
             idle();
-        }
+        }/*
         else if (cola_vacia()){
             cola_encolar_evento(Suspender, 0, 0);
         }*/
