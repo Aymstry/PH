@@ -48,7 +48,9 @@ void actualizarJugada(CELDA cuadricula[TAM_FILS][TAM_COLS],uint8_t row, uint8_t 
     // codificamos el mensaje para que suene una alarma en dos segundos
     // ID 7 = JugadaRealizada        ID=7     P  23                          Decimal
     // mensaje final:               0000 0111 0 0000 0000 0000 1111 1010 000 = 117442512
-    uint32_t mensaje = 117442512; 
+    // mensaje final:               0000 0111  0000 0000 0000 0111 1101 0000 = 117442512
+    //                                0   7      0    0    0     7   D    0     
+    uint32_t mensaje = 0x070007D0; 
     cola_encolar_mensaje(Set_Alarma, mensaje);
     GPIO_escribir(16,1,1);
     
@@ -75,7 +77,9 @@ void endgame(uint8_t resultado){
     // codificamos el mensaje para que suene una alarma 10 veces por segundo = cada 100 ms 
     // ID 8 =  JugadaNoValida        ID=8     P  23                          Decimal 1100 100
     // mensaje final:               0000 1000 1 0000 0000 0000 0000 1100 100 = 142606436
-    uint32_t mensaje = 142606436;
+    // mensaje final:               0000 1000 1000 0000 0000 0000 0110 0100 = 142606436 
+    //                               0    8     8    0    0    0    6    4   = 08800064
+    uint32_t mensaje = 0x08800064;
     cola_encolar_mensaje(Set_Alarma, mensaje); 
  } 
 

@@ -16,7 +16,7 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     c.evs[c.tail].id = ID_evento;
     c.evs[c.tail].numInt = veces;
     c.n = c.n + 1; 
-    c.tail = (c.tail + 1) && (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+    c.tail = (c.tail + 1) & (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
 }
 
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar
@@ -24,7 +24,7 @@ void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData){
     *ID_evento = (c.evs[c.head]).id;
     *auxData = (c.evs[c.head]).auxData;
     c.n = c.n - 1;                          // decrementamos n 
-    c.head = (c.head + 1) && (MAX - 1);     // aumentamos en 1 head % MAX 
+    c.head = (c.head + 1) & (MAX - 1);     // aumentamos en 1 head % MAX 
 }
 
 bool cola_vacia(void) {
@@ -39,7 +39,7 @@ void cola_encolar_mensaje(uint8_t ID_msg, uint32_t mensaje){
     msg.evs[msg.tail].id = ID_msg;
     msg.evs[msg.tail].auxData = mensaje;
     msg.n = msg.n + 1; 
-    msg.tail = (msg.tail + 1) && (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+    msg.tail = (msg.tail + 1) & (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
 }
 
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar
@@ -47,7 +47,7 @@ void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje){
     *ID_msg = (msg.evs[msg.head]).id;
     *mensaje = (msg.evs[msg.head]).auxData;
     msg.n = msg.n - 1;                          // decrementamos n 
-    msg.head = (msg.head + 1) && (MAX - 1);     // aumentamos en 1 head % MAX 
+    msg.head = (msg.head + 1) & (MAX - 1);     // aumentamos en 1 head % MAX 
 }
 
 bool cola_vacia_mensaje(void) {

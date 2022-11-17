@@ -6,9 +6,7 @@
 static int permisoDescanso = 0;
 
 void planificador(void){
-    
-    // definimos estructuras iniciales 
-	static volatile uint8_t entrada[8] = {0, 0, 0, 0, 0, 0, 0, 0 }; 
+
     // inicializamos los periféricos 
     uint8_t column, row, colour, i, j;
     colour = 1; // empiezan jugador 1 (blancas)
@@ -24,7 +22,7 @@ void planificador(void){
             tablero[i][j] = cuadricula_victoria_j2[i][j];
         }
     }
-
+    
     while(1){
         while(!cola_vacia()){
             permisoDescanso = 0;    
@@ -54,6 +52,7 @@ void planificador(void){
                         }  // jugada invalida 
                         colour = cambioColor(colour);
                     } else {                  // se reinicia el juego 
+                        cola_iniciar();
                         initgame(); 
                         for(i = 0; i<TAM_FILS; i++){
                             for(j = 0; j<TAM_COLS; j++){
