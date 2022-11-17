@@ -300,6 +300,32 @@ __user_initial_stackheap
                 LDR     R2, = (Heap_Mem +      Heap_Size)
                 LDR     R3, = Stack_Mem
                 BX      LR
+; ----------------------------------------------------------------------------------------------------
 
+                EXPORT switch_to_PLL
+switch_to_PLL
+; Setup PLL
+                LDR     R0, =PLL_BASE
+                MOV     R1, #0xAA
+                MOV     R2, #0x55
 
+;  Configure and Enable PLL
+                MOV     R3, #PLLCFG_Val
+                STR     R3, [R0, #PLLCFG_OFS] 
+                MOV     R3, #PLLCON_PLLE
+                STR     R3, [R0, #PLLCON_OFS]
+                STR     R1, [R0, #PLLFEED_OFS]
+                STR     R2, [R0, #PLLFEED_OFS]
+
+;  Wait until PLL Locked
+PLL_Loop1       LDR     R3, [R0, #PLLSTAT_OFS]
+                ANDS    R3, R3, #PLLSTAT_PLOCK
+                BEQ     PLL_Loop1
+
+;  Switch to PLL Clock
+                MOV     R3, #(PLLCON_PLLE:OR:PLLCON_PLLC)
+                STR     R3, [R0, #PLLCON_OFS]
+                STR     R1, [R0, #PLLFEED_OFS]
+                STR     R2, [R0, #PLLFEED_OFS]
+                BX      LR
                 END

@@ -13,6 +13,7 @@ typedef struct{
     
 }cola; 
 
+void cola_iniciar(void); 
 void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData); 
 void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData); 
 bool cola_vacia(void);

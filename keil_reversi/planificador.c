@@ -12,7 +12,8 @@ void planificador(void){
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
-
+    // colocamos la alarma para pasar a modo apagado 
+    cola_encolar_evento(Suspender, 0, 0);
     // guardamos una copia del tabero
     CELDA tablero[TAM_FILS][TAM_COLS];
     for(i = 0; i<TAM_FILS; i++){
@@ -30,6 +31,7 @@ void planificador(void){
                     gestor_alarmas();
                     break;
                 case BotonPulsado:
+                    cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
                         // leer columna 
@@ -101,9 +103,6 @@ void planificador(void){
         
         if(cola_vacia() && cola_vacia_mensaje()){
             idle();
-        }/*
-        else if (cola_vacia()){
-            cola_encolar_evento(Suspender, 0, 0);
-        }*/
+        }
     }
 }

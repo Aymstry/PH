@@ -3,7 +3,7 @@
 static cola c;
 static cola msg;
 
-void cola_iniciar() {
+void cola_iniciar(void) {
     c.n=c.head=c.tail=0;
 }
 

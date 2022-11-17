@@ -1,4 +1,6 @@
 .\g_power.o: G_Power.c
+.\g_power.o: G_Power.h
+.\g_power.o: power.h
 .\g_power.o: msg.h
 .\g_power.o: cola_asyn.h
 .\g_power.o: eventos.h
