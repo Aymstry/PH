@@ -6,6 +6,7 @@
 void planificador(void){
 
     // inicializamos los periféricos 
+    bool permiso = true; 
     uint8_t column, row, colour, i, j;
     colour = 1; // empiezan jugador 1 (blancas)
     
@@ -32,6 +33,7 @@ void planificador(void){
                     break;
                 case BotonPulsado:
                     cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+                    permiso = terminarLatido();
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
                         // leer columna 
@@ -92,7 +94,10 @@ void planificador(void){
                             ApagarLedConfirmacion(); 
                             break; 
                        case JugadaNoValida:
-                            actualizarAviso(cuadricula_victoria_j2); 
+                            permiso = actualizarAviso(cuadricula_victoria_j2); 
+                            break;
+                        case MIdle:
+                            parpadeoBlinBlin();
                             break;
                         default: break;
                     } 
@@ -101,8 +106,12 @@ void planificador(void){
             }
         }
         
-        if(cola_vacia() && cola_vacia_mensaje()){
+        if(cola_vacia() && permiso){   
+            empezarLatido(); 
+            permiso = false; 
+        } else if(cola_vacia() && cola_vacia_mensaje() ){
             idle();
         }
+             
     }
 }

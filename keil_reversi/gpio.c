@@ -38,7 +38,12 @@ void GPIO_escribir(uint32_t bit_inicial, uint32_t num_bits,uint32_t valor){
     uint32_t final = 1 << (bit_inicial + num_bits - 1); //colocamos un 1 en el bit final a leer
     uint32_t i;
     for (i = inicial; i <= final; i <<= 1){     // con el 1 desplazamos 1 bit hacia la izq y con el = actualizamos el valor de j
-        IOCLR = i;          // liampiamos los bits que vamos a sobreescribir 
+        if((inicial == final) && (inicial == 0x80000000)){
+            IOCLR = final;
+						break;
+        } else{
+            IOCLR = i;          // liampiamos los bits que vamos a sobreescribir 
+        }
     }
     // valor << bit_inicial es el valor en su correspondiente posición de bits 
     IOSET = (IOPIN | (valor << bit_inicial )); // colocamos el valor solicitado haciendo una or con el valor actual del gpio, y el que queremos introducir 

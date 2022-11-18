@@ -83,13 +83,15 @@ void endgame(uint8_t resultado){
     cola_encolar_mensaje(Set_Alarma, mensaje); 
  } 
 
-void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
+bool actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
     static uint8_t antiguoLeido = 0; 
+    bool permiso = false;
     // leer columna 
     uint8_t columnAux = leercolumna(); 
     if (antiguoLeido != columnAux){
         cola_encolar_evento(Suspender, 0, 0); // reprogramar alarma con cambios en la gpio
         antiguoLeido = columnAux; 
+        permiso = terminarLatido();
     }
     // calcular fila
     uint8_t rowAux = C4_calcular_fila(cuadricula, columnAux);
@@ -100,6 +102,7 @@ void actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
             // no es valida 
             GPIO_escribir(17, 1 ,1);
         }
+    return permiso;
 }
 
 void initgame(void){
@@ -112,4 +115,37 @@ void initgame(void){
     GPIO_marcar_entrada(3, 7);
 
     cambioColor(2);
+}
+
+void empezarLatido(void){
+    // codificamos el mensaje para que suene una alarma cada 250 ms 
+    // ID 9 =  MIdle                ID=9     P  23                             Hexadecimal 
+    // mensaje final:               0000 1001 1 0000 0000 0000 0001 1111 010 
+    //                              0000 1001 1000 0000 0000 0000 1111 1010 
+    //                               0    9     8    0    0    0    F    A   = 098000FA
+    uint32_t mensaje = 0x098000FA;
+    cola_encolar_mensaje(Set_Alarma, mensaje); 
+}
+
+bool terminarLatido(void){
+    // codificamos el mensaje para cancelar la alarma que suena 250 ms 
+    // ID 9 =  MIdle                ID=9     P  23                             Hexadecimal 
+    // mensaje final:               0000 1001 0 0000 0000 0000 0000 0000 000 
+    //                              0000 1001 0000 0000 0000 0000 0000 0000 
+    //                               0    9     0    0    0    0    0    0   = 09800000
+    uint32_t mensaje = 0x09000000;
+    cola_encolar_mensaje(Set_Alarma, mensaje); 
+    GPIO_escribir(31,1,0);
+    return true; 
+}
+
+void parpadeoBlinBlin(void){
+    static int estado = 0; 
+    if (estado == 0){
+        estado = 1;
+        GPIO_escribir(31,1,1);
+    } else{
+        estado = 0;
+        GPIO_escribir(31,1,0);
+    }
 }
