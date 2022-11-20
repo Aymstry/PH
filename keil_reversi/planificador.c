@@ -37,11 +37,16 @@ void planificador(void){
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
                         // leer columna 
-                        column = leercolumna(); 
+                        column = leercolumna();
+                        // Iniciamos timer1 para medir el tiempo de procesamiento de comprobar si hay línea en
+                        // microsegundos. Es decir, desde que el jugador ha introducido su
+                        // movimiento, hasta comprobar si hay línea o empate.
+                        temporizador_empezar();
                         // calcular fila
                         row = C4_calcular_fila(cuadricula_victoria_j2, column);
                         if(C4_fila_valida(row) && C4_columna_valida(column)) {
                             actualizarJugada(cuadricula_victoria_j2,row,column,colour);
+                            temporizador_leer();
                             if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
                                 endgame(colour);  //ganas la partida
                                 while(1);
@@ -52,6 +57,7 @@ void planificador(void){
                             }
                         }  // jugada invalida 
                         colour = cambioColor(colour);
+                        temporizador_parar();
                     } else {                  // se reinicia el juego 
                         cola_iniciar();
                         initgame(); 
@@ -111,7 +117,7 @@ void planificador(void){
             permiso = false; 
         } else if(cola_vacia() && cola_vacia_mensaje() ){
             idle();
-        }
-             
+        }      
+
     }
 }

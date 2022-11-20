@@ -1,4 +1,5 @@
 #include "cola_asyn.h"
+#include "gpio.h"
 
 static cola c;
 static cola msg;
@@ -10,6 +11,7 @@ void cola_iniciar(void) {
 // Añadiemos un evento a la cola 
 void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     if (c.n >= MAX ) {// Comprobamos que la cola esta llena
+        GPIO_escribir(30,1,1);
         while(1);
     }          
     c.evs[c.tail].auxData = auxData;

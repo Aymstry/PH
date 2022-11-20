@@ -145,7 +145,6 @@ MAMTIM_Val      EQU     0x00000004
                 AREA    RESET, CODE, READONLY
                 ARM
 
-
 ; Exception Vectors
 ;  Mapped to Address 0.
 ;  Absolute addressing mode must be used.
