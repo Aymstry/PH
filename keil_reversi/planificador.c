@@ -49,11 +49,11 @@ void planificador(void){
                             temporizador_leer();
                             if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
                                 endgame(colour);  //ganas la partida
-                                while(1);
+                                power_down();
                             }
                             if (C4_comprobar_empate(cuadricula_victoria_j2)){
                                 endgame(3);  //quedan en empate los dos jugadores
-                                while(1);
+                                power_down();
                             }
                         }  // jugada invalida 
                         colour = cambioColor(colour);
