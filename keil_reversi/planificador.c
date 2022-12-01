@@ -7,21 +7,14 @@ void planificador(void){
 
     // inicializamos los periféricos 
     bool permiso = true; 
-    uint8_t column, row, colour, i, j;
-    colour = 1; // empiezan jugador 1 (blancas)
+    uint8_t column;
+ 
     
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
     // colocamos la alarma para pasar a modo apagado 
     cola_encolar_evento(Suspender, 0, 0);
-    // guardamos una copia del tabero
-    CELDA tablero[TAM_FILS][TAM_COLS];
-    for(i = 0; i<TAM_FILS; i++){
-        for(j = 0; j<TAM_COLS; j++){
-            tablero[i][j] = cuadricula_victoria_j2[i][j];
-        }
-    }
     
     while(1){
         while(!cola_vacia()){  
@@ -38,34 +31,16 @@ void planificador(void){
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
                         // leer columna 
                         column = leercolumna();
-                        // Iniciamos timer1 para medir el tiempo de procesamiento de comprobar si hay línea en
-                        // microsegundos. Es decir, desde que el jugador ha introducido su
-                        // movimiento, hasta comprobar si hay línea o empate.
-                        temporizador_empezar();
-                        // calcular fila
-                        row = C4_calcular_fila(cuadricula_victoria_j2, column);
-                        if(C4_fila_valida(row) && C4_columna_valida(column)) {
-                            actualizarJugada(cuadricula_victoria_j2,row,column,colour);
-                            temporizador_leer();
-                            if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
-                                endgame(colour);  //ganas la partida
-                                power_down();
-                            }
-                            if (C4_comprobar_empate(cuadricula_victoria_j2)){
-                                endgame(3);  //quedan en empate los dos jugadores
-                                power_down();
-                            }
-                        }  // jugada invalida 
-                        colour = cambioColor(colour);
-                        temporizador_parar();
+                        // Comenzamos el juego
+                        conecta4_jugar(column);
+                        // si se gana la partida se apaga el sistema
+                        if( conecta4_ganado_empate() ){
+                            power_down();
+                        }
                     } else {                  // se reinicia el juego 
                         cola_iniciar();
-                        initgame(); 
-                        for(i = 0; i<TAM_FILS; i++){
-                            for(j = 0; j<TAM_COLS; j++){
-                                cuadricula_victoria_j2[i][j] = tablero[i][j];
-                            }
-                        }
+                        initgame();  
+                        conecta4_resetear_juego();       
                     }
                     break;
                 case CancelarAlarma:

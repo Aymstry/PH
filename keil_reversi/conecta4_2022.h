@@ -5,6 +5,7 @@
 #define CONECTA4_H_2022
 
 #include <inttypes.h>
+#include <stdbool.h>
 #include "celda.h"
 
 // La representación del tablero en memoria es
@@ -64,7 +65,13 @@ uint8_t conecta4_hay_linea_c_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t f
 	columna, uint8_t color);
 
 // función principal del juego
-void conecta4_jugar(void);
+void conecta4_jugar(uint8_t column);
+
+// función que indica si se ha ganado la partida o se ha quedado en empate
+bool conecta4_ganado_empate(void);
+
+// función que resetea el juego
+void conecta4_resetear_juego(void);
 
 /* *****************************************************************************
  * declaración funciones internas C4_

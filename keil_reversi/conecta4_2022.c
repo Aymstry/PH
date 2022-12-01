@@ -1,5 +1,8 @@
 #include "conecta4_2022.h"
 #include "entrada.h"
+#include "tableros.h"
+
+
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
 	fila, uint8_t columna, uint8_t color, int8_t delta_fila, int8_t
 	delta_columna); 
@@ -120,34 +123,53 @@ int C4_verificar_4_en_linea(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t fila, 
 		
 	return resultado;	
 }
-	
-	
 
-	
-void conecta4_jugar(void){
-	// new, column, padding to prevent desalinating to 8 bytes
-	static volatile uint8_t entrada[8] = {0, 0, 0, 0, 0, 0, 0, 0 }; 
+static bool ganado_empate = false;
 
-	#include "tableros.h"
+bool conecta4_ganado_empate(void){
+	return ganado_empate;
+}	
 	
-	uint8_t column, row, colour;
-	colour = 1; // empiezan jugador 1 (blancas)
+CELDA tablero[TAM_FILS][TAM_COLS];
 	
-	while (1){
-		while (entrada_nueva(entrada) == 0){};
-		// while(cola_vacia()){idle}
-		column = entrada_leer (entrada); //coge de memoria la columna donde indicas que quieres añadir la ficha
-		row = C4_calcular_fila(cuadricula_victoria_v, column); // returns 0 if is not in range
-		if(C4_fila_valida(row) && C4_columna_valida(column)) { //comprueba si puede colocar la ficha segun la fila y la columna
-			C4_actualizar_tablero(cuadricula_victoria_v,row,column,colour); //actualiza el tablero
-			if(C4_verificar_4_en_linea(cuadricula_victoria_v, row, column, colour)) {
-				while(1); //ganas la partida
-			}
-			if (C4_comprobar_empate(cuadricula_victoria_v)){
-				while(1); //quedan en empate los dos jugadores
-			}
-			colour = C4_alternar_color(colour);		//cambia el color de la ficha para que se vayan intercambiando	
+void conecta4_resetear_juego(void){
+	uint8_t  j, i;
+	ganado_empate = false; 
+	for(i = 0; i<TAM_FILS; i++){
+		for(j = 0; j<TAM_COLS; j++){
+			cuadricula_victoria_j2[i][j] = tablero[i][j];
 		}
-		entrada_inicializar (entrada);
+	}
+}
+
+	
+void conecta4_jugar(uint8_t column){
+	// new, column, padding to prevent desalinating to 8 bytes
+	
+	uint8_t row, colour, j, i;
+	colour = 1; // empiezan jugador 1 (blancas)
+
+	for(i = 0; i<TAM_FILS; i++){
+		for(j = 0; j<TAM_COLS; j++){
+			tablero[i][j]= cuadricula_victoria_j2[i][j];
+		}
+	}
+
+	row = C4_calcular_fila(cuadricula_victoria_j2, column); 				// returns 0 if is not in range
+	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
+		C4_actualizar_tablero(cuadricula_victoria_j2,row,column,colour); 	//actualiza el tablero
+		actualizarJugada(cuadricula_victoria_j2,row,column,colour);
+
+		if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
+			endgame(colour);  												//ganas la partida
+			ganado_empate = true;
+		} else if (C4_comprobar_empate(cuadricula_victoria_j2)){
+			endgame(3);  													//quedan en empate los dos jugadores
+			ganado_empate = true;
+		}
+
+		if (!ganado_empate){
+			colour = cambioColor(colour); 									//cambia el color de la ficha para que se vayan intercambiando
+		}			
 	}
 }

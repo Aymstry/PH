@@ -27,9 +27,11 @@ void temporizador_iniciar(void){
     T1MCR = 3;
 
     // VIC T0
-    VICVectAddr0 = (unsigned long)timer0_ISR; //llama a la funcion que se ejecuta cuando se realiza la interrupción
-    VICVectCntl0 = 0x20 | 4;                   
+    // se comentan dasdo que hemos linkado las interrupciones FIQ con la direccion de la funcion de timer0
+    // VICVectAddr0 = (unsigned long)timer0_ISR; //llama a la funcion que se ejecuta cuando se realiza la interrupción
+    // VICVectCntl0 = 0x20 | 4;                   
     VICIntEnable = VICIntEnable | 0x00000010; 
+    VICIntSelect = VICIntSelect | 0x00000010;   // Indicamos que las interrupciones del timer0 queremos que se gestionen por FIQ 
     // VIC T1
     VICVectAddr1 = (unsigned long)timer1_ISR; 
     VICVectCntl1 = 0x20 | 5;                   
@@ -73,7 +75,7 @@ void timer0_ISR (void) __irq {
         cola_encolar_evento(T0, timer0_int_count, 0);      
     } 
     T0IR = 1;                              // Clear interrupt flag
-    VICVectAddr = 0;                      // Acknowledge Interrupt  
+    // VICVectAddr = 0;                      // Acknowledge Interrupt cambiar para fiq 
 }
 
 // FUNCIONES PARA T0

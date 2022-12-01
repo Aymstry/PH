@@ -44,7 +44,6 @@ uint8_t cambioColor(uint8_t colour){
 }
 
 void actualizarJugada(CELDA cuadricula[TAM_FILS][TAM_COLS],uint8_t row, uint8_t column,uint8_t colour){
-    C4_actualizar_tablero(cuadricula,row,column,colour);
     // codificamos el mensaje para que suene una alarma en dos segundos
     // ID 7 = JugadaRealizada        ID=7     P  23                          Decimal
     // mensaje final:               0000 0111 0 0000 0000 0000 1111 1010 000 = 117442512
