@@ -17,10 +17,14 @@ int main(){
 */
 
 int main(){
-  disable_irq(); 
-  uint32_t leido = read_IRQ_bit();
-	if(leido == 1){
+  disable_irq_fiq();
+  enable_irq_fiq();
+  uint32_t leidoIRQ = read_IRQ_bit(); 
+  uint32_t leidoFIQ = read_FIQ_bit(); 
+
+	if((leidoIRQ==0) && (leidoFIQ==0)){
 		while(1);
+    
 	}
 	while(1);
   enable_irq();
