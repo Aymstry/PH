@@ -22,9 +22,9 @@ void WD_feed(void){
     disable_irq_fiq();  //Deshabilitamos las interrupciones
     WDFEED = 0xAA;						   
     WDFEED = 0x55;
-    if (leidoIRQ == 1 && leidoFIQ == 1){
+    if (leidoIRQ == 0 && leidoFIQ == 0){
         enable_irq_fiq();
-    } else if (leidoIRQ == 1){
+    } else if (leidoIRQ == 0){
         enable_irq();
     }
 }
