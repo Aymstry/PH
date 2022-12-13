@@ -16,7 +16,7 @@
 
 void RTC_init(void){
 	// prepara el RTC para que cuente los segundo (calculado para 60 MHz)
-	PREINT = 0x726;
+	PREINT = 0x726;          
 	PREFRAC = 0x700;
 	// enable of the RTC
 	CCR=0x01;
@@ -29,6 +29,15 @@ int RTC_read_time(void){
 	// 0000 0000 0000 0000 000M MMMM 0000 0000 
 	// 0000 0000 0000 0000 0000 0000 000M MMMM 
 	return segundos + (minutos*60);
+}
+
+void RTC_leer(uint8_t *segundos, uint8_t *minutos){
+	// 5:0 Seconds
+	// 13:8 Minutes
+	segundos = (CTIME0 << 27) >> 27; 
+	minutos = ((CTIME0 >> 8) << 27) >> 27;
+	// 0000 0000 0000 0000 000M MMMM 0000 0000 
+	// 0000 0000 0000 0000 0000 0000 000M MMMM 
 }
 
 

@@ -23,7 +23,17 @@ void planificador(void){
         
         while(!cola_vacia()){  
             elemento evento;
+
+            uint32_t leidoIRQ = read_IRQ_bit();
+            uint32_t leidoFIQ = read_FIQ_bit();
+            disable_irq_fiq();  //Deshabilitamos las interrupciones
             cola_desencolar_evento(&evento.id, &evento.auxData);
+            if (leidoIRQ == 1 && leidoFIQ == 1){
+                enable_irq_fiq();
+            } else if (leidoIRQ == 1){
+                enable_irq();
+            }
+
             switch(evento.id){
                 case T0: 
                     gestor_alarmas();
