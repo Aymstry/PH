@@ -164,6 +164,7 @@ Vectors         LDR     PC, Reset_Addr
 
                 PRESERVE8 {TRUE} ; alineamos los campos 
 				IMPORT timer0_ISR ; importamos la función 
+                IMPORT SWI_Handler
 
 Reset_Addr      DCD     Reset_Handler
 Undef_Addr      DCD     Undef_Handler
@@ -176,7 +177,7 @@ IRQ_Addr        DCD     IRQ_Handler
 FIQ_Addr        DCD     FIQ_Handler
 
 Undef_Handler   B       Undef_Handler
-SWI_Handler     B       SWI_Handler
+; SWI_Handler     B       SWI_Handler
 PAbt_Handler    B       PAbt_Handler
 DAbt_Handler    B       DAbt_Handler
 IRQ_Handler     B       IRQ_Handler

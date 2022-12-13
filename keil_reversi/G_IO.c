@@ -32,15 +32,12 @@ int leercolumna(void){
     return i-1; 
 }
 
-uint8_t cambioColor(uint8_t colour){
-    uint8_t nuevoJugador = C4_alternar_color(colour);
-
+void cambioColor(uint8_t nuevoJugador){
     if(nuevoJugador == 1){
         GPIO_escribir(1, 2 ,1);
     } else {
         GPIO_escribir(1, 2 ,2);
     }
-    return nuevoJugador;
 }
 
 void actualizarJugada(CELDA cuadricula[TAM_FILS][TAM_COLS],uint8_t row, uint8_t column,uint8_t colour){
@@ -113,7 +110,7 @@ void initgame(void){
     GPIO_marcar_entrada(14, 2);
     GPIO_marcar_entrada(3, 7);
 
-    cambioColor(2);
+    cambioColor(1);
 }
 
 void empezarLatido(void){

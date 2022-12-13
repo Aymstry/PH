@@ -6,7 +6,7 @@
 #include "conecta4_2022.h"
 
 int leercolumna(void);
-uint8_t cambioColor(uint8_t colour);
+void cambioColor(uint8_t colour);
 void actualizarJugada(CELDA cuadricula[TAM_FILS][TAM_COLS],uint8_t row, uint8_t column,uint8_t colour);
 void ApagarLedConfirmacion(void);
 void endgame(uint8_t resultado); 

@@ -6,3 +6,4 @@
 .\conecta4_2022.o: celda.h
 .\conecta4_2022.o: entrada.h
 .\conecta4_2022.o: tableros.h
+.\conecta4_2022.o: G_IO.h

@@ -5,15 +5,31 @@
 #include "cola_asyn.h"
 #include "botones.h"
 #include "G_IO.h"
+#include "funciones_swi.h"
 
-
+/*
 int main(){	
-
   initgame(); 
   eint_init();
 	temporizador_iniciar();
-  planificador();
-    
+  planificador(); 
+}
+*/
+
+int main(){
+  disable_irq(); 
+  uint32_t leido = read_IRQ_bit();
+	if(leido == 1){
+		while(1);
+	}
+	while(1);
+  enable_irq();
+  read_IRQ_bit(); 
+  enable_irq_fiq();
+  read_FIQ_bit();
+  disable_irq_fiq();
+  read_FIQ_bit();
+  read_IRQ_bit();
 }
 
 /*  

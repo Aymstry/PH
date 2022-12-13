@@ -34,7 +34,7 @@ int ejecutar(uint8_t column, CELDA cuadriculass[TAM_FILS][TAM_COLS], int acabado
 		}
 	return acabado;
 }	
-
+/*
 void conecta4_jugar_test(void){
 	// new, column, padding to prevent desalinating to 8 bytes
 	static volatile uint8_t entrada[8] = {0, 0, 0, 0, 0, 0, 0, 0 }; 
@@ -86,3 +86,4 @@ void conecta4_jugar_test(void){
 		
 	}
 }
+*/

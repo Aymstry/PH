@@ -6,3 +6,4 @@
 .\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\timer.o: timer.h
+.\timer.o: RTC.h

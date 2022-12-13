@@ -5,4 +5,3 @@
 .\pruebas.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\pruebas.o: celda.h
 .\pruebas.o: entrada.h
-.\pruebas.o: tableros.h

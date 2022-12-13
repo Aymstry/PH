@@ -16,3 +16,4 @@
 .\main.o: G_IO.h
 .\main.o: conecta4_2022.h
 .\main.o: celda.h
+.\main.o: funciones_swi.h

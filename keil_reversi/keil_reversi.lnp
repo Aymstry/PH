@@ -16,5 +16,7 @@
 ".\g_io.o"
 ".\pruebas.o"
 ".\conecta4_2022_arm.o"
+".\rtc.o"
+".\swi.o"
 --strict --scatter ".\keil_reversi.sct"
 --summary_stderr --info summarysizes -o .\keil_reversi.axf

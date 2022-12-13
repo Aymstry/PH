@@ -1,22 +1,26 @@
+#include <stdio.h>
+#include "RTC.h"
 #include "planificador.h"
 #include "tableros.h"
 #include "conecta4_2022.h"
-#include <stdio.h>
+
 
 void planificador(void){
 
     // inicializamos los periféricos 
     bool permiso = true; 
+		int time = 0;
     uint8_t column;
- 
-    
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
+    RTC_init(); 
     // colocamos la alarma para pasar a modo apagado 
     cola_encolar_evento(Suspender, 0, 0);
+    conecta4_recuperar_tablero(); 
     
     while(1){
+        
         while(!cola_vacia()){  
             elemento evento;
             cola_desencolar_evento(&evento.id, &evento.auxData);
@@ -25,6 +29,8 @@ void planificador(void){
                     gestor_alarmas();
                     break;
                 case BotonPulsado:
+                    time = RTC_read_time(); 
+                    time = time + clock_get_us();
                     cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
                     permiso = terminarLatido();
                     gestor_botones(evento.auxData);
@@ -34,7 +40,7 @@ void planificador(void){
                         // Comenzamos el juego
                         conecta4_jugar(column);
                         // si se gana la partida se apaga el sistema
-                        if( conecta4_ganado_empate() ){
+                        if( conecta4_ganado_empate() == true){
                             power_down();
                         }
                     } else {                  // se reinicia el juego 

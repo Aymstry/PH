@@ -3,6 +3,7 @@
 
 //tableros en memoria a mitad de una partida, toca jugar blancas
 #include "celda.h"
+/*
 static CELDA
 cuadricula_1[7][8] =
 { 
@@ -84,7 +85,7 @@ cuadricula_victoria_v[7][8] =
 0XF4, 5, 6, 0, 6, 5, 5, 0,
 0XF5, 6, 5, 0, 5, 6, 6, 0,
 0XF6, 5, 5, 0, 6, 6, 5, 0};
-
+*/
 // Comprobamos que el caso de victoria vertical
 static CELDA
 cuadricula_victoria_j2[7][8] =

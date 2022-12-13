@@ -1,6 +1,7 @@
 #include <LPC210X.H>                            // LPC21XX Peripheral Registers
 #include "cola_asyn.h"
 #include "timer.h"
+#include "RTC.h"
 
 
 // variable para contabilizar el número de interrupciones
@@ -10,6 +11,19 @@ static int alarma = 0;
 
 void timer1_ISR (void) __irq;    // Generate Interrupt 
 void timer0_ISR (void) __irq;
+
+// Interrupciones FIQ 
+uint32_t __swi(0) clock_get_us(void);
+uint32_t __SWI_0 (void) {
+    return temporizador_leer(); 
+}
+
+uint32_t __swi(1) clock_gettime(void);
+uint32_t __SWI_1 (void) { //rtc -> p.209
+    return RTC_read_time(); 
+}
+
+// Interrupciones IQR 
 
 /* función que programa el contador t1 para que pueda ser utilizado. */
 void temporizador_iniciar(void){
@@ -69,13 +83,13 @@ void timer1_ISR (void) __irq {
 }
 
 
-void timer0_ISR (void) __irq {
+void timer0_ISR (void) __irq{
     timer0_int_count++;
     if((timer0_int_count & (alarma - 1)) == 0){          // timer0 % periodo para contar el número de interrupciones
         cola_encolar_evento(T0, timer0_int_count, 0);      
     } 
     T0IR = 1;                              // Clear interrupt flag
-    // VICVectAddr = 0;                      // Acknowledge Interrupt cambiar para fiq 
+    VICVectAddr = 0;                      // Acknowledge Interrupt cambiar para fiq 
 }
 
 // FUNCIONES PARA T0

@@ -1,6 +1,7 @@
 #include "conecta4_2022.h"
 #include "entrada.h"
 #include "tableros.h"
+#include "G_IO.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -124,7 +125,7 @@ int C4_verificar_4_en_linea(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t fila, 
 	return resultado;	
 }
 
-static bool ganado_empate = false;
+bool ganado_empate = false;
 
 bool conecta4_ganado_empate(void){
 	return ganado_empate;
@@ -142,18 +143,21 @@ void conecta4_resetear_juego(void){
 	}
 }
 
+void conecta4_recuperar_tablero(void){
+		uint8_t j, i;
+		for(i = 0; i<TAM_FILS; i++){
+			for(j = 0; j<TAM_COLS; j++){
+				tablero[i][j]= cuadricula_victoria_j2[i][j];
+			}
+		}
+}
+
 	
 void conecta4_jugar(uint8_t column){
 	// new, column, padding to prevent desalinating to 8 bytes
 	
-	uint8_t row, colour, j, i;
-	colour = 1; // empiezan jugador 1 (blancas)
-
-	for(i = 0; i<TAM_FILS; i++){
-		for(j = 0; j<TAM_COLS; j++){
-			tablero[i][j]= cuadricula_victoria_j2[i][j];
-		}
-	}
+	uint8_t row;
+	static uint8_t colour = 1; 
 
 	row = C4_calcular_fila(cuadricula_victoria_j2, column); 				// returns 0 if is not in range
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
@@ -168,8 +172,9 @@ void conecta4_jugar(uint8_t column){
 			ganado_empate = true;
 		}
 
-		if (!ganado_empate){
-			colour = cambioColor(colour); 									//cambia el color de la ficha para que se vayan intercambiando
+		if (ganado_empate == false){
+			colour = C4_alternar_color(colour);
+			cambioColor(colour); 									//cambia el color de la ficha para que se vayan intercambiando
 		}			
 	}
 }

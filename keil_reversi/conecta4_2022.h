@@ -73,6 +73,8 @@ bool conecta4_ganado_empate(void);
 // función que resetea el juego
 void conecta4_resetear_juego(void);
 
+void conecta4_recuperar_tablero(void);
+
 /* *****************************************************************************
  * declaración funciones internas C4_
  */
