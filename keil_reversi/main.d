@@ -17,3 +17,4 @@
 .\main.o: conecta4_2022.h
 .\main.o: celda.h
 .\main.o: funciones_swi.h
+.\main.o: Uart0.h

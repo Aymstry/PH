@@ -86,6 +86,7 @@ bool actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
     uint8_t columnAux = leercolumna(); 
     if (antiguoLeido != columnAux){
         cola_encolar_evento(Suspender, 0, 0); // reprogramar alarma con cambios en la gpio
+        
         antiguoLeido = columnAux; 
         permiso = terminarLatido();
     }

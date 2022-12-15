@@ -13,7 +13,7 @@ void eint2_ISR (void) __irq;
 
 void eint1_ISR (void) __irq {
 	eint1_cuenta++;
-	VICIntEnClr = 0x00008000;    //deshabilitamos eint1 
+	VICIntEnClr = 0x00008000;    //deshabilitamos eint1
     cola_encolar_evento(BotonPulsado, eint1_cuenta, 1);              
 	VICVectAddr = 0;             // Acknowledge Interrupt
 	eint1_nueva_pulsacion = 1;

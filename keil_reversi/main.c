@@ -6,6 +6,7 @@
 #include "botones.h"
 #include "G_IO.h"
 #include "funciones_swi.h"
+#include "Uart0.h"
 
 /*
 int main(){	
@@ -18,6 +19,7 @@ int main(){
 
 int main(){
   uart0_init(); 
+	//sendchar('a');
   planificador(); 
 }
 

@@ -30,9 +30,9 @@ SWI_Handler
 
 ; add code to enable/disable the global IRQ flag
                 CMP     R12,#0xFF              
-                BEQ     __enable_irq
+                BEQ     __enable_fiq
                 CMP     R12,#0xFE
-                BEQ     __disable_irq                  
+                BEQ     __disable_fiq                  
                 CMP     R12,#0xFD
                 BEQ     __enable_irq_fiq
                 CMP     R12,#0xFC
@@ -92,18 +92,18 @@ __read_FIQ_bit
 ; En modo supervisor cambiamos y pasamos a utilizar otro cpsr, el del modo usuario se guarda en una
 ; copia en spsr, or ello parra dejar modificado el estado en modo usuario, debemos modificar la copia
 ; que se recuperara al cambia de modo. 
-__enable_irq
+__enable_fiq
 ; activamos las interrupciones irq   __enable_irq // solo se ha cambiado el nombre el resto falta :X LDR R8, =shared_var
 		MRS     R12, SPSR              ; leemos el registro cpsr  
-                AND     R12, R12, #0XFFFFFF7F
+                AND     R12, R12, #0XFFFFFFBF
                 MSR     SPSR_c, R12
                 LDMFD   SP!, {R8, R12}         ; Load R8, SPSR
                 MSR     SPSR_xsf, R12         ; Set SPSR --- Devolver spsr al sistema para volver al modo en el que estabamos (usuario)
                 LDMFD   SP!, {R12, PC}^        ; Restore R12 and Return
 
-__disable_irq   
+__disable_fiq   
                 MRS     R12, SPSR              ; leemos el registro cpsr  
-                ORR     R12, R12, #I_Bit 
+                ORR     R12, R12, #F_Bit 
                 MSR     SPSR_c, R12 
                 LDMFD   SP!, {R8, R12}         ; Load R8, SPSR ------ LINEA DUDOSA
                 MSR     SPSR_xsf, R12          ; Set SPSR --- Devolver spsr al sistema para volver al modo en el que estabamos (usuario)
@@ -113,14 +113,24 @@ __disable_irq_fiq
                 MRS     R12, SPSR 
                 ORR     R12, R12, #F_Bit
                 MSR     SPSR_c, R12 
-                B       __disable_irq 
+                MRS     R12, SPSR              ; leemos el registro cpsr  
+                ORR     R12, R12, #I_Bit 
+                MSR     SPSR_c, R12 
+                LDMFD   SP!, {R8, R12}         ; Load R8, SPSR ------ LINEA DUDOSA
+                MSR     SPSR_xsf, R12          ; Set SPSR --- Devolver spsr al sistema para volver al modo en el que estabamos (usuario)
+                LDMFD   SP!, {R12, PC}^        ; Restore R12 and Return        
 
 
 __enable_irq_fiq
                 MRS     R12, SPSR 
                 AND     R12, R12, #0XFFFFFFBF
                 MSR     SPSR_c, R12 
-                B       __enable_irq  
+                MRS     R12, SPSR              ; leemos el registro cpsr  
+                AND     R12, R12, #0XFFFFFF7F
+                MSR     SPSR_c, R12
+                LDMFD   SP!, {R8, R12}         ; Load R8, SPSR
+                MSR     SPSR_xsf, R12         ; Set SPSR --- Devolver spsr al sistema para volver al modo en el que estabamos (usuario)
+                LDMFD   SP!, {R12, PC}^        ; Restore R12 and Return 
                 
 
 

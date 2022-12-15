@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cola_asyn.h": "c",
-        "botones.h": "c"
+        "botones.h": "c",
+        "g_serie.h": "c"
     }
 }

@@ -1,5 +1,6 @@
 #include "cola_asyn.h"
 #include "gpio.h"
+#include "funciones_swi.h"
 
 static cola c;
 static cola msg;
@@ -10,6 +11,10 @@ void cola_iniciar(void) {
 
 // Añadiemos un evento a la cola 
 void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
+    uint32_t leidoFIQ = read_FIQ_bit();
+    if (leidoFIQ == 0){
+        disable_fiq(); 
+    }
     if (c.n >= MAX ) {// Comprobamos que la cola esta llena
         GPIO_escribir(30,1,1);
         while(1);
@@ -19,6 +24,9 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     c.evs[c.tail].numInt = veces;
     c.n = c.n + 1; 
     c.tail = (c.tail + 1) & (MAX - 1);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+    if (leidoFIQ == 0){
+        enable_fiq(); 
+    } 
 }
 
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar

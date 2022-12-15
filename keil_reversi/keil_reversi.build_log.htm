@@ -27,12 +27,14 @@ Project File Date:  12/14/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Simulator'
-compiling RTC.c...
-linking...
-.\keil_reversi.axf: Warning: L6305W: Image does not have an entry point. (Not specified or not set due to multiple choices.)
-Program Size: Code=6608 RO-data=32 RW-data=188 ZI-data=3300  
-Finished: 0 information, 1 warning and 0 error messages.
-".\keil_reversi.axf" - 0 Error(s), 1 Warning(s).
+compiling Uart0.c...
+Uart0.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif 
+Uart0.c(34): error:  #165: too few arguments in function call
+      cola_encolar_evento(UART0, U0RBR);   // U0RBR = carácter leido por la UART
+Uart0.c: 1 warning, 1 error
+".\keil_reversi.axf" - 1 Error(s), 1 Warning(s).
+Target not created.
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

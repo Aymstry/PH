@@ -5,3 +5,5 @@
 .\cola_asyn.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\cola_asyn.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\cola_asyn.o: gpio.h
+.\cola_asyn.o: funciones_swi.h
+.\cola_asyn.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H

@@ -17,14 +17,8 @@ void WT_init(int sec){
 }
 
 void WD_feed(void){
-    uint32_t leidoIRQ = read_IRQ_bit();
-    uint32_t leidoFIQ = read_FIQ_bit();
     disable_irq_fiq();  //Deshabilitamos las interrupciones
     WDFEED = 0xAA;						   
     WDFEED = 0x55;
-    if (leidoIRQ == 0 && leidoFIQ == 0){
-        enable_irq_fiq();
-    } else if (leidoIRQ == 0){
-        enable_irq();
-    }
+    enable_irq_fiq();
 }

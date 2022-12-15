@@ -5,6 +5,5 @@
 
 void uart0_init(void); 
 int sendchar (int ch);  
-int getchar (void); 
 
 #endif 

@@ -4,6 +4,8 @@
 #include "tableros.h"
 #include "conecta4_2022.h"
 #include "funciones_swi.h"
+#include "g_serie.h"
+
 
 
 void planificador(void){
@@ -25,15 +27,10 @@ void planificador(void){
         while(!cola_vacia()){  
             elemento evento;
 
-            uint32_t leidoIRQ = read_IRQ_bit();
-            uint32_t leidoFIQ = read_FIQ_bit();
             disable_irq_fiq();  //Deshabilitamos las interrupciones
             cola_desencolar_evento(&evento.id, &evento.auxData);
-            if (leidoIRQ == 0 && leidoFIQ == 0){
-                enable_irq_fiq();
-            } else if (leidoIRQ == 0){
-                enable_irq();
-            }
+            enable_irq_fiq();
+           
 
             switch(evento.id){
                 case T0: 
@@ -66,6 +63,9 @@ void planificador(void){
                 case Suspender: 
                     introducir_power();
                     break;
+                case UART0:
+                    GSERIE_procesarEntrada(evento.auxData);
+                    break; 
                 default: break;
             }
         }
