@@ -17,23 +17,8 @@ int main(){
 */
 
 int main(){
-  disable_irq_fiq();
-  enable_irq_fiq();
-  uint32_t leidoIRQ = read_IRQ_bit(); 
-  uint32_t leidoFIQ = read_FIQ_bit(); 
-
-	if((leidoIRQ==0) && (leidoFIQ==0)){
-		while(1);
-    
-	}
-	while(1);
-  enable_irq();
-  read_IRQ_bit(); 
-  enable_irq_fiq();
-  read_FIQ_bit();
-  disable_irq_fiq();
-  read_FIQ_bit();
-  read_IRQ_bit();
+  uart0_init(); 
+  planificador(); 
 }
 
 /*  
@@ -87,4 +72,23 @@ int main(){
       conecta4_jugar_test();
       while(1); //no hay S.O., no se retorna
     }
+
+    // pruebas gestion interrupciones  
+     disable_irq_fiq();
+      enable_irq_fiq();
+      uint32_t leidoIRQ = read_IRQ_bit(); 
+      uint32_t leidoFIQ = read_FIQ_bit(); 
+
+      if((leidoIRQ==0) && (leidoFIQ==0)){
+        while(1);
+        
+      }
+      while(1);
+      enable_irq();
+      read_IRQ_bit(); 
+      enable_irq_fiq();
+      read_FIQ_bit();
+      disable_irq_fiq();
+      read_FIQ_bit();
+      read_IRQ_bit();
     */

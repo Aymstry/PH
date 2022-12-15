@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "conecta4_2022.h": "c"
+        "conecta4_2022.h": "c",
+        "inttypes.h": "c",
+        "planificador.h": "c"
     }
 }

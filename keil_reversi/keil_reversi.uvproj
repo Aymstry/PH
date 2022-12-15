@@ -616,6 +616,16 @@
               <FileType>5</FileType>
               <FilePath>.\funciones_swi.h</FilePath>
             </File>
+            <File>
+              <FileName>Uart0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Uart0.c</FilePath>
+            </File>
+            <File>
+              <FileName>Uart0.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Uart0.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

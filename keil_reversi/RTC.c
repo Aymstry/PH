@@ -24,7 +24,7 @@ void RTC_init(void){
 int RTC_read_time(void){
 	// 5:0 Seconds
 	// 13:8 Minutes
-	int segundos = (CTIME0 << 27) >> 27; 
+	int segundos =(CTIME0 << 27) >> 27; 
 	int minutos = ((CTIME0 >> 8) << 27) >> 27;
 	// 0000 0000 0000 0000 000M MMMM 0000 0000 
 	// 0000 0000 0000 0000 0000 0000 000M MMMM 
@@ -34,8 +34,8 @@ int RTC_read_time(void){
 void RTC_leer(uint8_t *segundos, uint8_t *minutos){
 	// 5:0 Seconds
 	// 13:8 Minutes
-	segundos = (CTIME0 << 27) >> 27; 
-	minutos = ((CTIME0 >> 8) << 27) >> 27;
+	*segundos =  (CTIME0 << 27) >> 27; 
+	*minutos = ((CTIME0 >> 8) << 27) >> 27;
 	// 0000 0000 0000 0000 000M MMMM 0000 0000 
 	// 0000 0000 0000 0000 0000 0000 000M MMMM 
 }

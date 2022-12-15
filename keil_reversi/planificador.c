@@ -3,6 +3,7 @@
 #include "planificador.h"
 #include "tableros.h"
 #include "conecta4_2022.h"
+#include "funciones_swi.h"
 
 
 void planificador(void){
