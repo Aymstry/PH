@@ -88,13 +88,17 @@ cuadricula_victoria_v[7][8] =
 */
 // Comprobamos que el caso de victoria vertical
 static CELDA
-cuadricula_victoria_j2[7][8] =
+cuadricula[7][8] =
 {
 	0, 0XC1, 0XC2, 0XC3, 0XC4, 0XC5, 0Xc6, 0XC7,
-0XF1, 6, 5, 6, 5, 6, 6, 5,
-0XF2, 5, 6, 0, 5, 6, 5, 5,
-0XF3, 6, 6, 0, 6, 6, 6, 6,
-0XF4, 5, 6, 0, 6, 5, 5, 0,
-0XF5, 6, 5, 0, 6, 6, 6, 0,
-0XF6, 5, 5, 0, 6, 6, 5, 0};
+0XF1, 0, 0, 0, 0, 0, 0, 0,
+0XF2, 0, 0, 0, 0, 0, 0, 0,
+0XF3, 0, 0, 0, 0, 0, 0, 0,
+0XF4, 0, 0, 0, 0, 0, 0, 0,
+0XF5, 0, 0, 0, 0, 0, 0, 0,
+0XF6, 0, 0, 0, 0, 0, 0, 0};
+
+
 #endif
+
+

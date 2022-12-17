@@ -6,4 +6,7 @@
 .\conecta4_2022.o: celda.h
 .\conecta4_2022.o: entrada.h
 .\conecta4_2022.o: tableros.h
+.\conecta4_2022.o: eventos.h
+.\conecta4_2022.o: cola_asyn.h
 .\conecta4_2022.o: G_IO.h
+.\conecta4_2022.o: g_serie.h

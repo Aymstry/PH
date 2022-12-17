@@ -6,6 +6,8 @@
 #include "funciones_swi.h"
 #include "Uart0.h"
 #include "g_serie.h"
+#include <inttypes.h>
+
 
 
 
@@ -38,13 +40,11 @@ void planificador(void){
                     gestor_alarmas();
                     break;
                 case BotonPulsado:
-                    time = RTC_read_time(); 
-                    time = time + clock_get_us();
                     cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
                     permiso = terminarLatido();
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
-                        // leer columna 
+                        // leer columna
                         column = leercolumna();
                         // Comenzamos el juego
                         conecta4_jugar(column);
@@ -52,10 +52,10 @@ void planificador(void){
                         if( conecta4_ganado_empate() == true){
                             power_down();
                         }
-                    } else {                  // se reinicia el juego 
+                    } else {                  // boton 2 - se reinicia el juego 
                         cola_iniciar();
-                        initgame();  
-                        conecta4_resetear_juego();       
+                        initgame();
+                        conecta4_resetear_juego();
                     }
                     break;
                 case CancelarAlarma:
@@ -69,7 +69,11 @@ void planificador(void){
                     break;
                 case UART0_LEIDO:
                     uart0_continuar_envio();
-                    break; 
+                    break;
+                case FIN: 
+                    power_down();  
+                    // if aux.Data == 1 se han rendido END             
+                    break;
                 default: break;
             }
         }
@@ -96,19 +100,19 @@ void planificador(void){
                             ApagarLedConfirmacion(); 
                             break; 
                        case JugadaNoValida:
-                            permiso = actualizarAviso(cuadricula_victoria_j2); 
+                            permiso = actualizarAviso(cuadricula); 
                             break;
                         case MIdle:
                             parpadeoBlinBlin();
                             break;
-                        case COMANDO:
-                            conecta4_tratamientoComando(msg.auxData);
-                            break;
-                        case GSERIE_IMPRIMIR:
-                            sendchar(msg.auxData); 
-                            break;
                         default: break;
                     } 
+                    break;
+                case COMANDO:
+                    conecta4_tratamientoComando(msg.auxData);
+                    break;
+                case GSERIE_IMPRIMIR:
+                    sendchar(msg.auxData); 
                     break;
                 default: break;
             }

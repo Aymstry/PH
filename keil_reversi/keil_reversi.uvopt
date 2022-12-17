@@ -142,7 +142,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
-          <Name>(134=-1,-1,-1,-1,0)(135=83,112,315,226,0)(107=909,442,1240,770,0)(108=-1,-1,-1,-1,0)(106=1316,292,1536,596,1)(105=714,618,904,862,0)(80=704,451,1215,861,1)(104=1093,17,1409,436,0)(100=932,567,1515,749,1)(113=1015,265,1400,706,1)(112=220,154,718,864,0)(136=-1,-1,-1,-1,0)(117=-1,-1,-1,-1,0)(110=850,322,1536,864,0)(111=-1,-1,-1,-1,0)(114=277,416,963,864,0)(115=-1,-1,-1,-1,0)(116=790,303,1076,593,0)</Name>
+          <Name>(134=-1,-1,-1,-1,0)(135=83,112,315,226,0)(107=909,442,1240,770,0)(108=-1,-1,-1,-1,0)(106=1316,292,1536,596,1)(105=714,618,904,862,0)(80=704,451,1215,861,1)(104=1093,17,1409,436,0)(100=948,1,1531,183,1)(113=1129,313,1514,754,1)(112=220,154,718,864,0)(136=-1,-1,-1,-1,0)(117=-1,-1,-1,-1,0)(110=850,322,1536,864,0)(111=-1,-1,-1,-1,0)(114=277,416,963,864,0)(115=-1,-1,-1,-1,0)(116=790,303,1076,593,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -154,32 +154,32 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>53</LineNumber>
+          <LineNumber>204</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>7784</Address>
+          <Address>5812</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\g_serie.c</Filename>
+          <Filename>.\conecta4_2022.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\keil_reversi\g_serie.c\53</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>66</LineNumber>
+          <LineNumber>232</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>7172</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\g_serie.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\conecta4_2022.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>

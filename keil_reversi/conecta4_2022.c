@@ -1,7 +1,10 @@
 #include "conecta4_2022.h"
 #include "entrada.h"
 #include "tableros.h"
+#include "eventos.h"
+#include "cola_asyn.h"
 #include "G_IO.h"
+#include "g_serie.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -138,7 +141,7 @@ void conecta4_resetear_juego(void){
 	ganado_empate = false; 
 	for(i = 0; i<TAM_FILS; i++){
 		for(j = 0; j<TAM_COLS; j++){
-			cuadricula_victoria_j2[i][j] = tablero[i][j];
+			cuadricula[i][j] = tablero[i][j];
 		}
 	}
 }
@@ -147,9 +150,44 @@ void conecta4_recuperar_tablero(void){
 		uint8_t j, i;
 		for(i = 0; i<TAM_FILS; i++){
 			for(j = 0; j<TAM_COLS; j++){
-				tablero[i][j]= cuadricula_victoria_j2[i][j];
+				tablero[i][j]= cuadricula[i][j];
 			}
 		}
+}
+
+void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
+	char tablero[138];
+	int indice = 0;
+	for(int i = 1; i <= 7; i++){
+		for(int x=1; x <= 8; x++){
+			if(cuadricula[i][x] == 0){
+				tablero[indice] = ' ';
+			} else if(cuadricula[i][x] == 5){
+				tablero[indice] = 'B';
+			} else if(cuadricula[i][x] == 6){
+				tablero[indice] = 'N';
+			}
+			indice++; 
+			tablero[indice] = '|';
+			indice++; 
+			if (x == 8){
+				tablero[indice] = '\n';
+			}
+		}
+	}
+	for (int i=0; i <= 16; i++){
+		tablero[indice] = '-';
+		indice ++;
+	}
+	for (int i=0; i <= 8; i++){
+		tablero[indice] = i;
+		indice ++;
+		tablero[indice] = '|';
+		indice ++;
+	}
+	tablero[indice] = '\0';
+	uart0_enviar_array(tablero);
+
 }
 
 	
@@ -159,15 +197,16 @@ void conecta4_jugar(uint8_t column){
 	uint8_t row;
 	static uint8_t colour = 1; 
 
-	row = C4_calcular_fila(cuadricula_victoria_j2, column); 				// returns 0 if is not in range
+	row = C4_calcular_fila(cuadricula, column); 				// returns 0 if is not in range
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
-		C4_actualizar_tablero(cuadricula_victoria_j2,row,column,colour); 	//actualiza el tablero
-		actualizarJugada(cuadricula_victoria_j2,row,column,colour);
+		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
+		actualizarJugada(cuadricula,row,column,colour);
+		C4_mostrarTablero(cuadricula); 
 
-		if(C4_verificar_4_en_linea(cuadricula_victoria_j2, row, column, colour)) {
+		if(C4_verificar_4_en_linea(cuadricula, row, column, colour)) {
 			endgame(colour);  												//ganas la partida
 			ganado_empate = true;
-		} else if (C4_comprobar_empate(cuadricula_victoria_j2)){
+		} else if (C4_comprobar_empate(cuadricula)){
 			endgame(3);  													//quedan en empate los dos jugadores
 			ganado_empate = true;
 		}
@@ -181,11 +220,20 @@ void conecta4_jugar(uint8_t column){
 
 // N=4E  E=45  W=57 ; E=45 N=4E D=44 ; C= 31-37
 void conecta4_tratamientoComando(uint32_t comando){
-	if ( comando == 0x454E44) {		 // END
-
-	} else if (comando == 0x4E4557){ // NEW
-
+	if ( comando == 0x454E4400) {		 // END
+		cola_iniciar();
+		cola_encolar_evento(FIN, 0, 1);
+	} else if (comando == 0x4E455700){ // NEW
+		conecta4_resetear_juego();
+		initgame();
 	} else if ((comando <= 0x39) && (comando >= 0x30)){ // C es un caracter numérico
-
+		comando = comando - 48;
+		conecta4_jugar(comando); 	// le pasamos la columna 
+		// falta imprimir el tablero 
+		if( conecta4_ganado_empate() == true){
+			cola_encolar_evento(FIN, 0, 0);
+        }
 	}
 }
+
+
