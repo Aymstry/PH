@@ -4,6 +4,7 @@
 #include "tableros.h"
 #include "conecta4_2022.h"
 #include "funciones_swi.h"
+#include "Uart0.h"
 #include "g_serie.h"
 
 
@@ -63,8 +64,11 @@ void planificador(void){
                 case Suspender: 
                     introducir_power();
                     break;
-                case UART0:
+                case UART0_ESCRITO:
                     GSERIE_procesarEntrada(evento.auxData);
+                    break;
+                case UART0_LEIDO:
+                    uart0_continuar_envio();
                     break; 
                 default: break;
             }
@@ -96,6 +100,12 @@ void planificador(void){
                             break;
                         case MIdle:
                             parpadeoBlinBlin();
+                            break;
+                        case COMANDO:
+                            conecta4_tratamientoComando(msg.auxData);
+                            break;
+                        case GSERIE_IMPRIMIR:
+                            sendchar(msg.auxData); 
                             break;
                         default: break;
                     } 

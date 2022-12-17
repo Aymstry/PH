@@ -20,3 +20,5 @@
 .\planificador.o: tableros.h
 .\planificador.o: funciones_swi.h
 .\planificador.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
+.\planificador.o: Uart0.h
+.\planificador.o: g_serie.h

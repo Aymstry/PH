@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 // Tenemos 4 tipos de eventos 
-enum {T0, T1, BotonPulsado, BP1, BP2, CancelarAlarma, Suspender, JugadaRealizada, JugadaNoValida, MIdle, UART0};
+enum {T0, T1, BotonPulsado, BP1, BP2, CancelarAlarma, Suspender, JugadaRealizada, JugadaNoValida, MIdle, UART0_ESCRITO, UART0_LEIDO, COMANDO, GSERIE_IMPRIMIR};
 
 // estructura básica para los eventos 2
 typedef struct elemento{

@@ -2,6 +2,7 @@
 #include "Uart0.h"
 #include "eventos.h"
 #include "cola_asyn.h"
+#include <inttypes.h>
 
 #define CR     0x0D  // 0000 1101
 
@@ -27,22 +28,24 @@ void uart0_init(void){                  // Initialize Serial Interface
 // (U0LSR & 0x01) esto nos indica que hay un caracter nuevo, no hace falta comprobarlo porque ya no es una espera activa
 
 void uart0_ISR (void) __irq {    
-                 
+  // nos quedamos solo con los 3 bits que nos interesan del U0IIR
+  uint8_t registro = (U0IIR << 28) >> 29;
   // U0IIR nos va a indicar que tipo de interrupción tenemos 
-  if ((U0IIR & 0x4)&&(U0LSR & 0x01)){                    // recibimos una interrupcion de recepción  
-    sendchar(U0RBR);
-    cola_encolar_evento(UART0,0, U0RBR);   // U0RBR = carácter leido por la UART
+  
+  if (registro & 0x02){                    // recibimos una interrupcion de recepción  
+    cola_encolar_evento(UART0_ESCRITO,0, U0RBR);   // U0RBR = carácter leido por la UART
   }
   
-  if (U0IIR & 0x1) {           // recibimos una interrupcion de transmisión  
-    while(1);
-    
+  if (registro & 0x01) {           // recibimos una interrupcion de transmisión  
+    // nos llega interrupcion de que acaba de escribir algo 
+    // avisamos encolando un evento que nos llevará al g_serie
+    // en g_serie tenemos dos funciones que no sabemos que tienen que hacer cada cual 
+    cola_encolar_evento(UART0_LEIDO,0, U0RBR);   // U0RBR = carácter leido por la UART
+   
   }
 		VICVectAddr = 0;                       // Acknowledge Interrupt
 
 }
-
-
 
 /* implementation of putchar (also used by printf function to output data)    */
 int sendchar (int ch)  {                 /* Write character to Serial Port    */

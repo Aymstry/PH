@@ -178,3 +178,14 @@ void conecta4_jugar(uint8_t column){
 		}			
 	}
 }
+
+// N=4E  E=45  W=57 ; E=45 N=4E D=44 ; C= 31-37
+void conecta4_tratamientoComando(uint32_t comando){
+	if ( comando == 0x454E44) {		 // END
+
+	} else if (comando == 0x4E4557){ // NEW
+
+	} else if ((comando <= 0x39) && (comando >= 0x30)){ // C es un caracter numérico
+
+	}
+}

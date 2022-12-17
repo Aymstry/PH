@@ -351,7 +351,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
@@ -625,6 +625,16 @@
               <FileName>Uart0.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Uart0.h</FilePath>
+            </File>
+            <File>
+              <FileName>g_serie.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\g_serie.c</FilePath>
+            </File>
+            <File>
+              <FileName>g_serie.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\g_serie.h</FilePath>
             </File>
           </Files>
         </Group>

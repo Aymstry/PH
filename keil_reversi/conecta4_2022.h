@@ -75,6 +75,8 @@ void conecta4_resetear_juego(void);
 
 void conecta4_recuperar_tablero(void);
 
+void conecta4_tratamientoComando(uint32_t comando); 
+
 /* *****************************************************************************
  * declaración funciones internas C4_
  */
