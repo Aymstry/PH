@@ -156,7 +156,7 @@ void conecta4_recuperar_tablero(void){
 }
 
 void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
-	char tablero[138];
+	char tablero[150];
 	int indice = 0;
 	for(int i = 1; i <= 7; i++){
 		for(int x=1; x <= 8; x++){
@@ -172,6 +172,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 			indice++; 
 			if (x == 8){
 				tablero[indice] = '\n';
+				indice ++;
 			}
 		}
 	}

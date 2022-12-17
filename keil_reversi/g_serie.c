@@ -49,9 +49,17 @@ void GSERIE_procesarEntrada(int ch){
         }
     }
     // funcion echo 
-    char c[2]; 
-    c[0]= ch;
-    c[1]='\0';
+		char c[3]; 
+		if (ch == '!'){
+			c[0]= ch;
+			c[1]= '\n';
+			c[2]='\0';
+		} else {
+			c[0]= ch;
+			c[1]='\0';
+		}
+  
+    
     uart0_enviar_array(c);
 }
 

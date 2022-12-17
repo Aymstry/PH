@@ -49,9 +49,9 @@ void uart0_ISR (void) __irq {
 
 /* implementation of putchar (also used by printf function to output data)    */
 int sendchar (int ch)  {                 /* Write character to Serial Port    */
-  if (ch == '\n')  {
-    U0THR = CR;                          /* output CR */
-  }
+	if (ch == 0x0D) {		// carácter mueve puntero a principio de linea
+		ch =  0x0A;				// carácter salto de linea 
+	}
   return (U0THR = ch);                  // U0THR es el registro en el que debemos almacenar el valor que queremos escribir
 }
 
