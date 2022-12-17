@@ -186,6 +186,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 		indice ++;
 	}
 	tablero[indice] = '\0';
+	indice ++;
 	uart0_enviar_array(tablero);
 
 }
