@@ -173,22 +173,31 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 			if (x == 8){
 				tablero[indice] = '\n';
 				indice ++;
+				tablero[indice] = '\0';
+				indice ++;
+				uart0_enviar_array(tablero);
 			}
 		}
 	}
 	for (int i=0; i <= 16; i++){
 		tablero[indice] = '-';
 		indice ++;
+		tablero[indice] = '\0';
+		indice ++;
+		uart0_enviar_array(tablero);
 	}
 	for (int i=0; i <= 8; i++){
 		tablero[indice] = i;
 		indice ++;
 		tablero[indice] = '|';
 		indice ++;
+		tablero[indice] = '\0';
+		indice ++;
+		uart0_enviar_array(tablero);
 	}
-	tablero[indice] = '\0';
-	indice ++;
-	uart0_enviar_array(tablero);
+	//tablero[indice] = '\0';
+	//indice ++;
+	//uart0_enviar_array(tablero);
 
 }
 
