@@ -15,7 +15,6 @@ void planificador(void){
 
     // inicializamos los periféricos 
     bool permiso = true; 
-		int time = 0;
     uint8_t column;
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();

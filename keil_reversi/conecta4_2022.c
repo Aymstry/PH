@@ -158,46 +158,42 @@ void conecta4_recuperar_tablero(void){
 void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 	char tablero[150];
 	int indice = 0;
-	for(int i = 1; i <= 7; i++){
-		for(int x=1; x <= 8; x++){
+	for(int i = 1; i < 7; i++){
+		for(int x=1; x < 8; x++){
 			if(cuadricula[i][x] == 0){
 				tablero[indice] = ' ';
+				indice = indice +1; 
+				tablero[indice] = '|';
+				indice = indice +1; 
 			} else if(cuadricula[i][x] == 5){
 				tablero[indice] = 'B';
+				indice = indice +1; 
+				tablero[indice] = '|';
+				indice = indice +1; 
 			} else if(cuadricula[i][x] == 6){
 				tablero[indice] = 'N';
+				indice = indice +1; 
+				tablero[indice] = '|';
+				indice = indice +1; 
 			}
-			indice++; 
-			tablero[indice] = '|';
-			indice++; 
-			if (x == 8){
-				tablero[indice] = '\n';
-				indice ++;
-				tablero[indice] = '\0';
-				indice ++;
-				uart0_enviar_array(tablero);
-			}
+			if (x == 7){
+				tablero[indice] = '\n'; 
+				indice = indice +1; 
+			} 
 		}
 	}
-	for (int i=0; i <= 16; i++){
+	/*for (int i=0; i <= 16; i++){
 		tablero[indice] = '-';
 		indice ++;
-		tablero[indice] = '\0';
-		indice ++;
-		uart0_enviar_array(tablero);
 	}
 	for (int i=0; i <= 8; i++){
 		tablero[indice] = i;
 		indice ++;
 		tablero[indice] = '|';
 		indice ++;
-		tablero[indice] = '\0';
-		indice ++;
-		uart0_enviar_array(tablero);
-	}
-	//tablero[indice] = '\0';
-	//indice ++;
-	//uart0_enviar_array(tablero);
+	}*/
+	tablero[indice] = '\0';
+	uart0_enviar_array(tablero);
 
 }
 
@@ -237,6 +233,7 @@ void conecta4_tratamientoComando(uint32_t comando){
 	} else if (comando == 0x4E455700){ // NEW
 		conecta4_resetear_juego();
 		initgame();
+		//buffer_inicio();
 	} else if ((comando <= 0x39) && (comando >= 0x30)){ // C es un caracter numérico
 		comando = comando - 48;
 		conecta4_jugar(comando); 	// le pasamos la columna 

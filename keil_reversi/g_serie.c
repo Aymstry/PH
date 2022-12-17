@@ -85,25 +85,23 @@ void buffer_inicio(void) {
 
 // Añadiemos un evento a la cola 
 void buffer_encolar(char mensaje[]){
-
     if (llegada.n >= 160 ) {// Comprobamos que la cola esta llena
         while(1);
-    }          
+    }  
     int indice = 0;
     while(mensaje[indice] != '\0'){
-        if ( llegada.buffer[llegada.tail-1] == '\0' && llegada.n != 0){
-            llegada.tail--;
-        }
-        llegada.buffer[llegada.tail] = mensaje[indice];
-        llegada.tail++;
-        llegada.n++;
+        if ( (llegada.buffer[llegada.tail-1] == '\0') && (llegada.n != 0)){
+						llegada.buffer[llegada.tail-1] = mensaje[indice];
+        } else{
+					llegada.buffer[llegada.tail] = mensaje[indice];
+					llegada.n++;
+					llegada.tail = (llegada.tail + 1) & (160 - 1);
+				}      
         indice++;
     }
-    llegada.buffer[llegada.n] = '\0';
-    llegada.tail++;
+    llegada.buffer[llegada.tail] = '\0';
     llegada.n++;
-    indice++;
-    llegada.tail = (llegada.tail) & (160 - 1);     // tail= (tail)AND(MAX-1) = (tail+1)%MAX
+    llegada.tail = (llegada.tail + 1) & (160 - 1);      // tail= (tail)AND(MAX-1) = (tail+1)%MAX
   
 }
 
@@ -112,7 +110,7 @@ char buffer_desencolar(void){
     char c; 
     c = llegada.buffer[llegada.head];
     llegada.n = llegada.n - 1;                          // decrementamos n 
-    llegada.head = (llegada.head + 1) & (160 - 1);     // aumentamos en 1 head % MAX 
+    llegada.head = (llegada.head + 1) & (160 - 1);  // aumentamos en 1 head % MAX 
     
     return c; 
 }
