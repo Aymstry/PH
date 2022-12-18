@@ -2,11 +2,11 @@
 #define __COLA_H__
 
 #include "eventos.h"
-enum {MAX = 32}; 
+const int MAX_C = 50;
 
 // estructura básica para los eventos 
 typedef struct{
-    elemento evs[MAX];       // vector de eventos 
+    elemento evs[MAX_C];       // vector de eventos 
     uint8_t head;            // indice del primer elemento sin procesar  
     uint8_t tail;           // indice del último evento unido + 1  
     uint8_t n;              // numero de eventos sin procesar

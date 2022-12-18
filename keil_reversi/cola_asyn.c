@@ -15,7 +15,7 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     if (leidoFIQ == 0){
         disable_fiq(); 
     }
-    if (c.n >= MAX ) {// Comprobamos que la cola esta llena
+    if (c.n >= MAX_C ) {// Comprobamos que la cola esta llena
         GPIO_escribir(30,1,1);
         while(1);
     }          
@@ -23,7 +23,7 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     c.evs[c.tail].id = ID_evento;
     c.evs[c.tail].numInt = veces;
     c.n = c.n + 1; 
-    c.tail = (c.tail + 1) % (MAX);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+    c.tail = (c.tail + 1) % (MAX_C);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
     if (leidoFIQ == 0){
         enable_fiq(); 
     } 
@@ -34,7 +34,7 @@ void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData){
     *ID_evento = (c.evs[c.head]).id;
     *auxData = (c.evs[c.head]).auxData;
     c.n = c.n - 1;                          // decrementamos n 
-    c.head = (c.head + 1) % (MAX);     // aumentamos en 1 head % MAX 
+    c.head = (c.head + 1) % (MAX_C);     // aumentamos en 1 head % MAX 
 }
 
 bool cola_vacia(void) {
@@ -43,13 +43,13 @@ bool cola_vacia(void) {
 
 // Añadiemos un mensaje a la cola de mensajes 
 void cola_encolar_mensaje(uint8_t ID_msg, uint32_t mensaje){
-    if (msg.n >= MAX ) {// Comprobamos que la cola esta llena
+    if (msg.n >= MAX_C ) {// Comprobamos que la cola esta llena
         while(1);
     }          
     msg.evs[msg.tail].id = ID_msg;
     msg.evs[msg.tail].auxData = mensaje;
     msg.n = msg.n + 1; 
-    msg.tail = (msg.tail + 1) % (MAX);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+    msg.tail = (msg.tail + 1) % (MAX_C);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
 }
 
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar
@@ -57,7 +57,7 @@ void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje){
     *ID_msg = (msg.evs[msg.head]).id;
     *mensaje = (msg.evs[msg.head]).auxData;
     msg.n = msg.n - 1;                          // decrementamos n 
-    msg.head = (msg.head + 1) % (MAX);     // aumentamos en 1 head % MAX 
+    msg.head = (msg.head + 1) % (MAX_C);     // aumentamos en 1 head % MAX 
 }
 
 bool cola_vacia_mensaje(void) {
