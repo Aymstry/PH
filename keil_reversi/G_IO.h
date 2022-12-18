@@ -18,6 +18,7 @@ bool terminarLatido(void);
 void empezarLatido(void);
 void G_IO_errorColumna(void);
 void G_IO_OkColumna(void);
+void cancelarJugada(void);
 
 #endif 
 

@@ -219,7 +219,8 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 volatile uint8_t columna;
 volatile uint8_t colorAnterior;
-uint8_t fila; 
+volatile uint8_t cancelada;
+volatile uint8_t fila; 
 
 void conecta4_jugar(uint8_t column){
 	// new, column, padding to prevent desalinating to 8 bytes
@@ -240,15 +241,19 @@ void conecta4_jugar(uint8_t column){
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		C4_mostrarTablero(cuadricula); 
 		// encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
-		// codificamos el mensaje para que suene una alarma cada 1 s 
+		// codificamos el mensaje para que suene una alarma cada 3 s pq con 1 no da tiempo :) 
 		// ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
-		// mensaje final:               0000 1111 0 000 0000 0000 0011 1110 1000 
-		//                              0000 1111 0000 0000 0000 0011 1110 1000 
-		//                               0    F     0    0    0    3    E    8   = 0F0003E8
-		uint32_t mensaje = 0x0F0003E8;
+		// mensaje final:               0000 1111 0 000 0000 0000 1011 1011 1000  
+		//                              0000 1111 0000 0000 0000 1011 1011 1000  
+		//                               0    F     0    0    0    B    B    8   = 0F000BB8
+		uint32_t mensaje = 0x0F000BB8;
 		cola_encolar_mensaje(Set_Alarma, mensaje); 	
-		colour = C4_alternar_color(colorAnterior);
-		cambioColor(colour); 	
+		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
+			colour = C4_alternar_color(colorAnterior);
+			cambioColor(colour); 
+		}else{			// se cancela el movimiento 
+			colour = colorAnterior;
+		}
 	} else {
 		C4_columnaNoValida();
 		G_IO_errorColumna();
@@ -256,8 +261,10 @@ void conecta4_jugar(uint8_t column){
 }
 
 void conecta4_seguir(uint8_t confirmada){
+	cancelada = confirmada;
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
-	if(confirmada == 0){
+	if(confirmada == 0){		// movimiento cancelado 
+		C4_cancelarMov();
 		colorAnterior = 0;
 		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,colorAnterior);
@@ -305,17 +312,22 @@ void conecta4_tratamientoComando(uint32_t comando){
 }
 
 void conecta4_init(void){
-	char reglas[300] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!\n"; 
+	char reglas[] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!\n"; 
 	uart0_enviar_array(reglas);
 }
 
 void C4_columnaNoValida(void){
-	char texto[50]="Columna no valida\n";
+	char texto[]="Columna no valida\n";
 	uart0_enviar_array(texto);
 }
 
 void C4_columnaValida(void){
-	char texto[50]="Pulsa boton 1(GPIO14) para cancelar\n";
+	char texto[]="Pulsa boton 1(GPIO14) para cancelar\n";
+	uart0_enviar_array(texto);
+}
+
+void C4_cancelarMov(void){
+	char texto[]="Movimiento cancelado\n";
 	uart0_enviar_array(texto);
 }
 

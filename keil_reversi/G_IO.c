@@ -127,6 +127,17 @@ void empezarLatido(void){
     cola_encolar_mensaje(Set_Alarma, mensaje); 
 }
 
+void cancelarJugada(void){
+     // encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
+    // codificamos el mensaje para que suene una alarma cada 1 s 
+    // ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
+    // mensaje final:               0000 1111 0 000 0000 0000 0000 0000 0000 
+    //                              0000 1111 0000 0000 0000 0000 0000 0000 
+    //                               0    F     0    0    0    0    0    0   = 0F000000
+    uint32_t mensaje = 0x0F000000;
+    cola_encolar_mensaje(Set_Alarma, mensaje); 
+}
+
 bool terminarLatido(void){
     // codificamos el mensaje para cancelar la alarma que suena 250 ms 
     // ID 9 =  MIdle                ID=9     P  23                             Hexadecimal 
