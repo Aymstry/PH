@@ -156,9 +156,15 @@ void conecta4_recuperar_tablero(void){
 }
 
 void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
-	char tablero[150];
+	char tablero[160];
 	int indice = 0;
+	char c;
 	for(int i = 1; i < 7; i++){
+		c = 48 + i;
+		tablero[indice] = c;
+		indice = indice +1;
+		tablero[indice] = '|';
+		indice = indice +1;
 		for(int x=1; x < 8; x++){
 			if(cuadricula[i][x] == 0){
 				tablero[indice] = ' ';
@@ -182,16 +188,22 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 			} 
 		}
 	}
-	/*for (int i=0; i <= 16; i++){
+	for (int i=0; i <= 16; i++){
 		tablero[indice] = '-';
 		indice ++;
 	}
-	for (int i=0; i <= 8; i++){
-		tablero[indice] = i;
-		indice ++;
+	tablero[indice] = '\n'; 
+	indice = indice +1;
+	tablero[indice] = '-'; 
+	indice = indice +1;
+	for (char i=49; i < 56; i++){
 		tablero[indice] = '|';
 		indice ++;
-	}*/
+		tablero[indice] = i;
+		indice ++;
+	}
+	tablero[indice] = '|';
+	indice ++;
 	tablero[indice] = '\0';
 	uart0_enviar_array(tablero);
 
