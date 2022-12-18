@@ -220,7 +220,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 volatile uint8_t columna;
 volatile uint8_t colorAnterior;
-volatile uint8_t cancelada;
+volatile uint8_t cancelada=2;
 volatile uint8_t fila; 
 
 void conecta4_jugar(uint8_t column){
@@ -233,12 +233,11 @@ void conecta4_jugar(uint8_t column){
 	fila = row;
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
 		colorAnterior = colour;
-		columna = column; 
-		colour = 4;
+		columna = column;
 		C4_columnaValida();
 		G_IO_OkColumna();
-		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
-		actualizarJugada(cuadricula,row,column,colour);
+		C4_actualizar_tablero(cuadricula,row,column,4); 	//actualiza el tablero
+		actualizarJugada(cuadricula,row,column,4);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
@@ -252,10 +251,11 @@ void conecta4_jugar(uint8_t column){
 		uint32_t mensaje = 0x0F0003E8;
 		cola_encolar_mensaje(Set_Alarma, mensaje); 	
 		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
-			colour = C4_alternar_color(colorAnterior);
+			colour = C4_alternar_color(colour);
 			cambioColor(colour); 
 		}else {	
-			colour = colorAnterior;
+			//colour = colorAnterior;
+			colour = C4_alternar_color(colorAnterior);
 		} 
 	} else {
 		C4_columnaNoValida();
@@ -268,9 +268,8 @@ void conecta4_seguir(uint8_t confirmada){
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if(confirmada == 0){		// movimiento cancelado 
 		C4_cancelarMov();
-		colorAnterior = 0;
-		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
-		actualizarJugada(cuadricula,fila,columna,colorAnterior);
+		C4_actualizar_tablero(cuadricula,fila,columna,0); 	//actualiza el tablero
+		actualizarJugada(cuadricula,fila,columna,0);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
@@ -286,18 +285,11 @@ void conecta4_seguir(uint8_t confirmada){
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			endgame(colorAnterior);  												//ganas la partida
 			C4_acabarPorVictoria();
-			ganado_empate = true;
 		} else if (C4_comprobar_empate(cuadricula)){
 			C4_acabarPorEmpate();
 			endgame(3);  													//quedan en empate los dos jugadores
-			ganado_empate = true;
 		}
 
-		if (ganado_empate == false){
-			uint32_t aux = C4_alternar_color(colorAnterior);
-			colorAnterior = aux;
-			cambioColor(colorAnterior); 									//cambia el color de la ficha para que se vayan intercambiando
-		}
 	}
 }
 
