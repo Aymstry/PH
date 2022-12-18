@@ -16,7 +16,7 @@ void planificador(void){
     // colocamos la alarma para pasar a modo apagado 
     cola_encolar_evento(Suspender, 0, 0);
     conecta4_recuperar_tablero(); 
-    
+    conecta4_iniciarColor();
     while(1){
         
         while(!cola_vacia()){  
@@ -43,6 +43,7 @@ void planificador(void){
                         conecta4_acabarPorBoton();
                         cola_iniciar();
                         initgame();
+												conecta4_iniciarColor();
                         conecta4_resetear_juego();
                     }
                     break;
@@ -59,6 +60,8 @@ void planificador(void){
                     uart0_continuar_envio();
                     break;
                 case FIN: 
+									  cola_iniciar();
+								    conecta4_iniciarColor();
                     conecta4_init();
                     idle();
                     // if aux.Data == 1 se han rendido END             

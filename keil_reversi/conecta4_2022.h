@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include "celda.h"
 
+
 // La representación del tablero en memoria es
 // 0 C1 C2 C3 C4 C5 C6 C7
 // F1
@@ -117,5 +118,6 @@ static inline uint8_t C4_fila_valida(uint8_t fila) {
 }
 
 
+void conecta4_iniciarColor(void);
 
 #endif /* CONECTA4_H_2022 */

@@ -6,6 +6,7 @@
 #include "G_IO.h"
 #include "g_serie.h"
 #include "msg.h"
+#include "funciones_swi.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -239,14 +240,16 @@ void conecta4_jugar(uint8_t column){
 		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
 		actualizarJugada(cuadricula,row,column,colour);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
+		disable_irq_fiq(); 
 		// encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
 		// codificamos el mensaje para que suene una alarma cada 1,5 s pq con 1 no da tiempo :) 
 		// ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
 		// mensaje final:               0000 1111 0 000 0000 0000 0101 1101 1100   
 		//                              0000 1111 0000 0000 0000 0101 1101 1100 
-		//                               0    F     0    0    0    5    D    C   = 0F0005DC
-		uint32_t mensaje = 0x0F0005DC;
+		//                               0    F     0    0    0    5    D    C   = 0F0005DC - 0F0003E8
+		uint32_t mensaje = 0x0F0003E8;
 		cola_encolar_mensaje(Set_Alarma, mensaje); 	
 		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
 			colour = C4_alternar_color(colorAnterior);
@@ -269,12 +272,16 @@ void conecta4_seguir(uint8_t confirmada){
 		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,colorAnterior);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
+		disable_irq_fiq();  //Deshabilitamos las interrupciones
 	} else {
 		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,colorAnterior);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
+		disable_irq_fiq();  
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			endgame(colorAnterior);  												//ganas la partida
@@ -348,3 +355,6 @@ void C4_acabarPorVictoria(void){
 	uart0_enviar_array(texto);
 }
 
+void conecta4_iniciarColor(void){
+	colorAnterior = 1;
+}

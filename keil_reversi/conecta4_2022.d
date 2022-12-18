@@ -11,3 +11,5 @@
 .\conecta4_2022.o: G_IO.h
 .\conecta4_2022.o: g_serie.h
 .\conecta4_2022.o: msg.h
+.\conecta4_2022.o: funciones_swi.h
+.\conecta4_2022.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
