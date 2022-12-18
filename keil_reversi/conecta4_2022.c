@@ -241,12 +241,12 @@ void conecta4_jugar(uint8_t column){
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		C4_mostrarTablero(cuadricula); 
 		// encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
-		// codificamos el mensaje para que suene una alarma cada 3 s pq con 1 no da tiempo :) 
+		// codificamos el mensaje para que suene una alarma cada 1,5 s pq con 1 no da tiempo :) 
 		// ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
-		// mensaje final:               0000 1111 0 000 0000 0000 1011 1011 1000  
-		//                              0000 1111 0000 0000 0000 1011 1011 1000  
-		//                               0    F     0    0    0    B    B    8   = 0F000BB8
-		uint32_t mensaje = 0x0F000BB8;
+		// mensaje final:               0000 1111 0 000 0000 0000 0101 1101 1100   
+		//                              0000 1111 0000 0000 0000 0101 1101 1100 
+		//                               0    F     0    0    0    5    D    C   = 0F0005DC
+		uint32_t mensaje = 0x0F0005DC;
 		cola_encolar_mensaje(Set_Alarma, mensaje); 	
 		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
 			colour = C4_alternar_color(colorAnterior);
@@ -278,8 +278,10 @@ void conecta4_seguir(uint8_t confirmada){
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			endgame(colorAnterior);  												//ganas la partida
+			C4_acabarPorVictoria();
 			ganado_empate = true;
 		} else if (C4_comprobar_empate(cuadricula)){
+			C4_acabarPorEmpate();
 			endgame(3);  													//quedan en empate los dos jugadores
 			ganado_empate = true;
 		}
@@ -328,6 +330,21 @@ void C4_columnaValida(void){
 
 void C4_cancelarMov(void){
 	char texto[]="Movimiento cancelado\n";
+	uart0_enviar_array(texto);
+}
+
+void conecta4_acabarPorBoton(void){
+	char texto[]="Le diste al boton reiniciar,\n reiniciamos la partida\n";
+	uart0_enviar_array(texto);
+}
+
+void C4_acabarPorEmpate(void){
+	char texto[]="La partida ha terminado en empate!, bien jugado\n";
+	uart0_enviar_array(texto);
+}
+
+void C4_acabarPorVictoria(void){
+	char texto[]="La partida ha terminado en victoria!, bien jugado\n";
 	uart0_enviar_array(texto);
 }
 

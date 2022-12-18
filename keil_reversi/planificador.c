@@ -47,6 +47,7 @@ void planificador(void){
                         conecta4_seguir(0);
                         
                     } else {                  // boton 2 - se reinicia el juego 
+                        conecta4_acabarPorBoton();
                         cola_iniciar();
                         initgame();
                         conecta4_resetear_juego();

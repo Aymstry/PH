@@ -86,6 +86,12 @@ void C4_columnaValida(void);
 void conecta4_seguir(uint8_t confirmada);
 
 void C4_cancelarMov(void);
+
+void conecta4_acabarPorBoton(void);
+
+void C4_acabarPorEmpate(void);
+
+void C4_acabarPorVictoria(void);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

@@ -1,7 +1,7 @@
 #include <LPC210x.H> 
 #include "gpio.h"
 
-enum {MAX = 32}; 
+enum {MAX_G = 32}; 
 
 void GPIO_iniciar(void){
     IODIR = 0xFFFFFFFF;         // establecemos todos los bits de la GPIO en modo output (escritura y lectura)
@@ -21,7 +21,7 @@ Ejemplo de ejecucion:
                 0000 0000 0000 0000 0000 0000 0000 1010
 */
 uint8_t GPIO_leer(uint32_t bit_inicial, uint32_t num_bits){
-    uint8_t leidos = ((IOPIN >> bit_inicial) << (MAX - num_bits)) >> (MAX - num_bits);
+    uint8_t leidos = ((IOPIN >> bit_inicial) << (MAX_G - num_bits)) >> (MAX_G - num_bits);
     return leidos;
 }
 
@@ -53,7 +53,7 @@ void GPIO_escribir(uint32_t bit_inicial, uint32_t num_bits,uint32_t valor){
 
 void GPIO_marcar_entrada(uint32_t bit_inicial, uint32_t num_bits){
     uint32_t izq = (IODIR >> (bit_inicial + num_bits)) << (bit_inicial + num_bits); // nos quedamos con los bits de la izq a los que queremos modificar
-    uint32_t der = (IODIR << (MAX - bit_inicial)) >> (MAX - bit_inicial); // nos quedamos con los bits de la drcha a los que queremos modificar
+    uint32_t der = (IODIR << (MAX_G - bit_inicial)) >> (MAX_G - bit_inicial); // nos quedamos con los bits de la drcha a los que queremos modificar
 
     IODIR = izq | der;     // quedan a 0 los bits que queremos utilizar
 }
@@ -62,7 +62,7 @@ void GPIO_marcar_entrada(uint32_t bit_inicial, uint32_t num_bits){
 // poner a 1 = stdout 
 void GPIO_marcar_salida(uint32_t bit_inicial, uint32_t num_bits){
     uint32_t izq = (IODIR >> (bit_inicial + num_bits)) << (bit_inicial + num_bits); // nos quedamos con los bits de la izq a los que queremos modificar
-    uint32_t der = (IODIR << (MAX - bit_inicial)) >> (MAX - bit_inicial); // nos quedamos con los bits de la drcha a los que queremos modificar
+    uint32_t der = (IODIR << (MAX_G - bit_inicial)) >> (MAX_G - bit_inicial); // nos quedamos con los bits de la drcha a los que queremos modificar
     uint32_t valor;
     unsigned int i;
     for(i = 0; i < num_bits; i++){ //segun num_bits desplazamos 1 y sumamos 1 
