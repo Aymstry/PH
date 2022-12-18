@@ -70,7 +70,7 @@ void planificador(void){
                     uart0_continuar_envio();
                     break;
                 case FIN: 
-                    power_down();  
+                    idle();
                     // if aux.Data == 1 se han rendido END             
                     break;
                 default: break;

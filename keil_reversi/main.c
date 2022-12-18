@@ -8,20 +8,22 @@
 #include "funciones_swi.h"
 #include "Uart0.h"
 
-/*
+
 int main(){	
-  initgame(); 
   eint_init();
+  uart0_init(); 
 	temporizador_iniciar();
   planificador(); 
 }
-*/
 
+/*
 int main(){
   uart0_init(); 
 	//sendchar('a');
+  temporizador_iniciar();
   planificador(); 
 }
+*/
 
 /*  
   -- MAIN PRUEBAS -- 

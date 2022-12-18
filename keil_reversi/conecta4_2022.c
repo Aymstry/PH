@@ -162,7 +162,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 	for(int i = 1; i < 7; i++){
 		c = 48 + i;
 		tablero[indice] = c;
-		indice = indice +1;
+		indice = indice +1;          
 		tablero[indice] = '|';
 		indice = indice +1;
 		for(int x=1; x < 8; x++){
@@ -204,6 +204,8 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 	}
 	tablero[indice] = '|';
 	indice ++;
+	tablero[indice] = '\n';
+	indice ++;
 	tablero[indice] = '\0';
 	uart0_enviar_array(tablero);
 
@@ -239,6 +241,7 @@ void conecta4_jugar(uint8_t column){
 
 // N=4E  E=45  W=57 ; E=45 N=4E D=44 ; C= 31-37
 void conecta4_tratamientoComando(uint32_t comando){
+	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if ( comando == 0x454E4400) {		 // END
 		cola_iniciar();
 		cola_encolar_evento(FIN, 0, 1);

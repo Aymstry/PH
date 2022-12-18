@@ -1,8 +1,7 @@
 #include "g_serie.h"
 #include "cola_asyn.h"
 #include "eventos.h"
-#include <inttypes.h>
-#include <stdbool.h>
+
 
 volatile char palabra[4];  // tamaño = 4 para guardar el carácter \0 de fin de vector
 volatile buffer llegada; 
@@ -37,7 +36,7 @@ void GSERIE_procesarEntrada(int ch){
         cola_encolar_mensaje(COMANDO, comando);
 
     } else if(numChar >=1){     // nuevo carácter 
-        if (numChar > 4){
+        if (numChar > 3){
             if (!error){        // primera vez que se detecta el error
                 // encendemos la gpio 
             }
@@ -114,6 +113,7 @@ char buffer_desencolar(void){
     
     return c; 
 }
+
 
 
 

@@ -2,6 +2,7 @@
 #define G_SERIE_H
 
 #include <inttypes.h>
+#include <stdbool.h>
 enum {MAX_A = 160}; 
 // estructura básica para los eventos 
 typedef struct{
