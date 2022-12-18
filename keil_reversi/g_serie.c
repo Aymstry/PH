@@ -75,7 +75,11 @@ void uart0_continuar_envio(void){
     if(c != '\0'){
         uint32_t mensaje = c; 
         cola_encolar_mensaje(GSERIE_IMPRIMIR, mensaje);
-    }
+    } else {
+			for(int i = 0; i < 160; i++){
+				llegada.buffer[i] = '0';
+			}
+		}
 }
 
 void buffer_inicio(void) {

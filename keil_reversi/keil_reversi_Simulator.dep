@@ -7,7 +7,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 F (.\main.c)(0x639F355A)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (C:\Keil_v5\ARM\INC\Philips\LPC210x.H)(0x559D3D78)
 I (planificador.h)(0x639F355A)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -28,8 +28,8 @@ I (funciones_swi.h)(0x639E015B)
 I (g_serie.h)(0x639F2B2D)
 I (RTC.h)(0x639E015B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F3DAC)
-F (.\cola_asyn.c)(0x639F3482)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\cola_asyn.o --omf_browse .\cola_asyn.crf --depend .\cola_asyn.d)
-I (cola_asyn.h)(0x639F355A)
+F (.\cola_asyn.c)(0x639F4EBD)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\cola_asyn.o --omf_browse .\cola_asyn.crf --depend .\cola_asyn.d)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -39,14 +39,14 @@ I (funciones_swi.h)(0x639E015B)
 I (C:\Keil_v5\ARM\INC\Philips\LPC210x.H)(0x559D3D78)
 F (.\timer.c)(0x63986441)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\timer.o --omf_browse .\timer.crf --depend .\timer.d)
 I (C:\Keil_v5\ARM\INC\Philips\LPC210X.H)(0x559D3D78)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F3DAE)
 I (timer.h)(0x63986441)
 I (RTC.h)(0x639E015B)
-F (.\cola_asyn.h)(0x639F355A)()
+F (.\cola_asyn.h)(0x639F4545)()
 F (.\eventos.h)(0x639F2B2D)()
 F (.\timer.h)(0x63986441)()
 F (.\msg.h)(0x6389387C)()
@@ -55,12 +55,12 @@ I (G_Alarm.h)(0x6389387C)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (msg.h)(0x6389387C)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F3DAE)
 F (.\planificador.c)(0x639F3C10)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\planificador.o --omf_browse .\planificador.crf --depend .\planificador.d)
 I (planificador.h)(0x639F355A)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -93,7 +93,7 @@ F (.\gpio.h)(0x6389387C)()
 F (.\botones.c)(0x639F3559)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\botones.o --omf_browse .\botones.crf --depend .\botones.d)
 I (C:\Keil_v5\ARM\INC\Philips\LPC210X.H)(0x559D3D78)
 I (botones.h)(0x639F355A)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -103,7 +103,7 @@ I (G_Boton.h)(0x639F3559)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (msg.h)(0x6389387C)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F3DAE)
 F (.\botones.h)(0x639F355A)()
@@ -113,7 +113,7 @@ F (.\G_Power.c)(0x6389387C)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v
 I (G_Power.h)(0x6389387C)
 I (power.h)(0x6389387C)
 I (msg.h)(0x6389387C)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -131,7 +131,7 @@ I (celda.h)(0x639F2B2D)
 I (entrada.h)(0x6389387C)
 I (tableros.h)(0x639E254D)
 I (eventos.h)(0x639F2B2D)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (G_IO.h)(0x639F2B2D)
 I (g_serie.h)(0x639F2B2D)
 I (msg.h)(0x6389387C)
@@ -150,7 +150,7 @@ I (conecta4_2022.h)(0x639F39A7)
 I (celda.h)(0x639F2B2D)
 I (gpio.h)(0x6389387C)
 I (msg.h)(0x6389387C)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 F (.\pruebas.c)(0x63986441)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\pruebas.o --omf_browse .\pruebas.crf --depend .\pruebas.d)
 I (conecta4_2022.h)(0x639F39A7)
@@ -180,13 +180,13 @@ I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (eventos.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F3DAE)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 F (.\Uart0.h)(0x639E015B)()
-F (.\g_serie.c)(0x639F2B2D)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\g_serie.o --omf_browse .\g_serie.crf --depend .\g_serie.d)
+F (.\g_serie.c)(0x639F5100)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="526"-o .\g_serie.o --omf_browse .\g_serie.crf --depend .\g_serie.d)
 I (g_serie.h)(0x639F2B2D)
 I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F3DAE)
-I (cola_asyn.h)(0x639F355A)
+I (cola_asyn.h)(0x639F4545)
 I (eventos.h)(0x639F2B2D)
 F (.\g_serie.h)(0x639F2B2D)()
