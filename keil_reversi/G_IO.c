@@ -79,10 +79,12 @@ void endgame(uint8_t resultado){
     cola_encolar_mensaje(Set_Alarma, mensaje); 
  } 
 
+// no se usa debido a que la entrada de información ahora es por linea de comando (uart1)
 bool actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
-    static uint8_t antiguoLeido = 0; 
+    //static uint8_t antiguoLeido = 0; 
     bool permiso = false;
     // leer columna 
+    /*
     uint8_t columnAux = leercolumna(); 
     if (antiguoLeido != columnAux){
         cola_encolar_evento(Suspender, 0, 0); // reprogramar alarma con cambios en la gpio
@@ -90,7 +92,7 @@ bool actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
         antiguoLeido = columnAux; 
         permiso = terminarLatido();
     }
-    // calcular fila
+     calcular fila
     uint8_t rowAux = C4_calcular_fila(cuadricula, columnAux);
         if(C4_fila_valida(rowAux) && C4_columna_valida(columnAux)) {
             // es valida 
@@ -99,6 +101,7 @@ bool actualizarAviso(CELDA cuadricula[TAM_FILS][TAM_COLS]){
             // no es valida 
             GPIO_escribir(17, 1 ,1);
         }
+    */
     return permiso;
 }
 
@@ -109,7 +112,7 @@ void initgame(void){
     GPIO_escribir(14,2,3);
     // marcamos las entradas de los botones y las columnas
     GPIO_marcar_entrada(14, 2);
-    GPIO_marcar_entrada(3, 7);
+    //GPIO_marcar_entrada(3, 7);  NO ES NECESARIO MARCAR COMO ENTRADAS
 
     cambioColor(1);
 }
@@ -145,4 +148,12 @@ void parpadeoBlinBlin(void){
         estado = 0;
         GPIO_escribir(31,1,0);
     }
+}
+
+void G_IO_errorColumna(void){
+    GPIO_escribir(17,1,1);
+}
+
+void G_IO_OkColumna(void){
+    GPIO_escribir(17,1,0);
 }

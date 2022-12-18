@@ -77,6 +77,11 @@ void conecta4_recuperar_tablero(void);
 
 void conecta4_tratamientoComando(uint32_t comando); 
 
+void conecta4_init(void);
+
+void C4_columnaNoValida(void);
+
+void C4_columnaValida(void);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 #include <stdbool.h>
-enum {MAX_A = 160}; 
+enum {MAX_A = 300}; 
 // estructura básica para los eventos 
 typedef struct{
     char buffer[MAX_A];        // vector de eventos 

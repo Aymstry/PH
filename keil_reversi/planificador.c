@@ -16,6 +16,7 @@ void planificador(void){
     // inicializamos los periféricos 
     bool permiso = true; 
     uint8_t column;
+    conecta4_init();
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
@@ -70,6 +71,7 @@ void planificador(void){
                     uart0_continuar_envio();
                     break;
                 case FIN: 
+                    conecta4_init();
                     idle();
                     // if aux.Data == 1 se han rendido END             
                     break;

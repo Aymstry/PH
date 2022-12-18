@@ -16,6 +16,8 @@ void initgame(void);
 void parpadeoBlinBlin(void);
 bool terminarLatido(void); 
 void empezarLatido(void);
+void G_IO_errorColumna(void);
+void G_IO_OkColumna(void);
 
 #endif 
 

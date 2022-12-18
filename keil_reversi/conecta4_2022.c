@@ -220,8 +220,11 @@ void conecta4_jugar(uint8_t column){
 
 	row = C4_calcular_fila(cuadricula, column); 				// returns 0 if is not in range
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
+		C4_columnaValida();
+		G_IO_OkColumna();
 		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
 		actualizarJugada(cuadricula,row,column,colour);
+		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		C4_mostrarTablero(cuadricula); 
 
 		if(C4_verificar_4_en_linea(cuadricula, row, column, colour)) {
@@ -236,6 +239,9 @@ void conecta4_jugar(uint8_t column){
 			colour = C4_alternar_color(colour);
 			cambioColor(colour); 									//cambia el color de la ficha para que se vayan intercambiando
 		}			
+	} else {
+		C4_columnaNoValida();
+		G_IO_errorColumna();
 	}
 }
 
@@ -259,4 +265,18 @@ void conecta4_tratamientoComando(uint32_t comando){
 	}
 }
 
+void conecta4_init(void){
+	char reglas[300] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!"; 
+	uart0_enviar_array(reglas);
+}
+
+void C4_columnaNoValida(void){
+	char texto[50]="Columna no valida\n";
+	uart0_enviar_array(texto);
+}
+
+void C4_columnaValida(void){
+	char texto[50]="Pulsa boton 1(GPIO14) para cancelar\n";
+	uart0_enviar_array(texto);
+}
 

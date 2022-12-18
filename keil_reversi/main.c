@@ -11,6 +11,7 @@
 
 int main(){	
   eint_init();
+  initgame();
   uart0_init(); 
 	temporizador_iniciar();
   planificador(); 

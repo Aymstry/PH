@@ -114,6 +114,3 @@ char buffer_desencolar(void){
     return c; 
 }
 
-
-
-
