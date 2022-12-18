@@ -2,7 +2,6 @@
 #include "Uart0.h"
 #include "eventos.h"
 #include "cola_asyn.h"
-#include <inttypes.h>
 
 #define CR     0x0D  // 0000 1101
 

@@ -1,5 +1,6 @@
 #include <LPC210X.H>                            // LPC21XX Peripheral Registers
 #include "botones.h"
+#include "cola_asyn.h"
 
 // variable para comprobar que se hacen las interrupciones que deberan hacerse
 static volatile int eint1_cuenta = 0;

@@ -1,12 +1,6 @@
                   
 #include <LPC210x.H>                       /* LPC210x definitions */
-#include "timer.h"
 #include "planificador.h"
-#include "cola_asyn.h"
-#include "botones.h"
-#include "G_IO.h"
-#include "funciones_swi.h"
-#include "Uart0.h"
 
 
 int main(){	

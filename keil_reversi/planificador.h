@@ -11,6 +11,15 @@
 #include "G_Power.h"
 #include "power.h"
 #include "G_IO.h"
+#include "Uart0.h"
+#include "tableros.h"
+#include "conecta4_2022.h"
+#include "funciones_swi.h"
+#include "g_serie.h"
+#include "RTC.h"
+#include <inttypes.h>
+#include <stdio.h>
+
 void planificador(void);
 
 #endif

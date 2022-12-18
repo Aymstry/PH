@@ -1,12 +1,5 @@
-#include <stdio.h>
-#include "RTC.h"
 #include "planificador.h"
-#include "tableros.h"
-#include "conecta4_2022.h"
-#include "funciones_swi.h"
-#include "Uart0.h"
-#include "g_serie.h"
-#include <inttypes.h>
+
 
 
 

@@ -1,11 +1,9 @@
 .\planificador.o: planificador.c
-.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\planificador.o: RTC.h
-.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
-.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\planificador.o: planificador.h
 .\planificador.o: cola_asyn.h
 .\planificador.o: eventos.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\planificador.o: msg.h
 .\planificador.o: G_Alarm.h
@@ -17,8 +15,10 @@
 .\planificador.o: G_IO.h
 .\planificador.o: conecta4_2022.h
 .\planificador.o: celda.h
+.\planificador.o: Uart0.h
 .\planificador.o: tableros.h
 .\planificador.o: funciones_swi.h
 .\planificador.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
-.\planificador.o: Uart0.h
 .\planificador.o: g_serie.h
+.\planificador.o: RTC.h
+.\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

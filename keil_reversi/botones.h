@@ -1,7 +1,7 @@
 #ifndef __BOTONES_H__
 #define __BOTONES_H__
 
-#include "cola_asyn.h"
+
 
 void comprobar_eint1(void);
 void comprobar_eint2(void);
