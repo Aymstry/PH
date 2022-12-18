@@ -23,7 +23,7 @@ typedef uint8_t CELDA;
  
 __inline static void
 celda_poner_valor(CELDA *celdaptr, uint8_t val){
-    if ((val == 1/*blanca*/)||(val == 2 /*negra*/)||( val==3 /*dudoso*/)){
+    if ((val == 1/*blanca*/)||(val == 2 /*negra*/)||( val==4/*dudoso*/)){
       *celdaptr = 0x04 /*ocupado*/ + val;
     } else{
       *celdaptr = 0x00;

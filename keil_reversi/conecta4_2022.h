@@ -117,7 +117,4 @@ static inline uint8_t C4_fila_valida(uint8_t fila) {
     return (fila >= 1) && (fila <= NUM_FILAS);
 }
 
-
-void conecta4_iniciarColor(void);
-
 #endif /* CONECTA4_H_2022 */

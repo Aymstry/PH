@@ -183,7 +183,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 				indice = indice +1; 
 				tablero[indice] = '|';
 				indice = indice +1; 
-			} else if (cuadricula[i][x] == 7){
+			} else if (cuadricula[i][x] == 8){
 				tablero[indice] = '*';
 				indice = indice +1; 
 				tablero[indice] = '|';
@@ -234,7 +234,7 @@ void conecta4_jugar(uint8_t column){
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
 		colorAnterior = colour;
 		columna = column; 
-		colour = 3;
+		colour = 4;
 		C4_columnaValida();
 		G_IO_OkColumna();
 		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
@@ -254,9 +254,9 @@ void conecta4_jugar(uint8_t column){
 		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
 			colour = C4_alternar_color(colorAnterior);
 			cambioColor(colour); 
-		}else{			// se cancela el movimiento 
+		}else {	
 			colour = colorAnterior;
-		}
+		} 
 	} else {
 		C4_columnaNoValida();
 		G_IO_errorColumna();
@@ -294,7 +294,8 @@ void conecta4_seguir(uint8_t confirmada){
 		}
 
 		if (ganado_empate == false){
-			colorAnterior = C4_alternar_color(colorAnterior);
+			uint32_t aux = C4_alternar_color(colorAnterior);
+			colorAnterior = aux;
 			cambioColor(colorAnterior); 									//cambia el color de la ficha para que se vayan intercambiando
 		}
 	}
@@ -355,6 +356,3 @@ void C4_acabarPorVictoria(void){
 	uart0_enviar_array(texto);
 }
 
-void conecta4_iniciarColor(void){
-	colorAnterior = 2;
-}
