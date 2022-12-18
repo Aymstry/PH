@@ -82,6 +82,8 @@ void conecta4_init(void);
 void C4_columnaNoValida(void);
 
 void C4_columnaValida(void);
+
+void conecta4_seguir(uint8_t confirmada);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

@@ -106,6 +106,9 @@ void planificador(void){
                         case MIdle:
                             parpadeoBlinBlin();
                             break;
+                        case CONECTA4:      // no se ha cancelado la jugada 
+                            conecta4_seguir(1);
+                            break;
                         default: break;
                     } 
                     break;

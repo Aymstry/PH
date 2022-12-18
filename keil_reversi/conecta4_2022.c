@@ -5,6 +5,7 @@
 #include "cola_asyn.h"
 #include "G_IO.h"
 #include "g_serie.h"
+#include "msg.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -181,6 +182,11 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 				indice = indice +1; 
 				tablero[indice] = '|';
 				indice = indice +1; 
+			} else if (cuadricula[i][x] == 7){
+				tablero[indice] = '*';
+				indice = indice +1; 
+				tablero[indice] = '|';
+				indice = indice +1; 
 			}
 			if (x == 7){
 				tablero[indice] = '\n'; 
@@ -211,7 +217,10 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 }
 
-	
+volatile uint8_t columna;
+volatile uint8_t colorAnterior;
+uint8_t fila; 
+
 void conecta4_jugar(uint8_t column){
 	// new, column, padding to prevent desalinating to 8 bytes
 	
@@ -219,16 +228,49 @@ void conecta4_jugar(uint8_t column){
 	static uint8_t colour = 1; 
 
 	row = C4_calcular_fila(cuadricula, column); 				// returns 0 if is not in range
+	fila = row;
 	if(C4_fila_valida(row) && C4_columna_valida(column)) {			 		//comprueba si puede colocar la ficha segun la fila y la columna
+		colorAnterior = colour;
+		columna = column; 
+		colour = 3;
 		C4_columnaValida();
 		G_IO_OkColumna();
 		C4_actualizar_tablero(cuadricula,row,column,colour); 	//actualiza el tablero
 		actualizarJugada(cuadricula,row,column,colour);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		C4_mostrarTablero(cuadricula); 
+		// encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
+		// codificamos el mensaje para que suene una alarma cada 1 s 
+		// ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
+		// mensaje final:               0000 1111 0 000 0000 0000 0011 1110 1000 
+		//                              0000 1111 0000 0000 0000 0011 1110 1000 
+		//                               0    F     0    0    0    3    E    8   = 0F0003E8
+		uint32_t mensaje = 0x0F0003E8;
+		cola_encolar_mensaje(Set_Alarma, mensaje); 	
+		colour = C4_alternar_color(colorAnterior);
+		cambioColor(colour); 	
+	} else {
+		C4_columnaNoValida();
+		G_IO_errorColumna();
+	}
+}
 
-		if(C4_verificar_4_en_linea(cuadricula, row, column, colour)) {
-			endgame(colour);  												//ganas la partida
+void conecta4_seguir(uint8_t confirmada){
+	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+	if(confirmada == 0){
+		colorAnterior = 0;
+		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
+		actualizarJugada(cuadricula,fila,columna,colorAnterior);
+		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+		C4_mostrarTablero(cuadricula); 
+	} else {
+		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
+		actualizarJugada(cuadricula,fila,columna,colorAnterior);
+		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+		C4_mostrarTablero(cuadricula); 
+
+		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
+			endgame(colorAnterior);  												//ganas la partida
 			ganado_empate = true;
 		} else if (C4_comprobar_empate(cuadricula)){
 			endgame(3);  													//quedan en empate los dos jugadores
@@ -236,12 +278,9 @@ void conecta4_jugar(uint8_t column){
 		}
 
 		if (ganado_empate == false){
-			colour = C4_alternar_color(colour);
-			cambioColor(colour); 									//cambia el color de la ficha para que se vayan intercambiando
-		}			
-	} else {
-		C4_columnaNoValida();
-		G_IO_errorColumna();
+			colorAnterior = C4_alternar_color(colorAnterior);
+			cambioColor(colorAnterior); 									//cambia el color de la ficha para que se vayan intercambiando
+		}
 	}
 }
 
@@ -266,7 +305,7 @@ void conecta4_tratamientoComando(uint32_t comando){
 }
 
 void conecta4_init(void){
-	char reglas[300] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!"; 
+	char reglas[300] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!\n"; 
 	uart0_enviar_array(reglas);
 }
 

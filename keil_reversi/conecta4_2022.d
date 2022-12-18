@@ -10,3 +10,4 @@
 .\conecta4_2022.o: cola_asyn.h
 .\conecta4_2022.o: G_IO.h
 .\conecta4_2022.o: g_serie.h
+.\conecta4_2022.o: msg.h
