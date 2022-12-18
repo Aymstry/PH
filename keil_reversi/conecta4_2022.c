@@ -356,5 +356,5 @@ void C4_acabarPorVictoria(void){
 }
 
 void conecta4_iniciarColor(void){
-	colorAnterior = 1;
+	colorAnterior = 2;
 }
