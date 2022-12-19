@@ -7,9 +7,9 @@ enum {MAX_A = 300};
 // estructura básica para los eventos 
 typedef struct{
     char buffer[MAX_A];        // vector de eventos 
-    uint8_t head;            // indice del primer elemento sin procesar  
-    uint8_t tail;            // indice del último evento unido + 1  
-    uint8_t n;               // numero de eventos sin procesar
+    uint32_t head;            // indice del primer elemento sin procesar  
+    uint32_t tail;            // indice del último evento unido + 1  
+    uint32_t n;               // numero de eventos sin procesar
     
 }buffer; 
 void GSERIE_procesarEntrada(int ch);

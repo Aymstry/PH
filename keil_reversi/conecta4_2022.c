@@ -239,9 +239,7 @@ void conecta4_jugar(uint8_t column){
 		C4_actualizar_tablero(cuadricula,row,column,4); 	//actualiza el tablero
 		actualizarJugada(cuadricula,row,column,4);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
-		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
-		disable_irq_fiq(); 
 		// encolamos la alarma de un segundo para permitir a los jugadores cancelar la jugada
 		// codificamos el mensaje para que suene una alarma cada 1,5 s pq con 1 no da tiempo :) 
 		// ID  =  CONECTA4                ID=15     P  23                             Hexadecimal 
@@ -253,7 +251,7 @@ void conecta4_jugar(uint8_t column){
 		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
 			colour = C4_alternar_color(colour);
 			cambioColor(colour); 
-		}else {	
+		}else if (cancelada ==0) {	
 			//colour = colorAnterior;
 			colour = C4_alternar_color(colorAnterior);
 		} 
@@ -271,16 +269,12 @@ void conecta4_seguir(uint8_t confirmada){
 		C4_actualizar_tablero(cuadricula,fila,columna,0); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,0);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
-		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
-		disable_irq_fiq();  //Deshabilitamos las interrupciones
 	} else {
 		C4_actualizar_tablero(cuadricula,fila,columna,colorAnterior); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,colorAnterior);
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
-		enable_irq_fiq();
 		C4_mostrarTablero(cuadricula); 
-		disable_irq_fiq();  
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			endgame(colorAnterior);  												//ganas la partida
