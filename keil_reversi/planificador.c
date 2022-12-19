@@ -8,6 +8,7 @@ void planificador(void){
 
     // inicializamos los periféricos 
     bool permiso = true; 
+    bool continuarEjecucion = false; 
     conecta4_init();
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
@@ -35,9 +36,14 @@ void planificador(void){
                     permiso = terminarLatido();
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
-                        cancelarJugada();
-                        conecta4_seguir(0);
-                        
+                        // para que se ejecute en dos veces y le de tiempo a tratar los eventos
+                        if(!continuarEjecucion){
+                            cancelarJugada();
+                            continuarEjecucion = true; 
+                        } else if (continuarEjecucion){
+                            conecta4_seguir(0);
+                            continuarEjecucion = false; 
+                        }                        
                     } else {                  // boton 2 - se reinicia el juego 
                         conecta4_acabarPorBoton();
                         cola_iniciar();

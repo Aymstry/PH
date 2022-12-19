@@ -2,7 +2,7 @@
 #define __COLA_H__
 
 #include "eventos.h"
-enum{MAX_C = 32};
+enum{MAX_C = 100};
 
 // estructura básica para los eventos 
 typedef struct{

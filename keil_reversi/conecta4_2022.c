@@ -278,9 +278,11 @@ void conecta4_seguir(uint8_t confirmada){
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			endgame(colorAnterior);  												//ganas la partida
+			colorAnterior = 2; 
 			C4_acabarPorVictoria();
 		} else if (C4_comprobar_empate(cuadricula)){
 			C4_acabarPorEmpate();
+			colorAnterior = 2; 
 			endgame(3);  													//quedan en empate los dos jugadores
 		}
 
