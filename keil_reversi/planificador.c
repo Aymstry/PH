@@ -1,21 +1,25 @@
 #include "planificador.h"
-
-
-
+#include "funciones_swi.h"
 
 
 void planificador(void){
 
     // inicializamos los periféricos 
     bool permiso = true; 
-    bool continuarEjecucion = false; 
     conecta4_init();
     temporizador_reloj(1);  // Indicamos que queremos que las interrupciones del timer0 generen un evento cada 1 ms
     init_Parametros_GA();
     jugadaNoValidaInit();
     RTC_init(); 
     // colocamos la alarma para pasar a modo apagado 
+    uint32_t leidoFIQ = read_FIQ_bit();
+    if (leidoFIQ == 0){
+        disable_fiq(); 
+    }
     cola_encolar_evento(Suspender, 0, 0);
+    if (leidoFIQ == 0){
+        enable_fiq(); 
+    } 
     conecta4_recuperar_tablero(); 
     while(1){
         
@@ -32,18 +36,20 @@ void planificador(void){
                     gestor_alarmas();
                     break;
                 case BotonPulsado:
+                    leidoFIQ = read_FIQ_bit();
+                    if (leidoFIQ == 0){
+                        disable_fiq(); 
+                    }
                     cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+                    if (leidoFIQ == 0){
+                        enable_fiq(); 
+                    } 
                     permiso = terminarLatido();
                     gestor_botones(evento.auxData);
                     if (evento.auxData == 1){ // EINT1 (realizar la jugada)
                         // para que se ejecute en dos veces y le de tiempo a tratar los eventos
-                        if(!continuarEjecucion){
-                            cancelarJugada();
-                            continuarEjecucion = true; 
-                        } else if (continuarEjecucion){
-                            conecta4_seguir(0);
-                            continuarEjecucion = false; 
-                        }                        
+                        cancelarJugada();
+                        conecta4_seguir(0);       
                     } else {                  // boton 2 - se reinicia el juego 
                         conecta4_acabarPorBoton();
                         cola_iniciar();

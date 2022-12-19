@@ -2,6 +2,7 @@
 #include "Uart0.h"
 #include "eventos.h"
 #include "cola_asyn.h"
+#include "funciones_swi.h"
 
 #define CR     0x0D  // 0000 1101
 
@@ -31,16 +32,19 @@ void uart0_ISR (void) __irq {
   uint8_t registro = (U0IIR << 28) >> 29;
   // U0IIR nos va a indicar que tipo de interrupción tenemos 
   
-  if (registro & 0x02){                    // recibimos una interrupcion de recepción  
+  if (registro & 0x02){                    // recibimos una interrupcion de recepción 
+
     cola_encolar_evento(UART0_ESCRITO,0, U0RBR);   // U0RBR = carácter leido por la UART
+
   }
   
   if (registro & 0x01) {           // recibimos una interrupcion de transmisión  
     // nos llega interrupcion de que acaba de escribir algo 
     // avisamos encolando un evento que nos llevará al g_serie
     // en g_serie tenemos dos funciones que no sabemos que tienen que hacer cada cual 
+
     cola_encolar_evento(UART0_LEIDO,0, U0RBR);   // U0RBR = carácter leido por la UART
-   
+
   }
 		VICVectAddr = 0;                       // Acknowledge Interrupt
 

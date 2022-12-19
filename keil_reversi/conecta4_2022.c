@@ -222,12 +222,17 @@ volatile uint8_t columna;
 volatile uint8_t colorAnterior;
 volatile uint8_t cancelada=2;
 volatile uint8_t fila; 
+volatile uint8_t colour;
+
+void iniciarValores(void){
+	colour = 1;
+	cancelada = 1; 
+}
 
 void conecta4_jugar(uint8_t column){
 	// new, column, padding to prevent desalinating to 8 bytes
 	
 	uint8_t row;
-	static uint8_t colour = 1; 
 
 	row = C4_calcular_fila(cuadricula, column); 				// returns 0 if is not in range
 	fila = row;
@@ -296,6 +301,7 @@ void conecta4_tratamientoComando(uint32_t comando){
 		cola_iniciar();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
+		iniciarValores();
 		conecta4_resetear_juego();
 		initgame();
 		//buffer_inicio();

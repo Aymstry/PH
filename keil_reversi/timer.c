@@ -86,7 +86,7 @@ void timer1_ISR (void) __irq {
 void timer0_ISR (void) __irq{
     timer0_int_count++;
     if((timer0_int_count & (alarma - 1)) == 0){          // timer0 % periodo para contar el número de interrupciones
-        cola_encolar_evento(T0, timer0_int_count, 0);      
+        cola_encolar_FIQ(T0, timer0_int_count, 0);      
     } 
     T0IR = 1;                              // Clear interrupt flag
     VICVectAddr = 0;                      // Acknowledge Interrupt cambiar para fiq 

@@ -6,3 +6,4 @@
 .\uart0.o: eventos.h
 .\uart0.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\uart0.o: cola_asyn.h
+.\uart0.o: funciones_swi.h

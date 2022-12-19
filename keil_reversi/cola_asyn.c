@@ -29,6 +29,19 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
     } 
 }
 
+// Añadiemos un evento a la cola 
+void cola_encolar_FIQ(uint8_t ID_evento, uint32_t veces, uint32_t auxData){
+    if (c.n >= MAX_C ) {// Comprobamos que la cola esta llena
+        GPIO_escribir(30,1,1);
+        while(1);
+    }          
+    c.evs[c.tail].auxData = auxData;
+    c.evs[c.tail].id = ID_evento;
+    c.evs[c.tail].numInt = veces;
+    c.n = c.n + 1; 
+    c.tail = (c.tail + 1) % (MAX_C);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
+}
+
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar
 void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData){
     *ID_evento = (c.evs[c.head]).id;
