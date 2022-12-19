@@ -4,9 +4,9 @@
 
 
 int main(){	
+	uart0_init();
   eint_init();
-  initgame();
-  uart0_init(); 
+  initgame(); 
 	temporizador_iniciar();
   planificador(); 
 }

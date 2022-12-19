@@ -93,6 +93,8 @@ void conecta4_acabarPorBoton(void);
 void C4_acabarPorEmpate(void);
 
 void C4_acabarPorVictoria(void);
+
+void conecta4_leerTiempo(void);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

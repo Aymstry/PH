@@ -11,6 +11,7 @@ void uart0_ISR (void) __irq;
 void uart0_init(void){                  // Initialize Serial Interface       
   PINSEL0 = PINSEL0 & 0xfffffffA;	      // ponemos a cero los valores que vamos a modificar
   PINSEL0 = PINSEL0|0x00000005;         // Enable RxD1 and TxD1  
+	
   //PINSEL0 =  0x00000005;     
   // ------------------------------------- ?      
   U0LCR = 0x83;                         // 8 bits, no Parity, 1 Stop bit     

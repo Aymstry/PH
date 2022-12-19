@@ -51,6 +51,7 @@ void planificador(void){
                         cancelarJugada();
                         conecta4_seguir(0);       
                     } else {                  // boton 2 - se reinicia el juego 
+                        conecta4_leerTiempo();
                         conecta4_acabarPorBoton();
                         cola_iniciar();
                         initgame();

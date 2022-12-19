@@ -7,6 +7,7 @@
 #include "g_serie.h"
 #include "msg.h"
 #include "funciones_swi.h"
+#include "RTC.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -282,10 +283,12 @@ void conecta4_seguir(uint8_t confirmada){
 		C4_mostrarTablero(cuadricula); 
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
+			conecta4_leerTiempo();
 			endgame(colorAnterior);  												//ganas la partida
 			colorAnterior = 2; 
 			C4_acabarPorVictoria();
 		} else if (C4_comprobar_empate(cuadricula)){
+			conecta4_leerTiempo();
 			C4_acabarPorEmpate();
 			colorAnterior = 2; 
 			endgame(3);  													//quedan en empate los dos jugadores
@@ -298,9 +301,11 @@ void conecta4_seguir(uint8_t confirmada){
 void conecta4_tratamientoComando(uint32_t comando){
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if ( comando == 0x454E4400) {		 // END
+		conecta4_leerTiempo();
 		cola_iniciar();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
+		conecta4_leerTiempo();
 		iniciarValores();
 		conecta4_resetear_juego();
 		initgame();
@@ -348,5 +353,21 @@ void C4_acabarPorEmpate(void){
 void C4_acabarPorVictoria(void){
 	char texto[]="La partida ha terminado en victoria!, bien jugado\n";
 	uart0_enviar_array(texto);
+}
+
+void conecta4_leerTiempo(void){
+	uint8_t segundos, minutos = 0;
+	RTC_leer(&segundos, &minutos);
+	char min[2], seg[2];
+	min[0] = minutos + '0';
+	min[1] = '\0';
+	seg[0] = segundos + '0';
+	seg[1] = '\0';
+	char texto[]= "El tiempo transcurrido es: ";
+	uart0_enviar_array(texto);
+	uart0_enviar_array(seg);
+	uart0_enviar_array(" s y \0");
+	uart0_enviar_array(min);
+	uart0_enviar_array(" min. \n\0");
 }
 
