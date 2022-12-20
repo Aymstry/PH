@@ -18,7 +18,7 @@ void cola_encolar_evento(uint8_t ID_evento, uint32_t veces, uint32_t auxData);
 void cola_desencolar_evento(uint8_t *ID_evento, uint32_t *auxData); 
 bool cola_vacia(void);
 void cola_encolar_mensaje(uint8_t ID_msg, uint32_t mensaje);
-void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje);
+void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje, uint32_t *tiempo);
 bool cola_vacia_mensaje(void);
 void cola_encolar_FIQ(uint8_t ID_evento, uint32_t veces, uint32_t auxData);
 

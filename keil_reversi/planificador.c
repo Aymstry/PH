@@ -10,7 +10,7 @@ void planificador(void){
     init_Parametros_GA();
     jugadaNoValidaInit();
     RTC_init(); 
-    WD_init(5);
+    WD_init(10);
     WD_feed();
     // colocamos la alarma para pasar a modo apagado 
     uint32_t leidoFIQ = read_FIQ_bit();
@@ -38,17 +38,10 @@ void planificador(void){
                     break;
                 case BotonPulsado:
                     leidoFIQ = read_FIQ_bit();
-                    if (leidoFIQ == 0){
-                        disable_fiq(); 
-                    }
                     cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
-                    if (leidoFIQ == 0){
-                        enable_fiq(); 
-                    } 
                     permiso = terminarLatido();
                     gestor_botones(evento.auxData);
-                    if (evento.auxData == 1){ // EINT1 (realizar la jugada)
-                        // para que se ejecute en dos veces y le de tiempo a tratar los eventos
+                    if (evento.auxData == 1){ // EINT1 (cancelar la jugada)
                         cancelarJugada();
                         conecta4_seguir(0);       
                     } else {                  // boton 2 - se reinicia el juego 
@@ -69,7 +62,7 @@ void planificador(void){
                     GSERIE_procesarEntrada(evento.auxData);
                     break;
                 case UART0_LEIDO:
-                    uart0_continuar_envio();
+                    GSERIE_continuar_envio();
                     break;
                 case FIN: 
                     conecta4_init();
@@ -82,8 +75,8 @@ void planificador(void){
 
         while(!cola_vacia_mensaje()){
             elemento msg;
-            cola_desencolar_mensaje(&msg.id, &msg.auxData);
-            conecta4_ActualizarTiempoMedio();
+            cola_desencolar_mensaje(&msg.id, &msg.auxData, &msg.numInt);
+            conecta4_ActualizarTiempoMedio(msg.numInt);
             switch(msg.id){
                 case Set_Alarma: 
                     organizador_alarmas(msg.auxData); 

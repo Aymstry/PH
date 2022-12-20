@@ -59,12 +59,12 @@ void ApagarLedConfirmacion(void){
 void endgame(uint8_t resultado){
     GPIO_escribir(18,1,1);
     if( resultado == 3){        // empate
-       GPIO_escribir(1, 2 ,3); 
+       GPIO_escribir(2, 2 ,3); 
     } else {
         if(resultado == 1){
-            GPIO_escribir(1, 2 ,1);
+            GPIO_escribir(2, 2 ,1);
         } else {
-            GPIO_escribir(1, 2 ,2);
+            GPIO_escribir(2, 2 ,2);
         }
     }
 }

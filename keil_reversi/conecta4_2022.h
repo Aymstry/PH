@@ -98,7 +98,7 @@ void conecta4_leerTiempo(void);
 
 void conecta4_mostrarTiempoMedio(void);
 
-void conecta4_ActualizarTiempoMedio(void);
+void conecta4_ActualizarTiempoMedio(uint32_t TiempoMensaje);
 
 void dividirEntero(uint32_t tiempo);
 

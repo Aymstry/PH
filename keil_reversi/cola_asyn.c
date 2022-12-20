@@ -56,21 +56,23 @@ bool cola_vacia(void) {
 }
 
 // Añadiemos un mensaje a la cola de mensajes 
+// Añadiemos un mensaje a la cola de mensajes 
 void cola_encolar_mensaje(uint8_t ID_msg, uint32_t mensaje){
-    temporizador_empezar();
     if (msg.n >= MAX_C ) {// Comprobamos que la cola esta llena
         while(1);
     }          
     msg.evs[msg.tail].id = ID_msg;
     msg.evs[msg.tail].auxData = mensaje;
+    msg.evs[msg.tail].numInt = temporizador_leer();
     msg.n = msg.n + 1; 
     msg.tail = (msg.tail + 1) % (MAX_C);     // tail= (tail+1)AND(MAX-1) = (tail+1)%MAX
 }
 
 // Eliminamos un elemento de la cola pq ya ha sido tratado/ lo vamos a tratar
-void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje){
+void cola_desencolar_mensaje(uint8_t *ID_msg, uint32_t *mensaje, uint32_t *tiempo){
     *ID_msg = (msg.evs[msg.head]).id;
     *mensaje = (msg.evs[msg.head]).auxData;
+    *tiempo = (msg.evs[msg.head]).numInt;
     msg.n = msg.n - 1;                          // decrementamos n 
     msg.head = (msg.head + 1) % (MAX_C);     // aumentamos en 1 head % MAX 
 }

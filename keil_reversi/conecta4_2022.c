@@ -218,7 +218,7 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 	tablero[indice] = '\n';
 	indice ++;
 	tablero[indice] = '\0';
-	uart0_enviar_array(tablero);
+	GSERIE_enviar_array(tablero);
 
 }
 
@@ -268,15 +268,8 @@ void conecta4_jugar(uint8_t column){
 		// mensaje final:               0000 1111 0 000 0000 0000 0101 1101 1100   
 		//                              0000 1111 0000 0000 0000 0101 1101 1100 
 		//                               0    F     0    0    0    5    D    C   = 0F0005DC - 0F0003E8
-		uint32_t mensaje = 0x0F0003E8;
+		uint32_t mensaje = 0x0F0007D0;
 		cola_encolar_mensaje(Set_Alarma, mensaje); 	
-		if ( cancelada == 1){		// se confirma la jugada por ello cambiamos de color 
-			colour = C4_alternar_color(colour);
-			cambioColor(colour); 
-		}else if (cancelada ==0) {	
-			//colour = colorAnterior;
-			colour = C4_alternar_color(colorAnterior);
-		} 
 	} else {
 		C4_columnaNoValida();
 		G_IO_errorColumna();
@@ -287,6 +280,7 @@ void conecta4_seguir(uint8_t confirmada){
 	cancelada = confirmada;
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if(confirmada == 0){		// movimiento cancelado 
+		colour = colorAnterior;
 		C4_cancelarMov();
 		C4_actualizar_tablero(cuadricula,fila,columna,0); 	//actualiza el tablero
 		actualizarJugada(cuadricula,fila,columna,0);
@@ -309,6 +303,9 @@ void conecta4_seguir(uint8_t confirmada){
 			colorAnterior = 2; 
 			endgame(3);  													//quedan en empate los dos jugadores
 		}
+		colour = C4_alternar_color(colour);
+		cambioColor(colour); 
+	
 
 	}
 }
@@ -322,6 +319,7 @@ void conecta4_tratamientoComando(uint32_t comando){
 		resetearJuego();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
+		temporizador_empezar();
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		conecta4_leerTiempo();
 		iniciarValores();
@@ -342,56 +340,53 @@ void conecta4_tratamientoComando(uint32_t comando){
 
 void conecta4_init(void){
 	char reglas[] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!\n"; 
-	uart0_enviar_array(reglas);
+	GSERIE_enviar_array(reglas);
 }
 
 void C4_columnaNoValida(void){
 	char texto[]="Columna no valida\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void C4_columnaValida(void){
 	char texto[]="\nPulsa boton 1(GPIO14) para cancelar\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void C4_cancelarMov(void){
 	char texto[]="Movimiento cancelado\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void conecta4_acabarPorBoton(void){
 	char texto[]="Le diste al boton reiniciar,\n reiniciamos la partida\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void C4_acabarPorEmpate(void){
 	char texto[]="La partida ha terminado en empate!, bien jugado\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void C4_acabarPorVictoria(void){
 	char texto[]="La partida ha terminado en victoria!, bien jugado\n";
-	uart0_enviar_array(texto);
+	GSERIE_enviar_array(texto);
 }
 
 void conecta4_leerTiempo(void){
-	uint8_t segundos, minutos = 0;
-	RTC_leer(&segundos, &minutos);
-	char min[10], seg[10];
-	int_to_string(minutos, min);
+	uint32_t segundos = clock_gettime();
+	char seg[32];
 	int_to_string(segundos, seg);
 	char texto[]= "\n      El tiempo transcurrido es: ";
-	uart0_enviar_array(texto);
-	uart0_enviar_array(seg);
-	uart0_enviar_array(" s y \0");
-	uart0_enviar_array(min);
-	uart0_enviar_array(" min. \n\0");
+	GSERIE_enviar_array(texto);
+	GSERIE_enviar_array(seg);
+	GSERIE_enviar_array(" s\n\0");
 
 }
 
-void conecta4_ActualizarTiempoMedio(void){
-	uint32_t tiempo = clock_get_us();
+void conecta4_ActualizarTiempoMedio(uint32_t TiempoMensaje){
+	uint32_t tiempoActual = clock_get_us();
+	uint32_t tiempo = tiempoActual - TiempoMensaje; 
 	TMedioMensajes = TMedioMensajes + tiempo; 
 	numeroMensajesContados++; 
 }
@@ -401,10 +396,10 @@ void conecta4_mostrarTiempoMedio(void){
 	char tchar[32];
 	int_to_string(tiempo, tchar);
 	char texto[]="El tiempo medio de procesamiento de los mensajes es de: ";
-	uart0_enviar_array(texto);
-	uart0_enviar_array(tchar);
+	GSERIE_enviar_array(texto);
+	GSERIE_enviar_array(tchar);
 	char texto2[]=" microsegundos en esta partida. \n";
-	uart0_enviar_array(texto2);
+	GSERIE_enviar_array(texto2);
 }
 
 // -------------------------------- funciones de tratamiento int to char[] --------------------------------

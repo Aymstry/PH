@@ -59,17 +59,17 @@ void GSERIE_procesarEntrada(int ch){
 		}
   
     
-    uart0_enviar_array(c);
+    GSERIE_enviar_array(c);
 }
 
-void uart0_enviar_array( char mensaje[] ){
+void GSERIE_enviar_array( char mensaje[] ){
     //buffer
     buffer_encolar(mensaje);
     // imprimimos el primer carácter 
-    uart0_continuar_envio();
+    GSERIE_continuar_envio();
 }
 
-void uart0_continuar_envio(void){
+void GSERIE_continuar_envio(void){
     char c = buffer_desencolar(); 
     // encolamos el mensaje para que la UART0 escriba el carácter. 
     if(c != '\0'){

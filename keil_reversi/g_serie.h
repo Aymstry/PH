@@ -15,8 +15,8 @@ typedef struct{
 void GSERIE_procesarEntrada(int ch);
 
 // Funciones UART0
-void uart0_enviar_array(char mensaje[MAX_A]);
-void uart0_continuar_envio(void);
+void GSERIE_enviar_array(char mensaje[MAX_A]);
+void GSERIE_continuar_envio(void);
 
 // Funciones para el buffer circular
 void buffer_inicio(void);
