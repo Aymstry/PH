@@ -1,5 +1,4 @@
 .\main.o: main.c
-.\main.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
 .\main.o: planificador.h
 .\main.o: cola_asyn.h
 .\main.o: eventos.h
@@ -19,6 +18,8 @@
 .\main.o: Uart0.h
 .\main.o: tableros.h
 .\main.o: funciones_swi.h
+.\main.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
 .\main.o: g_serie.h
 .\main.o: RTC.h
+.\main.o: WD.h
 .\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

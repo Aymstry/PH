@@ -17,8 +17,10 @@
 #include "funciones_swi.h"
 #include "g_serie.h"
 #include "RTC.h"
+#include "WD.h"
 #include <inttypes.h>
 #include <stdio.h>
+
 
 void planificador(void);
 

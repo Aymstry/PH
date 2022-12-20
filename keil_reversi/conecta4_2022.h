@@ -105,6 +105,8 @@ void dividirEntero(uint32_t tiempo);
 void int_to_string(int n, char* str);
 
 void reverse_string(char* str);
+
+void resetearJuego(void); 
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

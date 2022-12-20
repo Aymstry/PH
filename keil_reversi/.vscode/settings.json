@@ -2,6 +2,8 @@
     "files.associations": {
         "cola_asyn.h": "c",
         "botones.h": "c",
-        "g_serie.h": "c"
+        "g_serie.h": "c",
+        "stdio.h": "c",
+        "funciones_swi.h": "c"
     }
 }

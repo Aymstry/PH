@@ -3,7 +3,6 @@
 
 
 void planificador(void){
-
     // inicializamos los periféricos 
     bool permiso = true; 
     conecta4_init();
@@ -11,6 +10,8 @@ void planificador(void){
     init_Parametros_GA();
     jugadaNoValidaInit();
     RTC_init(); 
+    WD_init(5);
+    WD_feed();
     // colocamos la alarma para pasar a modo apagado 
     uint32_t leidoFIQ = read_FIQ_bit();
     if (leidoFIQ == 0){
@@ -51,9 +52,7 @@ void planificador(void){
                         cancelarJugada();
                         conecta4_seguir(0);       
                     } else {                  // boton 2 - se reinicia el juego 
-                        conecta4_leerTiempo();
-                        temporizador_parar();
-                        conecta4_mostrarTiempoMedio();
+                        resetearJuego();
                         conecta4_acabarPorBoton();
                         cola_iniciar();
                         initgame();
@@ -111,6 +110,9 @@ void planificador(void){
                             break;
                         case CONECTA4:      // no se ha cancelado la jugada 
                             conecta4_seguir(1);
+                            break;
+                        case WATCHDOG:
+                            WD_feed();
                             break;
                         default: break;
                     } 

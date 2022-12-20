@@ -9,6 +9,7 @@
 #include "funciones_swi.h"
 #include "RTC.h"
 #include "timer.h"
+#include "WD.h"
 #include <string.h>
 
 
@@ -221,6 +222,8 @@ void C4_mostrarTablero(CELDA cuadricula[TAM_FILS][TAM_COLS]){
 
 }
 
+// --------------------------- juego conecta4 esquema - inicio - reseteo  --------------------------------
+
 volatile uint8_t columna;
 volatile uint8_t colorAnterior;
 volatile uint8_t cancelada=2;
@@ -234,6 +237,13 @@ void iniciarValores(void){
 	cancelada = 1; 
 	TMedioMensajes = 0;
 	numeroMensajesContados=0;
+}
+
+void resetearJuego(void){
+	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
+	conecta4_leerTiempo();
+	temporizador_parar();
+	conecta4_mostrarTiempoMedio();
 }
 
 void conecta4_jugar(uint8_t column){
@@ -289,16 +299,12 @@ void conecta4_seguir(uint8_t confirmada){
 		C4_mostrarTablero(cuadricula); 
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
-			conecta4_leerTiempo();
-			temporizador_parar();
-			conecta4_mostrarTiempoMedio();
+			resetearJuego();
 			endgame(colorAnterior);  												//ganas la partida
 			colorAnterior = 2; 
 			C4_acabarPorVictoria();
 		} else if (C4_comprobar_empate(cuadricula)){
-			conecta4_leerTiempo();
-			temporizador_parar();
-			conecta4_mostrarTiempoMedio();
+			resetearJuego();
 			C4_acabarPorEmpate();
 			colorAnterior = 2; 
 			endgame(3);  													//quedan en empate los dos jugadores
@@ -307,15 +313,16 @@ void conecta4_seguir(uint8_t confirmada){
 	}
 }
 
+// -------------------------------- tratamiento de los comandos --------------------------------
+
 // N=4E  E=45  W=57 ; E=45 N=4E D=44 ; C= 31-37
 void conecta4_tratamientoComando(uint32_t comando){
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if ( comando == 0x454E4400) {		 // END
-		conecta4_leerTiempo();
-		temporizador_parar();
-		conecta4_mostrarTiempoMedio();
+		resetearJuego();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
+		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		conecta4_leerTiempo();
 		iniciarValores();
 		conecta4_resetear_juego();
@@ -330,6 +337,8 @@ void conecta4_tratamientoComando(uint32_t comando){
         }
 	}
 }
+
+// -------------------------------- mensajes que se sacan por pantalla --------------------------------
 
 void conecta4_init(void){
 	char reglas[] = "Bienvenido a conecta 4 \nLas normas son las siguientes: \n para comenzar la partida escriba #NEW! \n para rendirse o acabar el juego escriba #END! \n mientras juega para introducir una ficha escriba #C!, \n siendo C un numero entre 0 y 9 \n SUERTE!\n"; 
@@ -369,9 +378,9 @@ void C4_acabarPorVictoria(void){
 void conecta4_leerTiempo(void){
 	uint8_t segundos, minutos = 0;
 	RTC_leer(&segundos, &minutos);
-	char min, seg;
-	int_to_string(minutos, &min);
-	int_to_string(segundos, &seg);
+	char min[10], seg[10];
+	int_to_string(minutos, min);
+	int_to_string(segundos, seg);
 	char texto[]= "\n      El tiempo transcurrido es: ";
 	uart0_enviar_array(texto);
 	uart0_enviar_array(seg);
@@ -388,33 +397,19 @@ void conecta4_ActualizarTiempoMedio(void){
 }
 
 void conecta4_mostrarTiempoMedio(void){
-	//uint32_t tiempo = TMedioMensajes / numeroMensajesContados;
-	char texto[]="El tiempo medio de procesamiento de los mensajes es de: \n";
+	uint32_t tiempo = TMedioMensajes / numeroMensajesContados;
+	char tchar[32];
+	int_to_string(tiempo, tchar);
+	char texto[]="El tiempo medio de procesamiento de los mensajes es de: ";
 	uart0_enviar_array(texto);
+	uart0_enviar_array(tchar);
 	char texto2[]=" microsegundos en esta partida. \n";
 	uart0_enviar_array(texto2);
 }
-/*
-void dividirEntero(uint32_t tiempo){
-	int numIteraciones = 0; 
-	int resto = tiempo;
-	while (resto != 0) {
-		resto = resto / 10;
-		numIteraciones++; 
-	}
-	char numero[numIteraciones+1];
-	resto = 0;
-	int i;
-	for(i = 0; i < numIteraciones; i++){
-		resto = tiempo % 10; 
-		tiempo = tiempo/10; 
-		numero[numIteraciones-i] = resto + '0'; 
-	}
-	numero[i] = '\0';
-	uart0_enviar_array(numero);
-}*/
 
-void int_to_string(int n, char* str)
+// -------------------------------- funciones de tratamiento int to char[] --------------------------------
+
+void int_to_string(int n, char str[])
 {
 	int i = 0;
 	int sign = 1;

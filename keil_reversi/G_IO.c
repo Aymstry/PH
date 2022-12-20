@@ -34,9 +34,9 @@ int leercolumna(void){
 
 void cambioColor(uint8_t nuevoJugador){
     if(nuevoJugador == 1){
-        GPIO_escribir(1, 2 ,1);
+        GPIO_escribir(2, 2 ,1);
     } else {
-        GPIO_escribir(1, 2 ,2);
+        GPIO_escribir(2, 2 ,2);
     }
 }
 

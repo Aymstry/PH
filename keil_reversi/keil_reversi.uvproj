@@ -636,6 +636,16 @@
               <FileType>5</FileType>
               <FilePath>.\g_serie.h</FilePath>
             </File>
+            <File>
+              <FileName>WD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\WD.c</FilePath>
+            </File>
+            <File>
+              <FileName>WD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\WD.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

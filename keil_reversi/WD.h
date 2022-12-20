@@ -4,6 +4,8 @@
 
 void WD_init(int sec);
 void WD_feed(void);
+void alimentarWD(void);          
+
 
 
 #endif

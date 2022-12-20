@@ -21,4 +21,5 @@
 .\planificador.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
 .\planificador.o: g_serie.h
 .\planificador.o: RTC.h
+.\planificador.o: WD.h
 .\planificador.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
