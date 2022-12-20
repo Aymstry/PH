@@ -8,6 +8,7 @@
 #include "msg.h"
 #include "funciones_swi.h"
 #include "RTC.h"
+#include "timer.h"
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -224,10 +225,14 @@ volatile uint8_t colorAnterior;
 volatile uint8_t cancelada=2;
 volatile uint8_t fila; 
 volatile uint8_t colour;
+volatile uint32_t TMedioMensajes;
+volatile uint32_t numeroMensajesContados; 
 
 void iniciarValores(void){
 	colour = 1;
 	cancelada = 1; 
+	TMedioMensajes = 0;
+	numeroMensajesContados=0;
 }
 
 void conecta4_jugar(uint8_t column){
@@ -284,11 +289,15 @@ void conecta4_seguir(uint8_t confirmada){
 
 		if(C4_verificar_4_en_linea(cuadricula, fila, columna, colorAnterior)) {
 			conecta4_leerTiempo();
+			temporizador_parar();
+			conecta4_mostrarTiempoMedio();
 			endgame(colorAnterior);  												//ganas la partida
 			colorAnterior = 2; 
 			C4_acabarPorVictoria();
 		} else if (C4_comprobar_empate(cuadricula)){
 			conecta4_leerTiempo();
+			temporizador_parar();
+			conecta4_mostrarTiempoMedio();
 			C4_acabarPorEmpate();
 			colorAnterior = 2; 
 			endgame(3);  													//quedan en empate los dos jugadores
@@ -302,7 +311,8 @@ void conecta4_tratamientoComando(uint32_t comando){
 	cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 	if ( comando == 0x454E4400) {		 // END
 		conecta4_leerTiempo();
-		cola_iniciar();
+		temporizador_parar();
+		conecta4_mostrarTiempoMedio();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
 		conecta4_leerTiempo();
@@ -331,7 +341,7 @@ void C4_columnaNoValida(void){
 }
 
 void C4_columnaValida(void){
-	char texto[]="Pulsa boton 1(GPIO14) para cancelar\n";
+	char texto[]="\nPulsa boton 1(GPIO14) para cancelar\n";
 	uart0_enviar_array(texto);
 }
 
@@ -363,11 +373,44 @@ void conecta4_leerTiempo(void){
 	min[1] = '\0';
 	seg[0] = segundos + '0';
 	seg[1] = '\0';
-	char texto[]= "El tiempo transcurrido es: ";
+	char texto[]= "\n      El tiempo transcurrido es: ";
 	uart0_enviar_array(texto);
 	uart0_enviar_array(seg);
 	uart0_enviar_array(" s y \0");
 	uart0_enviar_array(min);
 	uart0_enviar_array(" min. \n\0");
+
 }
 
+void conecta4_ActualizarTiempoMedio(void){
+	uint32_t tiempo = clock_get_us();
+	TMedioMensajes = TMedioMensajes + tiempo; 
+	numeroMensajesContados++; 
+}
+
+void conecta4_mostrarTiempoMedio(void){
+	//uint32_t tiempo = TMedioMensajes / numeroMensajesContados;
+	char texto[]="El tiempo medio de procesamiento de los mensajes es de: \n";
+	uart0_enviar_array(texto);
+	char texto2[]=" microsegundos en esta partida. \n";
+	uart0_enviar_array(texto2);
+}
+/*
+void dividirEntero(uint32_t tiempo){
+	int numIteraciones = 0; 
+	int resto = tiempo;
+	while (resto != 0) {
+		resto = resto / 10;
+		numIteraciones++; 
+	}
+	char numero[numIteraciones+1];
+	resto = 0;
+	int i;
+	for(i = 0; i < numIteraciones; i++){
+		resto = tiempo % 10; 
+		tiempo = tiempo/10; 
+		numero[numIteraciones-i] = resto + '0'; 
+	}
+	numero[i] = '\0';
+	uart0_enviar_array(numero);
+}*/

@@ -1,5 +1,6 @@
 #include "cola_asyn.h"
 #include "gpio.h"
+#include "timer.h"
 #include "funciones_swi.h"
 
 static cola c;
@@ -56,6 +57,7 @@ bool cola_vacia(void) {
 
 // Añadiemos un mensaje a la cola de mensajes 
 void cola_encolar_mensaje(uint8_t ID_msg, uint32_t mensaje){
+    temporizador_empezar();
     if (msg.n >= MAX_C ) {// Comprobamos que la cola esta llena
         while(1);
     }          
@@ -78,9 +80,4 @@ bool cola_vacia_mensaje(void) {
 }
 
 
-// main que no sabemos donde se pone :) ahor lo sabemos, se pone en el planificador 
-// while(!cola_vacia()) {
-//   evento e;
-//   cola_desencolar_evento(&e);
-     
-//}
+

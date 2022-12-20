@@ -95,6 +95,12 @@ void C4_acabarPorEmpate(void);
 void C4_acabarPorVictoria(void);
 
 void conecta4_leerTiempo(void);
+
+void conecta4_mostrarTiempoMedio(void);
+
+void conecta4_ActualizarTiempoMedio(void);
+
+void dividirEntero(uint32_t tiempo);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

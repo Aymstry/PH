@@ -52,6 +52,8 @@ void planificador(void){
                         conecta4_seguir(0);       
                     } else {                  // boton 2 - se reinicia el juego 
                         conecta4_leerTiempo();
+                        temporizador_parar();
+                        conecta4_mostrarTiempoMedio();
                         conecta4_acabarPorBoton();
                         cola_iniciar();
                         initgame();
@@ -71,7 +73,6 @@ void planificador(void){
                     uart0_continuar_envio();
                     break;
                 case FIN: 
-									  cola_iniciar();
                     conecta4_init();
                     idle();
                     // if aux.Data == 1 se han rendido END             
@@ -83,6 +84,7 @@ void planificador(void){
         while(!cola_vacia_mensaje()){
             elemento msg;
             cola_desencolar_mensaje(&msg.id, &msg.auxData);
+            conecta4_ActualizarTiempoMedio();
             switch(msg.id){
                 case Set_Alarma: 
                     organizador_alarmas(msg.auxData); 

@@ -14,3 +14,4 @@
 .\conecta4_2022.o: funciones_swi.h
 .\conecta4_2022.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
 .\conecta4_2022.o: RTC.h
+.\conecta4_2022.o: timer.h

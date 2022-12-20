@@ -3,10 +3,10 @@
 
 #include <inttypes.h>
 #include <stdbool.h>
-enum {MAX_A = 300}; 
+enum {MAX_A = 400}; 
 // estructura básica para los eventos 
 typedef struct{
-    char buffer[MAX_A];        // vector de eventos 
+    char buffer[MAX_A];        // vector tamano del buffer 
     uint32_t head;            // indice del primer elemento sin procesar  
     uint32_t tail;            // indice del último evento unido + 1  
     uint32_t n;               // numero de eventos sin procesar
