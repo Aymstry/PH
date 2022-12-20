@@ -101,6 +101,10 @@ void conecta4_mostrarTiempoMedio(void);
 void conecta4_ActualizarTiempoMedio(void);
 
 void dividirEntero(uint32_t tiempo);
+
+void int_to_string(int n, char* str);
+
+void reverse_string(char* str);
 /* *****************************************************************************
  * declaración funciones internas C4_
  */

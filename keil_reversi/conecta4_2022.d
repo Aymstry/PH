@@ -15,3 +15,4 @@
 .\conecta4_2022.o: C:\Keil_v5\ARM\INC\Philips\LPC210x.H
 .\conecta4_2022.o: RTC.h
 .\conecta4_2022.o: timer.h
+.\conecta4_2022.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

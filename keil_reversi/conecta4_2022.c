@@ -9,6 +9,7 @@
 #include "funciones_swi.h"
 #include "RTC.h"
 #include "timer.h"
+#include <string.h>
 
 
 extern uint8_t conecta4_buscar_alineamiento_arm(CELDA cuadricula[TAM_FILS][TAM_COLS], uint8_t
@@ -368,11 +369,9 @@ void C4_acabarPorVictoria(void){
 void conecta4_leerTiempo(void){
 	uint8_t segundos, minutos = 0;
 	RTC_leer(&segundos, &minutos);
-	char min[2], seg[2];
-	min[0] = minutos + '0';
-	min[1] = '\0';
-	seg[0] = segundos + '0';
-	seg[1] = '\0';
+	char min, seg;
+	int_to_string(minutos, &min);
+	int_to_string(segundos, &seg);
 	char texto[]= "\n      El tiempo transcurrido es: ";
 	uart0_enviar_array(texto);
 	uart0_enviar_array(seg);
@@ -414,3 +413,48 @@ void dividirEntero(uint32_t tiempo){
 	numero[i] = '\0';
 	uart0_enviar_array(numero);
 }*/
+
+void int_to_string(int n, char* str)
+{
+	int i = 0;
+	int sign = 1;
+
+	/* Tratar el caso del número negativo */
+	if (n < 0) {
+		sign = -1;
+		n = -n;
+	}
+
+	/* Extraer cada dígito del número y almacenarlo en la cadena */
+	do {
+		str[i++] = (n % 10) + '0';
+		n /= 10;
+	} while (n > 0);
+
+	/* Añadir el signo negativo si es necesario */
+	if (sign == -1) {
+		str[i++] = '-';
+	}
+
+	/* Añadir el carácter nulo al final de la cadena */
+	str[i] = '\0';
+
+	/* Invertir el orden de los dígitos */
+	reverse_string(str);
+}
+
+void reverse_string(char* str)
+{
+  int i = 0;
+  int j = strlen(str) - 1;
+  char tmp;
+
+  while (i < j) {
+    tmp = str[i];
+    str[i] = str[j];
+    str[j] = tmp;
+    i++;
+    j--;
+  }
+}
+
