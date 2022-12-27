@@ -319,6 +319,7 @@ void conecta4_tratamientoComando(uint32_t comando){
 		resetearJuego();
 		cola_encolar_evento(FIN, 0, 1);
 	} else if (comando == 0x4E455700){ // NEW
+		alimentarWD();
 		temporizador_empezar();
 		cola_encolar_evento(Suspender, 0, 0); // Cuando se pulsa un boton se reprograma la alrma de power_down
 		conecta4_leerTiempo();

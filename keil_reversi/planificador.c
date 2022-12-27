@@ -10,7 +10,7 @@ void planificador(void){
     init_Parametros_GA();
     jugadaNoValidaInit();
     RTC_init(); 
-    WD_init(10);
+    WD_init(1);
     WD_feed();
     // colocamos la alarma para pasar a modo apagado 
     uint32_t leidoFIQ = read_FIQ_bit();
